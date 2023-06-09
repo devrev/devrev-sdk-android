@@ -1,1 +1,1 @@
-sourceset_dependencies='{":plug:dokkaHtml/androidTestRelease":[],":plug:dokkaHtml/debug":[],":plug:dokkaHtml/main":[],":plug:dokkaHtml/release":[],":plug:dokkaHtml/testFixtures":[],":plug:dokkaHtml/testFixturesDebug":[],":plug:dokkaHtml/testFixturesRelease":[]}'
+sourceset_dependencies='{":core:dokkaHtml/androidTestRelease":[],":core:dokkaHtml/debug":[],":core:dokkaHtml/main":[],":core:dokkaHtml/release":[],":core:dokkaHtml/testFixtures":[],":core:dokkaHtml/testFixturesDebug":[],":core:dokkaHtml/testFixturesRelease":[]}'
