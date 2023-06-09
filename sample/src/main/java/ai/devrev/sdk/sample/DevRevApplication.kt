@@ -13,9 +13,9 @@ class DevRevApplication : Application() {
         super.onCreate()
         DevRev.configure(
             context = this,
-            appId = "appID",
-            secret = "secret",
-            organizationSlug = "organizationSlug"
+            appId = TODO("Add AppID"),
+            secret = TODO("Add secret"),
+            organizationSlug = TODO("Add organization slug")
         )
     }
 }

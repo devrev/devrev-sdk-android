@@ -1,0 +1,32 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:ai.devrev.sdk.model////PointingToDeclaration/core/ai.devrev.sdk.model/index.html
+$dokka.location:ai.devrev.sdk.model/OrganizationInfo///PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/index.html
+$dokka.location:ai.devrev.sdk.model/OrganizationInfo/OrganizationInfo/#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/-organization-info.html
+$dokka.location:ai.devrev.sdk.model/OrganizationInfo/displayName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/display-name.html
+$dokka.location:ai.devrev.sdk.model/OrganizationInfo/domain/#/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/domain.html
+$dokka.location:ai.devrev.sdk.model/UserIdentification///PointingToDeclaration/core/ai.devrev.sdk.model/-user-identification/index.html
+$dokka.location:ai.devrev.sdk.model/UserIdentification/UserIdentification/#kotlin.String#kotlin.String?#ai.devrev.sdk.model.UserInfo?#ai.devrev.sdk.model.OrganizationInfo?/PointingToDeclaration/core/ai.devrev.sdk.model/-user-identification/-user-identification.html
+$dokka.location:ai.devrev.sdk.model/UserIdentification/organizationId/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-identification/organization-id.html
+$dokka.location:ai.devrev.sdk.model/UserIdentification/organizationInfo/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-identification/organization-info.html
+$dokka.location:ai.devrev.sdk.model/UserIdentification/userId/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-identification/user-id.html
+$dokka.location:ai.devrev.sdk.model/UserIdentification/userInfo/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-identification/user-info.html
+$dokka.location:ai.devrev.sdk.model/UserInfo///PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/index.html
+$dokka.location:ai.devrev.sdk.model/UserInfo/UserInfo/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/-user-info.html
+$dokka.location:ai.devrev.sdk.model/UserInfo/displayName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/display-name.html
+$dokka.location:ai.devrev.sdk.model/UserInfo/email/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/email.html
+$dokka.location:ai.devrev.sdk.model/UserInfo/fullName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/full-name.html
+$dokka.location:ai.devrev.sdk.plug.view////PointingToDeclaration/core/ai.devrev.sdk.plug.view/index.html
+$dokka.location:ai.devrev.sdk.plug.view/PlugFloatingActionButton///PointingToDeclaration/core/ai.devrev.sdk.plug.view/-plug-floating-action-button/index.html
+$dokka.location:ai.devrev.sdk.plug.view/PlugFloatingActionButton/PlugFloatingActionButton/#android.content.Context#android.util.AttributeSet?#kotlin.Int/PointingToDeclaration/core/ai.devrev.sdk.plug.view/-plug-floating-action-button/-plug-floating-action-button.html
+$dokka.location:ai.devrev.sdk////PointingToDeclaration/core/ai.devrev.sdk/index.html
+$dokka.location:ai.devrev.sdk//showSupport/ai.devrev.sdk.DevRev#android.content.Context/PointingToDeclaration/core/ai.devrev.sdk/show-support.html
+$dokka.location:ai.devrev.sdk/DevRev///PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/index.html
+$dokka.location:ai.devrev.sdk/DevRev/configure/#android.content.Context#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/configure.html
+$dokka.location:ai.devrev.sdk/DevRev/identify/#ai.devrev.sdk.model.UserIdentification/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/identify.html
+$dokka.location:ai.devrev.sdk/DevRev/isInitialized/#/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/is-initialized.html
+$dokka.location:ai.devrev.sdk/DevRev/setCustomKey/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-custom-key.html
+ai.devrev.sdk
+ai.devrev.sdk.model
+ai.devrev.sdk.plug.view
+
