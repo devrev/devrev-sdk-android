@@ -12,7 +12,6 @@
 # Requirements
 
 - Android Studio 2022.1.1
-- Kotlin Multiplatform Mobile plugin from the JetBrains Marketplace
 - Android Gradle Plugin version 7.4
 - Gradle version 7.6
 - Minimum Android SDK 29
@@ -24,23 +23,16 @@
 Add the following dependencies to your app's `build.gradle.kts` file to get the latest version of our SDK:
 ```kotlin
 dependencies {
-    implementation("ai.devrev.sdk:plug:0.9.0")
+    implementation("ai.devrev.sdk:plug:0.9.6")
 }
 ```
 
 ## Step 2
-Since our SDK is hosted on Github packages, add maven for url `https://maven.pkg.github.com/devrev/devrev-sdk-android` to your root's `build.gradle.kts` file.
-You also need to provide credentials which are your Github username and Personal access token, which has read/write:packages:
+Since our SDK is hosted on Maven Central, all you need to do is add `mavenCentral()` to your repositories in root's `build.gradle.kts` file.
 
 ```kotlin
 repositories {
-    maven {
-        url = uri("https://maven.pkg.github.com/devrev/devrev-sdk-android")
-        credentials {
-            username = "GITHUB_ID"
-            password = "GITHUB_PACKAGES_TOKEN"
-        }
-    }
+    mavenCentral()
 }
 ```
 
