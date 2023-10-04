@@ -1,11 +1,10 @@
 
 ## Table of contents
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Initialize DevRev SDK](#initialize-devrev-sdk)
-- [Usage](#usage)
-- [Sample app compile and run guide](#sample-app-compile-and-run-guide)
-- [Configuration](#configuration)
+- [Requirements](#requirements)
+- [Setup](#setup)
+- [Initialize DevRev SDK](#setting-up-the-devrev-sdk)
+- [Features](#features)
+- [Sample app](#sample-app)
 - [Troubleshooting](#troubleshooting)
 
 
@@ -23,32 +22,41 @@
 Add the following dependencies to your app's `build.gradle.kts` file to get the latest version of our SDK:
 ```kotlin
 dependencies {
-    implementation("ai.devrev.sdk:plug:0.9.6")
+    implementation("ai.devrev.sdk:core:<version>")
 }
 ```
 
 ## Step 2
-Since our SDK is hosted on Maven Central, all you need to do is add `mavenCentral()` to your repositories in root's `build.gradle.kts` file.
-
+Our SDK is hosted on mavenCentral, so to gain access to it, just include the mavenCentral to your root's `build.gradle.kts` file.
 ```kotlin
 repositories {
     mavenCentral()
 }
 ```
+After this step, it should be possible to import and use the DevRev SDK in your Android application.
 
-Now you should be able to import and use the DevRev SDK.
+After adding the lines about in your `build.gradle.kts` script you should be able to import and use the DevRev SDK.
 
 
 # Setting up the DevRev SDK
 ## Step 1: Credentials
-In order to use the DevRev SDK you need the required credentials that can be found on the DevRev web app.
-Open the Settings screen (gear icon), and then go to PLuG Setup under Support.
+In order to use the DevRev SDK you need to provide credentials that can be found in the DevRev web app settings pages.
+Open the Settings screen (gear icon), and then go to PLuG Tokens under Support.
 
-![Settings Icon](docs/screenshots/screenshot-support-settings.png)
+![Settings Icon](docs/screenshots/screenshot-support-settings-plug-tokens.png)
 
-Under the App ID and Secret section you can create the credentials for use in the SDK.
+Under the App ID and Secret section you can create the credentials for use in the SDK.  Store the **App ID** and 
+**Secret** as this will be used in the SDK configuration.
 
 ![Tokens](docs/screenshots/screenshot-creating-credentials.png)
+
+Then you will need to obtain the **PLuG App ID** (referred to as `supportID` in the code) by going to the **PLuG Settings** page.
+
+![Settings](docs/screenshots/screenshot-support-settings-plug-tokens.png)
+
+![Settings](docs/screenshots/screenshot-support-settings-id.png)
+
+
 
 ## Step 2: Initialization
 Once you have the credentials, you can configure the DevRev SDK in your app.
@@ -57,14 +65,14 @@ To configure the SDK, you need to call the following method inside your `Applica
 
 ```kotlin
 fun DevRev.configure(
-    context: Context, 
-    appID: String, 
-    secret: String, 
-    organizationSlug: String
+    context: Context,
+    appID: String,
+    secret: String,
+    supportId: String
 )
 ```
 
-In case you do not have a custom `Application` class, you have to extend one like this:
+In case you do not have a custom `Application` class, you have to extend one like in the following example:
 
 ```kotlin
 import ai.devrev.sdk.DevRev
@@ -77,14 +85,14 @@ class FooApplication : Application() {
             context = this,
             appId = "<APP_ID>",
             secret = "<SECRET>",
-            organizationSlug = "<ORG_SLUG>"
+            supportId = "<SUPPORT_ID>",
         )
     }
 }
 ```
 In the `onCreate` method in your `Application`, you need to configure the DevRev SDK with the required parameters. Here you need to use the credentials that we have created before.
 
-Moreover, the custom application should be defined in `AndroidManifest.xml` like this:
+Moreover, the custom application should be defined in `AndroidManifest.xml` like in the following example:
 ```xml
 <application
     android:name=".FooApplication">
@@ -92,22 +100,23 @@ Moreover, the custom application should be defined in `AndroidManifest.xml` like
 ```
 
 # Features
-Before you can use the PLuG support feature, you need to `identify` the user like this:
+Before start using the PLuG chat feature, user identification is required. There are many arguments mobile applications can submit in order to identify the user. The following example takes the most simplistic approach and provides a bare minimum of arguments required for successful user identification:
 ```kotlin
 DevRev.identify(
     userIdentification = UserIdentification(userId = "foo@example.org")
 )
 ```
+Please read PluG API documentation to learn more about user identification options.
 
-Now you can use the support chat feature.
+After completing user identification, it is possible to start using the chat (conversations) dialog supported by our DevRev SDK.
 
-To open the support chat, you can call the function
+In order to open the chat dialog, application should use `showSupport` API, as demonstrated in the following example:
 
 ```kotlin
 DevRev.showSupport(context: Context)
 ```
 
-Or you can include it in the view with the following code in your XML layout:
+Mobile PluG SDK also exposes the support button, which can be added to your application. Including it in the current screen requires adding the following code in your XML layout:
 ```xml
 <ai.devrev.sdk.plug.view.PlugFloatingActionButton
     android:id="@+id/plug_fab"
@@ -117,23 +126,29 @@ Or you can include it in the view with the following code in your XML layout:
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent" />
 ```
-The button can also accept default parameters like
-`android:src="@your_drawable_here"`
-and 
-`android:backgroundTint="@your_background_color"`
+The support button can also accept default parameters like
+```kotlin
+android:src="@your_drawable_here"
+```
+and/or
+```kotlin
+android:backgroundTint="@your_background_color"
+```
 so that you can customize it to your own needs.
-The button will show up on your screen and by default, it should look like this:
+The button will show up on your screen. The button will show up on your screen. Please check the following screenshot to visualize how the support button is expected to look in our application:
 
 <img src="docs/screenshots/screenshot-sample-identifying-the-user.png" width="220"/>
 
-You should now be able to run the app and use all the functionalities of the PLuG Support chat. The button click will navigate to the support chat.
+At this point, it should be possible to run the app and use all the functionalities of the DevRev PLuG SDK. Pressing the support button would navigate user to the chat.
 
 <img src="docs/screenshots/screenshot-sample-support-view.png" width="220"/>
 
 # Sample app
-A sample app with use cases for both function and XML implementation has been provided as part of this repository.
+Please note that all examples presented in this document are generated using DevRev SDK sample app. The sample app with examples for both function and XML implementation has been provided as part of this repository. Users are kindly encouraged to run the sample app before integrating PluG SDK in the destination application.
 
 # Troubleshooting
-In case you are having trouble with importing the DevRev SDK, check if you have the correct dependency, as well as Github maven URL in your root's project.
+In case of any issues with the integration of the DevRev SDK, please verify that the dependency is correctly set in the project. In addition, please make sure that mavenCentral is reachable from the IDE and that the DevRev PluG SDK version of choice was correctly detected.
 
-If the `showSupport()` function or XML button are not responding, make sure the user has been identified beforehand or if configuration accepted the right parameters for `appID` and `secret`.
+In case the `showSupport()` function or XML button are not responding, make sure the user has been identified beforehand.
+
+To ensure correct operation, correctly setting App ID and secrete is of paramount importance. Please double-check that both values are correctly configured in your application or sample app.

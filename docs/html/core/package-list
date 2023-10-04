@@ -16,11 +16,29 @@ $dokka.location:ai.devrev.sdk.model/UserInfo/UserInfo/#kotlin.String#kotlin.Stri
 $dokka.location:ai.devrev.sdk.model/UserInfo/displayName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/display-name.html
 $dokka.location:ai.devrev.sdk.model/UserInfo/email/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/email.html
 $dokka.location:ai.devrev.sdk.model/UserInfo/fullName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/full-name.html
+$dokka.location:ai.devrev.sdk.params////PointingToDeclaration/core/ai.devrev.sdk.params/index.html
+$dokka.location:ai.devrev.sdk.params/ParametersBuilder///PointingToDeclaration/core/ai.devrev.sdk.params/-parameters-builder/index.html
+$dokka.location:ai.devrev.sdk.params/ParametersBuilder/param/#kotlin.String#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk.params/-parameters-builder/param.html
+$dokka.location:ai.devrev.sdk.params/ParametersBuilder/param/#kotlin.String#kotlin.Number/PointingToDeclaration/core/ai.devrev.sdk.params/-parameters-builder/param.html
+$dokka.location:ai.devrev.sdk.params/ParametersBuilder/param/#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.params/-parameters-builder/param.html
+$dokka.location:ai.devrev.sdk.plug.activity////PointingToDeclaration/core/ai.devrev.sdk.plug.activity/index.html
+$dokka.location:ai.devrev.sdk.plug.activity//ENV_KEY/#/PointingToDeclaration/core/ai.devrev.sdk.plug.activity/-e-n-v_-k-e-y.html
+$dokka.location:ai.devrev.sdk.plug.activity//SESSION_TOKEN_KEY/#/PointingToDeclaration/core/ai.devrev.sdk.plug.activity/-s-e-s-s-i-o-n_-t-o-k-e-n_-k-e-y.html
+$dokka.location:ai.devrev.sdk.plug.activity//SUPPORT_ID_KEY/#/PointingToDeclaration/core/ai.devrev.sdk.plug.activity/-s-u-p-p-o-r-t_-i-d_-k-e-y.html
 $dokka.location:ai.devrev.sdk.plug.view////PointingToDeclaration/core/ai.devrev.sdk.plug.view/index.html
 $dokka.location:ai.devrev.sdk.plug.view/PlugFloatingActionButton///PointingToDeclaration/core/ai.devrev.sdk.plug.view/-plug-floating-action-button/index.html
 $dokka.location:ai.devrev.sdk.plug.view/PlugFloatingActionButton/PlugFloatingActionButton/#android.content.Context#android.util.AttributeSet?#kotlin.Int/PointingToDeclaration/core/ai.devrev.sdk.plug.view/-plug-floating-action-button/-plug-floating-action-button.html
+$dokka.location:ai.devrev.sdk.support////PointingToDeclaration/core/ai.devrev.sdk.support/index.html
+$dokka.location:ai.devrev.sdk.support/SupportEvent.OnConversationStart///PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/-on-conversation-start/index.html
+$dokka.location:ai.devrev.sdk.support/SupportEvent.OnConversationStart/OnConversationStart/#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/-on-conversation-start/-on-conversation-start.html
+$dokka.location:ai.devrev.sdk.support/SupportEvent.OnConversationStart/conversationId/#/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/-on-conversation-start/conversation-id.html
+$dokka.location:ai.devrev.sdk.support/SupportEvent.OnConversationStart/name/#/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/-on-conversation-start/name.html
+$dokka.location:ai.devrev.sdk.support/SupportEvent///PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/index.html
+$dokka.location:ai.devrev.sdk.support/SupportEvent/name/#/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/name.html
 $dokka.location:ai.devrev.sdk////PointingToDeclaration/core/ai.devrev.sdk/index.html
+$dokka.location:ai.devrev.sdk//onSupportEventListener/ai.devrev.sdk.DevRev#kotlin.Function1[ai.devrev.sdk.support.SupportEvent,kotlin.Unit]/PointingToDeclaration/core/ai.devrev.sdk/on-support-event-listener.html
 $dokka.location:ai.devrev.sdk//showSupport/ai.devrev.sdk.DevRev#android.content.Context/PointingToDeclaration/core/ai.devrev.sdk/show-support.html
+$dokka.location:ai.devrev.sdk//trackEvent/ai.devrev.sdk.DevRev#kotlin.String#kotlin.Function1[ai.devrev.sdk.params.ParametersBuilder,kotlin.Unit]/PointingToDeclaration/core/ai.devrev.sdk/track-event.html
 $dokka.location:ai.devrev.sdk/DevRev///PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/index.html
 $dokka.location:ai.devrev.sdk/DevRev/configure/#android.content.Context#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/configure.html
 $dokka.location:ai.devrev.sdk/DevRev/identify/#ai.devrev.sdk.model.UserIdentification/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/identify.html
@@ -28,5 +46,8 @@ $dokka.location:ai.devrev.sdk/DevRev/isInitialized/#/PointingToDeclaration/core
 $dokka.location:ai.devrev.sdk/DevRev/setCustomKey/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-custom-key.html
 ai.devrev.sdk
 ai.devrev.sdk.model
+ai.devrev.sdk.params
+ai.devrev.sdk.plug.activity
 ai.devrev.sdk.plug.view
+ai.devrev.sdk.support
 
