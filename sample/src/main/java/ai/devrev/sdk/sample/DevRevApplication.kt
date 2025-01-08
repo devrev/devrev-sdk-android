@@ -13,9 +13,8 @@ class DevRevApplication : Application() {
         super.onCreate()
         DevRev.configure(
             context = this,
-            appId = TODO("Add AppID"),
-            secret = TODO("Add secret"),
-            organizationSlug = TODO("Add organization slug")
+            appId = "APP_ID_HERE",
         )
+        DevRev.setShouldDismissModalsOnOpenLink(false)
     }
 }

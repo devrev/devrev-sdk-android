@@ -2,17 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-0.9.7
-# Added
-- Added support for tracking analytics events.
+## 1.0.1
 
-# Changed
-- Updated the initial configuration method.
-- Updated support widget to the latest version.
+### Changed
+- Improved the user identification mechanism.
 
-# Deprecated
-- Removed the organization slug (`organizationSlug`) parameter from the configuration method.
+## 1.0.0
 
-For installation instructions, consult the [documentation](README.md).
-## Fixed
-
+### Added
+- Introducing the Session Analytics feature. This feature allows you to monitor the health of your application and its components.
+- Added support for Push Notifications for the PLuG support chat.
+- Added support to create new conversations in the PLuG support chat.
+- Added support for in-app link handling.
