@@ -1,4 +1,4 @@
-val sdk_version = "1.0.1"
+val sdk_version = "1.0.2"
 
 extra["versions"] = mapOf(
     "androidx.core" to "androidx.core:core-ktx:1.9.0",
