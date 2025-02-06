@@ -96,12 +96,16 @@ After adding the lines about in your `build.gradle.kts` Kotlin or `build.gradle`
 Once you have the credentials, you can configure the DevRev SDK in your app. The SDK will be ready to use once you have called the configuration method:
 - Kotlin
 ```kotlin
-DevRev.configure(context: Context, appId: String)
+DevRev.configure(context: Context, appId: String, prefersDialogMode: Boolean)
 ```
 - Java
 ```java
-DevRev.INSTANCE.configure(Context context, String appId);
+DevRev.INSTANCE.configure(Context context, String appId, Boolean prefersDialogMode);
 ```
+
+> [!NOTE]
+> `prefersDialogMode`, if set to true, enables the SDK to open the screens in the app's main task/activity
+
 To configure the SDK, you need to call the following method inside your `Application` class:
 
 > [!NOTE]

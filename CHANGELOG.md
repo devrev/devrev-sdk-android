@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.3
+
+### Added
+- A new flag `prefersDialogMode` to open the support chat in the app's main task/activity.
+
+### Fixed
+- Fix crash when application theme is not a descendant of `Theme.AppCompat`
+- Fix back navigation handling in support chat on physical back button press.
+- Fix data retention in editable views in case of configuration changes like rotation, keyboard switch, etc.
+
 ## 1.0.2
 
 ### Fixed
