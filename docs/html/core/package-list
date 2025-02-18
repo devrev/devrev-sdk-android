@@ -266,9 +266,11 @@ $dokka.location:ai.devrev.sdk.support/SupportEvent///PointingToDeclaration/core
 $dokka.location:ai.devrev.sdk.support/SupportEvent/name/#/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/name.html
 $dokka.location:ai.devrev.sdk////PointingToDeclaration/core/ai.devrev.sdk/index.html
 $dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.Any]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
+$dokka.location:ai.devrev.sdk//areOnDemandSessionsEnabled/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/are-on-demand-sessions-enabled.html
 $dokka.location:ai.devrev.sdk//clearSessionProperties/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/clear-session-properties.html
 $dokka.location:ai.devrev.sdk//endTimer/ai.devrev.sdk.DevRev#kotlin.String#java.util.HashMap[kotlin.String,kotlin.String]/PointingToDeclaration/core/ai.devrev.sdk/end-timer.html
 $dokka.location:ai.devrev.sdk//getSessionUrl/ai.devrev.sdk.DevRev#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/get-session-url.html
+$dokka.location:ai.devrev.sdk//isMonitoringEnabled/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/is-monitoring-enabled.html
 $dokka.location:ai.devrev.sdk//isRecording/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/is-recording.html
 $dokka.location:ai.devrev.sdk//markSensitiveViews/ai.devrev.sdk.DevRev#kotlin.collections.List[android.view.View]/PointingToDeclaration/core/ai.devrev.sdk/mark-sensitive-views.html
 $dokka.location:ai.devrev.sdk//onSupportEventListener/ai.devrev.sdk.DevRev#kotlin.Function1[ai.devrev.sdk.support.SupportEvent,kotlin.Unit]/PointingToDeclaration/core/ai.devrev.sdk/on-support-event-listener.html
@@ -292,7 +294,9 @@ $dokka.location:ai.devrev.sdk/DevRev/createSupportConversation/#android.content.
 $dokka.location:ai.devrev.sdk/DevRev/identifyAnonymousUser/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/identify-anonymous-user.html
 $dokka.location:ai.devrev.sdk/DevRev/identifyUnverifiedUser/#ai.devrev.sdk.model.Identity/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/identify-unverified-user.html
 $dokka.location:ai.devrev.sdk/DevRev/identifyVerifiedUser/#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/identify-verified-user.html
-$dokka.location:ai.devrev.sdk/DevRev/isInitialized/#/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/is-initialized.html
+$dokka.location:ai.devrev.sdk/DevRev/isConfigured/#/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/is-configured.html
+$dokka.location:ai.devrev.sdk/DevRev/isUserIdentified/#/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/is-user-identified.html
+$dokka.location:ai.devrev.sdk/DevRev/logout/#android.content.Context#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/logout.html
 $dokka.location:ai.devrev.sdk/DevRev/processPushNotification/#android.content.Context#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/process-push-notification.html
 $dokka.location:ai.devrev.sdk/DevRev/registerDeviceToken/#android.content.Context#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/register-device-token.html
 $dokka.location:ai.devrev.sdk/DevRev/setCustomKey/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-custom-key.html

@@ -11,6 +11,9 @@
   - [Identification](#identification)
     - [Anonymous identification](#anonymous-identification)
     - [Unverified identification](#unverified-identification)
+    - [Verified identification](#verified-identification)
+    - [Updating the user](#updating-the-user)
+    - [Logout](#logout)
     - [Examples](#examples)
   - [PLuG support chat](#plug-support-chat)
   - [Analytics](#analytics)
@@ -101,6 +104,16 @@ DevRev.configure(context: Context, appId: String, prefersDialogMode: Boolean)
 - Java
 ```java
 DevRev.INSTANCE.configure(Context context, String appId, Boolean prefersDialogMode);
+```
+
+Use this property to check whether the DevRev SDK has been configured:
+- Kotlin
+```kotlin
+DevRev.isConfigured
+```
+- Java
+```java
+DevRev.INSTANCE.isConfigured();
 ```
 
 > [!NOTE]
@@ -202,6 +215,17 @@ DevRev.INSTANCE.identifyUnverifiedUser(
 
 The function accepts the `Identity` object, with the user identifier (`userId`) as the only required property, all other properties are optional.
 
+### Verified identification
+The verified identification method is used to identify the user with a unique identifier and verify the user's identity with the DevRev backend.
+
+```kotlin
+DevRev.identifyVerifiedUser(userId: String, sessionToken: String)
+```
+
+```java
+DevRev.INSTANCE.identifyVerifiedUser(String userId, String sessionToken);
+```
+
 ### Examples
 
 - Kotlin
@@ -228,7 +252,17 @@ DevRev.identifyUnverifiedUser(
 
 The identification function should be placed at the appropriate place in your app after you login your user. If you have the user information at app launch, call the function after the `DevRev.configure(context, appID)` method.
 
-#### Updating the user
+Use this property to check whether the user has been provided to the SDK:
+- Kotlin
+```kotlin
+DevRev.isUserIdentified
+```
+- Java
+```java
+DevRev.INSTANCE.isUserIdentified();
+```
+
+### Updating the user
 You can update the user's information using the following method:
 
 - Kotlin
@@ -252,6 +286,19 @@ The function accepts the `DevRev.Identity` ojbect.
 > [!IMPORTANT]
 > The `userID` property can *not* be updated.
 
+### Logout
+
+You can perform a logout of the current user by calling the following method:
+
+```kotlin
+DevRev.logout(context: Context, deviceId: String)
+```
+
+```java
+DevRev.INSTANCE.logout(Context context, String deviceId);
+```
+
+The user will be logged out by clearing their credentials, as well as unregistering the device from receiving push notifications, and stopping the session recording.
 
 ## PLuG support chat
 
@@ -346,6 +393,14 @@ DevRev.resumeAllMonitoring()
 ```java
 DevRevObservabilityExtKt.resumeAllMonitoring(DevRev.INSTANCE);
 ```
+You can check whether session monitoring has been enabled by using this property:
+```kotlin
+DevRev.isMonitoringEnabled
+```
+- Java
+```java
+DevRevObservabilityExtKt.isMonitoringEnabled(DevRev.INSTANCE);
+```
 If the user was disabled for session recording by using the stopAllMonitoring() method, you can use this method to enable recording at runtime.
 > [!NOTE]
 > This feature will only store a monitoring permission flag, it will **not** provide any UI or dialog.
@@ -364,6 +419,22 @@ The session recording feature has a number of methods to help you control the re
 | DevRev.stopRecording()   | DevRevObservabilityExtKt.stopRecording(DevRev.INSTANCE);           | Stops the session recording and uploads it to the portal. |
 | DevRev.pauseRecording()  | DevRevObservabilityExtKt.pauseRecording(DevRev.INSTANCE);          | Pauses the ongoing session recording.                     |
 | DevRev.resumeRecording() | DevRevObservabilityExtKt.resumeRecording(DevRev.INSTANCE);         | Resumes a paused session recording.                       |
+Using this property will return the status of the session recording:
+```kotlin
+DevRev.isRecording
+```
+- Java
+```java
+DevRevObservabilityExtKt.isRecording(DevRev.INSTANCE);
+```
+To check if on-demand sessions are enabled, use:
+```kotlin
+DevRev.areOnDemandSessionsEnabled
+```
+- Java
+```java
+DevRevObservabilityExtKt.areOnDemandSessionsEnabled(DevRev.INSTANCE);
+```
 
 ### Session properties
 You can add custom properties to the session recording to help you understand the context of the session. The properties are defined as a dictionary of string values.
