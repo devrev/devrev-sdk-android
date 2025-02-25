@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.1
+
+### Added 
+- Added new methods that allow tracking of screen transitions to understand user navigation within your app.
+
+### Fixed
+- Fix the session recording upload bug. 
+
 ## 1.1.0
 
 ### Added

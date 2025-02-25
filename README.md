@@ -48,7 +48,7 @@
 
 - Kotlin
 
-Add the following dependencies to your app's `build.gradle.kts` file to get the latest version of our SDK:
+Add the following dependencies to your app's `build.gradle.kts` file to get the [latest version](https://github.com/devrev/devrev-sdk-android/) of our SDK:
 ```kotlin
 dependencies {
     implementation("ai.devrev.sdk:devrev-sdk:<version>")
@@ -57,7 +57,7 @@ dependencies {
 
 - Groovy
 
-Add the following dependencies to your app's `build.gradle` file to get the latest version of our SDK:
+Add the following dependencies to your app's `build.gradle` file to get the [latest version](https://github.com/devrev/devrev-sdk-android/) of our SDK:
 ```groovy
 dependencies {
     implementation 'ai.devrev.sdk:devrev-sdk:<version>'
@@ -525,6 +525,49 @@ DevRev.trackScreenName("profile-screen")
 - Java
 ```java
 DevRevObservabilityExtKt.trackScreenName(DevRev.INSTANCE, "profile-screen");
+```
+
+## Screen Transition Management
+The DevRev SDK allows tracking of screen transitions to understand user navigation within your app.  
+You can check if a screen transition is in progress and manually update the state using the following methods:
+
+### Check if the screen is transitioning
+
+- Kotlin
+```kotlin
+val isTransitioning = DevRev.isInScreenTransitioning
+```
+- Java
+```java
+boolean isTransitioning = DevRevObservabilityExtKt.isInScreenTransitioning(DevRev.INSTANCE);
+```
+
+#### Set screen transitioning state
+- Kotlin
+```kotlin
+DevRev.setInScreenTransitioning(true) // start transition
+DevRev.setInScreenTransitioning(false) // stop transition
+```
+- Java
+```java
+DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, true) // Start transition  
+DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, false) //Stop transition
+```
+
+## On-Demand Session Processing
+
+This function stops the ongoing user recording and sends all on-demand sessions along with the current recording.
+
+### Process all on-demand sessions
+
+- Kotlin
+```kotlin
+DevRev.processAllOnDemandSessions()
+```
+
+- Java
+```java
+DevRevObservabilityExtKt.processAllOnDemandSessions(DevRev.INSTANECE);
 ```
 
 ## Push notifications
