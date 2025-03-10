@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:paddingTop="?attr/actionBarSize"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    tools:context=".IdentificationFragment">
+
+    <TextView
+        android:id="@+id/status_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/status"
+        android:textSize="12sp"
+        android:paddingTop="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColor="#454141"
+        android:layout_marginTop="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/user_identified"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"/>
+
+        <CheckBox
+            android:id="@+id/is_user_identified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RoundCheckBox" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/unverified_user_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/unverified_user"
+        android:textSize="12sp"
+        android:paddingTop="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColor="#454141"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/user_id_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/user_id"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/unverified_user_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="@string/identify_the_unverified_user"
+        android:textColor="@android:color/black"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical|start" />
+
+    <TextView
+        android:id="@+id/verified_user_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/verified_user"
+        android:textSize="12sp"
+        android:paddingTop="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColor="#454141"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/verified_user_id_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/enter_user_id"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/session_token_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/enter_session_token"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/verified_user_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="@string/identify_verified_user"
+        android:textColor="@android:color/black"
+        android:gravity="center_vertical|start"/>
+
+    <TextView
+        android:id="@+id/logout_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:textSize="12sp"
+        android:paddingTop="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColor="#454141"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="@string/logout2"
+        android:textColor="@android:color/black"
+        android:gravity="center_vertical|start"/>
+
+</LinearLayout>

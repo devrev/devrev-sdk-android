@@ -1,6 +1,7 @@
 pluginManagement {
     repositories {
         google()
+        mavenCentral()
         gradlePluginPortal()
     }
     val pluginSerialization: String by settings

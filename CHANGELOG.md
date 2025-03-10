@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.3
+
+### Changed
+- Enhanced the session analytics feature to work better across different environments.
+
+### Fixed
+- Fix the bugs related to on-demand sessions providing a more stable experience. 
+
+## 1.1.2
+
+### Fixed
+- Fix the session recording experience in the SDK. 
+
 ## 1.1.1
 
 ### Added 

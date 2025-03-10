@@ -1,9 +1,8 @@
 ## Table of contents
-- [Table of contents](#table-of-contents)
 - [Requirements](#requirements)
 - [Integration](#integration)
-  - [Step 1: App level dependencies](#step-1)
-  - [Step 2: Project level dependencies](#step-2)
+  - [Step 1](#step-1)
+  - [Step 2](#step-2)
 - [Setting up the DevRev SDK](#setting-up-the-devrev-sdk)
   - [Step 1: Credentials](#step-1-credentials)
   - [Step 2: Configuration](#step-2-configuration)
@@ -12,26 +11,49 @@
     - [Anonymous identification](#anonymous-identification)
     - [Unverified identification](#unverified-identification)
     - [Verified identification](#verified-identification)
+    - [Examples](#examples)
     - [Updating the user](#updating-the-user)
     - [Logout](#logout)
-    - [Examples](#examples)
   - [PLuG support chat](#plug-support-chat)
   - [Analytics](#analytics)
-    - [Examples](#examples-1)
+      - [Examples](#examples-1)
   - [Observability](#observability)
     - [Opting in/out](#opting-inout)
     - [Session recording](#session-recording)
     - [Session properties](#session-properties)
+    - [Masking sensitive data](#masking-sensitive-data)
+      - [Mask](#mask)
+        - [Using tag](#using-tag)
+          - [Example](#example)
+        - [Using API](#using-api)
+          - [Examples](#examples-2)
+      - [Unmask](#unmask)
+        - [Using tag](#using-tag-1)
+          - [Example](#example-1)
+        - [Using API](#using-api-1)
+          - [Examples](#examples-3)
+      - [Mask jetpack compose views](#mask-jetpack-compose-views)
+          - [Example](#example-2)
+      - [Mask webView elements](#mask-webview-elements)
+          - [Example](#example-3)
+      - [Unmask webView elements](#unmask-webview-elements)
+          - [Example](#example-4)
     - [Timers](#timers)
-      - [Examples](#examples-2)
+      - [Examples](#examples-4)
     - [Screen tracking](#screen-tracking)
-      - [Examples](#examples-3)
-    - [Push notifications](#push-notifications)
-      - [Registering for push notifications](#registering-for-push-notifications)
-      - [Unregistering from push notifications](#unregistering-from-push-notifications)
-      - [Handling push notifications](#handling-push-notifications)
-        - [Examples](#examples-4)
+      - [Examples](#examples-5)
+  - [Screen Transition Management](#screen-transition-management)
+    - [Check if the screen is transitioning](#check-if-the-screen-is-transitioning)
+      - [Set screen transitioning state](#set-screen-transitioning-state)
+  - [On-Demand Session Processing](#on-demand-session-processing)
+    - [Process all on-demand sessions](#process-all-on-demand-sessions)
+  - [Push notifications](#push-notifications)
+    - [Registering for push notifications](#registering-for-push-notifications)
+    - [Unregistering from push notifications](#unregistering-from-push-notifications)
+    - [Handling push notifications](#handling-push-notifications)
+      - [Examples](#examples-6)
 - [Sample app](#sample-app)
+- [Migration Guide](#migration-guide)
 - [FAQ](#faq)
 
 
@@ -458,6 +480,178 @@ DevRev.clearSessionProperties()
 DevRevObservabilityExtKt.clearSessionProperties(DevRev.INSTANCE);
 ```
 
+### Masking sensitive data
+To protect sensitive data, the DevRev SDK provides an auto-masking feature that masks data before sending to the server. Input views such as text fields, text views, and web views are automatically masked.
+
+While the auto-masking feature may be sufficient for most situations, you can manually mark/unmark additional views as sensitive.
+
+#### Mask
+
+##### Using tag
+> [!NOTE]
+> Use Tag method only when you don't have any other tag already applied to your UI element.
+
+```xml
+android:tag="devrev-mask"
+```
+
+###### Example
+```xml
+<WebView
+    android:id="@+id/webview2"
+    android:layout_width="fill_parent"
+    android:layout_height="200dp"
+    android:background="@android:color/transparent"
+    android:tag="devrev-mask"/>
+```
+
+You can also set the tag programmatically:
+- Kotlin
+```kotlin
+val anyView: View = findViewById(R.id.anyView)
+anyView.tag = "devrev-mask"
+```
+
+- Java
+```java
+View anyView = findViewById(R.id.anyView);
+anyView.setTag("devrev-mask");
+```
+
+##### Using API
+- Kotlin
+```kotlin
+DevRev.markSensitiveViews(sensitiveViews: List<View>)
+```
+
+- Java
+```java
+DevRevObservabilityExtKt.markSensitiveViews(DevRev.INSTANCE, List<View> sensitiveViews);
+```
+
+###### Examples
+- Kotlin
+```kotlin
+val view1 = findViewById(R.id.view1)
+val view2 = findViewById(R.id.view2)
+
+DevRev.markSensitiveViews(listOf(view1, view2))
+```
+
+- Java
+```java
+View view1 = findViewById(R.id.view1);
+View view2 = findViewById(R.id.view2);
+
+List<View> sensitiveViewsList = new ArrayList<>();
+sensitiveViewsList.add(view1);
+sensitiveViewsList.add(view2);
+
+DevRevObservabilityExtKt.markSensitiveViews(DevRev.INSTANCE, sensitiveViewsList);
+```
+
+#### Unmask
+
+##### Using tag
+> [!NOTE]
+> Use Tag method only when you don't have any other tag already applied to your UI element.
+
+```xml
+android:tag="devrev-unmask"
+```
+
+###### Example
+```xml
+<WebView
+    android:id="@+id/webview2"
+    android:layout_width="fill_parent"
+    android:layout_height="200dp"
+    android:background="@android:color/transparent"
+    android:tag="devrev-unmask"/>
+```
+
+You can also set the tag programmatically:
+- Kotlin
+```kotlin
+val anyView: View = findViewById(R.id.anyView)
+anyView.tag = "devrev-unmask"
+```
+
+- Java
+```java
+View anyView = findViewById(R.id.anyView);
+anyView.setTag("devrev-unmask");
+```
+
+##### Using API
+- Kotlin
+```kotlin
+DevRev.unmarkSensitiveViews(sensitiveViews: List<View>)
+```
+
+- Java
+```java
+DevRevObservabilityExtKt.unmarkSensitiveViews(DevRev.INSTANCE, List<View> sensitiveViews);
+```
+
+###### Examples
+- Kotlin
+```kotlin
+val view1 = findViewById(R.id.view1)
+val view2 = findViewById(R.id.view2)
+
+DevRev.unmarkSensitiveViews(listOf(view1, view2))
+```
+
+- Java
+```java
+View view1 = findViewById(R.id.view1);
+View view2 = findViewById(R.id.view2);
+
+List<View> sensitiveViewsList = new ArrayList<>();
+sensitiveViewsList.add(view1);
+sensitiveViewsList.add(view2);
+
+DevRevObservabilityExtKt.unmarkSensitiveViews(DevRev.INSTANCE, sensitiveViewsList);
+```
+
+#### Mask jetpack compose views
+If you want to mask any Jetpack Compose UI element(s) or view(s), you can apply a mask on it using a modifier.
+
+```kotlin
+modifier = Modifier.markAsMaskedLocation("Name or ID of the Compose View")
+```
+
+###### Example
+```kotlin
+TextField(    
+       modifier = Modifier
+             .markAsMaskedLocation("myTextField")
+             .padding(horizontal = 20.dp)
+             .onGloballyPositioned { coordinates = it },
+       value = input,
+       onValueChange = { input = it }
+)
+```
+
+#### Mask webView elements
+
+If you wish to mask any WebView element on a Web page explicitly, you can mask it by using class 'devrev-mask'
+
+###### Example
+```html
+<label class="ue-mask">OTP: 12345</label>
+```
+
+#### Unmask webView elements
+
+If you wish to explicitly un-mask any manually masked WebView element, you can un-mask it by using class 'devrev-unmask'
+
+###### Example
+```html
+<input type="text" placeholder="Enter Username" name="username" required class="devrev-unmask">
+```
+
 ### Timers
 As part of the observability features, the DevRev SDK provides a timer mechanism to help you measure the time spent on a specific task. Events such as response time, loading time, or any other time-based event can be measured using the timer.
 
@@ -577,8 +771,7 @@ You can configure your app to receive push notifications from the DevRev SDK. Th
 The DevRev backend sends push notifications to your app to notify users about new messages in the PLuG support chat. In the future, the push notification support will be expanded with additional features.
 
 > [!CAUTION]
-> TBD @Ribhu has to provide the integration guide for push notifications.
-In order to receive push notifications, you need to configure your DevRev organization by following the [Push Notifications integration guide](#).
+> In order to receive push notifications, you need to configure your DevRev organization by following the [Push Notifications integration guide](#).
 
 You need to make sure that your Android app is configured to receive push notifications. You can follow the [Firebase documentation](https://firebase.google.com/docs/cloud-messaging/android/client) to set up your app to receive push notifications.
 
@@ -707,6 +900,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 The sample app showcasing both the functionality and the XML implementation has been provided as part of this repository. The users are kindly encouraged to run the sample app before integrating DevRev SDK in the destination application.
 > [!NOTE]
 > The sample is yet to be updated with the latest version of the SDK. Stay Tuned!
+
+# Migration Guide
+
+If you are migrating from the legacy UserExperior SDK to the new DevRev SDK, please refer to the [Migration Guide](./MIGRATION.md) for detailed instructions and feature equivalence.
 
 # FAQ
 In case of any issues with the integration of the DevRev SDK, please verify that the dependency is correctly set in the project. In addition, please make sure that `mavenCentral` is reachable from the IDE and that the DevRev PluG SDK version of choice was correctly detected.

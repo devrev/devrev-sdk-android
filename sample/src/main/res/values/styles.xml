@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RoundCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/round_checkbox</item>
+        <item name="buttonTint">@null</item>
+        <item name="android:background">@null</item>
+    </style>
+</resources>
