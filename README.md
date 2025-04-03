@@ -640,7 +640,7 @@ If you wish to mask any WebView element on a Web page explicitly, you can mask i
 
 ###### Example
 ```html
-<label class="ue-mask">OTP: 12345</label>
+<label class="devrev-mask">OTP: 12345</label>
 ```
 
 #### Unmask webView elements

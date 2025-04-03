@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.4
+
+### Changed
+- Improved the handling of custom fields in user, account, and organization traits.
+- Improved error descriptions in logs for better identification of issues in the field.
+- Improved the handling of masking via HTML classes.
+
 ## 1.1.3
 
 ### Changed

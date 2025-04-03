@@ -2,6 +2,8 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:ai.devrev.sdk.extensions////PointingToDeclaration/core/ai.devrev.sdk.extensions/index.html
 $dokka.location:ai.devrev.sdk.extensions//convertToJsonObject/kotlin.String#/PointingToDeclaration/core/ai.devrev.sdk.extensions/convert-to-json-object.html
+$dokka.location:ai.devrev.sdk.extensions//toJsonArray/kotlin.collections.List[kotlin.Any?]#/PointingToDeclaration/core/ai.devrev.sdk.extensions/to-json-array.html
+$dokka.location:ai.devrev.sdk.extensions//toJsonObject/kotlin.collections.Map[kotlin.String,kotlin.Any?]#/PointingToDeclaration/core/ai.devrev.sdk.extensions/to-json-object.html
 $dokka.location:ai.devrev.sdk.extensions//toStringifiedJson/kotlinx.serialization.json.JsonObject#/PointingToDeclaration/core/ai.devrev.sdk.extensions/to-stringified-json.html
 $dokka.location:ai.devrev.sdk.interfaces////PointingToDeclaration/core/ai.devrev.sdk.interfaces/index.html
 $dokka.location:ai.devrev.sdk.interfaces//refreshToken/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk.interfaces/refresh-token.html
@@ -111,7 +113,7 @@ $dokka.location:ai.devrev.sdk.model.user/UserBaseSummaryApiModel/type/#/Pointing
 $dokka.location:ai.devrev.sdk.model////PointingToDeclaration/core/ai.devrev.sdk.model/index.html
 $dokka.location:ai.devrev.sdk.model//toDevRevTheme/kotlin.String?#android.content.Context/PointingToDeclaration/core/ai.devrev.sdk.model/to-dev-rev-theme.html
 $dokka.location:ai.devrev.sdk.model/AccountInfo///PointingToDeclaration/core/ai.devrev.sdk.model/-account-info/index.html
-$dokka.location:ai.devrev.sdk.model/AccountInfo/AccountInfo/#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.collections.Map[kotlin.String,kotlin.String]?/PointingToDeclaration/core/ai.devrev.sdk.model/-account-info/-account-info.html
+$dokka.location:ai.devrev.sdk.model/AccountInfo/AccountInfo/#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.collections.Map[kotlin.String,kotlin.Any]?/PointingToDeclaration/core/ai.devrev.sdk.model/-account-info/-account-info.html
 $dokka.location:ai.devrev.sdk.model/AccountInfo/customFields/#/PointingToDeclaration/core/ai.devrev.sdk.model/-account-info/custom-fields.html
 $dokka.location:ai.devrev.sdk.model/AccountInfo/description/#/PointingToDeclaration/core/ai.devrev.sdk.model/-account-info/description.html
 $dokka.location:ai.devrev.sdk.model/AccountInfo/displayName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-account-info/display-name.html
@@ -169,7 +171,7 @@ $dokka.location:ai.devrev.sdk.model/NotificationState///PointingToDeclaration/c
 $dokka.location:ai.devrev.sdk.model/NotificationState/valueOf/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-notification-state/value-of.html
 $dokka.location:ai.devrev.sdk.model/NotificationState/values/#/PointingToDeclaration/core/ai.devrev.sdk.model/-notification-state/values.html
 $dokka.location:ai.devrev.sdk.model/OrganizationInfo///PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/index.html
-$dokka.location:ai.devrev.sdk.model/OrganizationInfo/OrganizationInfo/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.collections.Map[kotlin.String,kotlin.String]?/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/-organization-info.html
+$dokka.location:ai.devrev.sdk.model/OrganizationInfo/OrganizationInfo/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.collections.Map[kotlin.String,kotlin.Any]?/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/-organization-info.html
 $dokka.location:ai.devrev.sdk.model/OrganizationInfo/customFields/#/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/custom-fields.html
 $dokka.location:ai.devrev.sdk.model/OrganizationInfo/description/#/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/description.html
 $dokka.location:ai.devrev.sdk.model/OrganizationInfo/displayName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/display-name.html
@@ -202,7 +204,7 @@ $dokka.location:ai.devrev.sdk.model/PushNotification/title/#/PointingToDeclarati
 $dokka.location:ai.devrev.sdk.model/PushNotification/type/#/PointingToDeclaration/core/ai.devrev.sdk.model/-push-notification/type.html
 $dokka.location:ai.devrev.sdk.model/PushNotification/url/#/PointingToDeclaration/core/ai.devrev.sdk.model/-push-notification/url.html
 $dokka.location:ai.devrev.sdk.model/UserInfo///PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/index.html
-$dokka.location:ai.devrev.sdk.model/UserInfo/UserInfo/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.collections.Map[kotlin.String,kotlin.String]?/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/-user-info.html
+$dokka.location:ai.devrev.sdk.model/UserInfo/UserInfo/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.collections.Map[kotlin.String,kotlin.Any]?/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/-user-info.html
 $dokka.location:ai.devrev.sdk.model/UserInfo/customFields/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/custom-fields.html
 $dokka.location:ai.devrev.sdk.model/UserInfo/description/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/description.html
 $dokka.location:ai.devrev.sdk.model/UserInfo/displayName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/display-name.html
