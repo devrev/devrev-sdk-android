@@ -2,8 +2,10 @@ package ai.devrev.sdk.sample
 
 import ai.devrev.sdk.DevRev
 import ai.devrev.sdk.isMonitoringEnabled
+import ai.devrev.sdk.sample.handler.NotificationHandler
 import ai.devrev.sdk.sample.model.AppRoute
 import ai.devrev.sdk.sample.viewmodel.SharedViewModel
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -51,12 +53,29 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var notificationHandler: NotificationHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        notificationHandler = NotificationHandler(this)
+        handleNotificationIntent(intent)
         setContent {
             SampleApp()
         }
     }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handleNotificationIntent(intent)
+    }
+
+    private fun handleNotificationIntent(intent: Intent?) {
+        if (intent?.getBooleanExtra("notification_pressed", false) == true) {
+            val message = intent.getStringExtra("message")
+            notificationHandler.handleNotificationClick(message)
+        }
+    }
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

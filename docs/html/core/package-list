@@ -133,9 +133,11 @@ $dokka.location:ai.devrev.sdk.model/AtomBaseSummaryApiModel/AtomBaseSummaryApiMo
 $dokka.location:ai.devrev.sdk.model/AtomBaseSummaryApiModel/displayId/#/PointingToDeclaration/core/ai.devrev.sdk.model/-atom-base-summary-api-model/display-id.html
 $dokka.location:ai.devrev.sdk.model/AtomBaseSummaryApiModel/id/#/PointingToDeclaration/core/ai.devrev.sdk.model/-atom-base-summary-api-model/id.html
 $dokka.location:ai.devrev.sdk.model/DevRevTheme.DARK///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-dev-rev-theme/-d-a-r-k/index.html
+$dokka.location:ai.devrev.sdk.model/DevRevTheme.DEFAULT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-dev-rev-theme/-d-e-f-a-u-l-t/index.html
 $dokka.location:ai.devrev.sdk.model/DevRevTheme.LIGHT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-dev-rev-theme/-l-i-g-h-t/index.html
 $dokka.location:ai.devrev.sdk.model/DevRevTheme.SYSTEM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-dev-rev-theme/-s-y-s-t-e-m/index.html
 $dokka.location:ai.devrev.sdk.model/DevRevTheme///PointingToDeclaration/core/ai.devrev.sdk.model/-dev-rev-theme/index.html
+$dokka.location:ai.devrev.sdk.model/DevRevTheme/entries/#/PointingToDeclaration/core/ai.devrev.sdk.model/-dev-rev-theme/entries.html
 $dokka.location:ai.devrev.sdk.model/DevRevTheme/themeName/#/PointingToDeclaration/core/ai.devrev.sdk.model/-dev-rev-theme/theme-name.html
 $dokka.location:ai.devrev.sdk.model/DevRevTheme/valueOf/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-dev-rev-theme/value-of.html
 $dokka.location:ai.devrev.sdk.model/DevRevTheme/values/#/PointingToDeclaration/core/ai.devrev.sdk.model/-dev-rev-theme/values.html
@@ -146,6 +148,7 @@ $dokka.location:ai.devrev.sdk.model/Device/deviceType/#/PointingToDeclaration/c
 $dokka.location:ai.devrev.sdk.model/DeviceType.Android///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-device-type/-android/index.html
 $dokka.location:ai.devrev.sdk.model/DeviceType.IOS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-device-type/-i-o-s/index.html
 $dokka.location:ai.devrev.sdk.model/DeviceType///PointingToDeclaration/core/ai.devrev.sdk.model/-device-type/index.html
+$dokka.location:ai.devrev.sdk.model/DeviceType/entries/#/PointingToDeclaration/core/ai.devrev.sdk.model/-device-type/entries.html
 $dokka.location:ai.devrev.sdk.model/DeviceType/valueOf/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-device-type/value-of.html
 $dokka.location:ai.devrev.sdk.model/DeviceType/values/#/PointingToDeclaration/core/ai.devrev.sdk.model/-device-type/values.html
 $dokka.location:ai.devrev.sdk.model/Identity///PointingToDeclaration/core/ai.devrev.sdk.model/-identity/index.html
@@ -168,6 +171,7 @@ $dokka.location:ai.devrev.sdk.model/NotificationState.Delete///PointingToDeclara
 $dokka.location:ai.devrev.sdk.model/NotificationState.Read///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-notification-state/-read/index.html
 $dokka.location:ai.devrev.sdk.model/NotificationState.Unread///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-notification-state/-unread/index.html
 $dokka.location:ai.devrev.sdk.model/NotificationState///PointingToDeclaration/core/ai.devrev.sdk.model/-notification-state/index.html
+$dokka.location:ai.devrev.sdk.model/NotificationState/entries/#/PointingToDeclaration/core/ai.devrev.sdk.model/-notification-state/entries.html
 $dokka.location:ai.devrev.sdk.model/NotificationState/valueOf/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-notification-state/value-of.html
 $dokka.location:ai.devrev.sdk.model/NotificationState/values/#/PointingToDeclaration/core/ai.devrev.sdk.model/-notification-state/values.html
 $dokka.location:ai.devrev.sdk.model/OrganizationInfo///PointingToDeclaration/core/ai.devrev.sdk.model/-organization-info/index.html
@@ -185,6 +189,7 @@ $dokka.location:ai.devrev.sdk.model/PlugWidgetEventName.ON_PLUG_WIDGET_OPENED///
 $dokka.location:ai.devrev.sdk.model/PlugWidgetEventName.ON_PLUG_WIDGET_READY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-plug-widget-event-name/-o-n_-p-l-u-g_-w-i-d-g-e-t_-r-e-a-d-y/index.html
 $dokka.location:ai.devrev.sdk.model/PlugWidgetEventName.ON_PLUG_WIDGET_UNREAD_COUNT_CHANGE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}core/ai.devrev.sdk.model/-plug-widget-event-name/-o-n_-p-l-u-g_-w-i-d-g-e-t_-u-n-r-e-a-d_-c-o-u-n-t_-c-h-a-n-g-e/index.html
 $dokka.location:ai.devrev.sdk.model/PlugWidgetEventName///PointingToDeclaration/core/ai.devrev.sdk.model/-plug-widget-event-name/index.html
+$dokka.location:ai.devrev.sdk.model/PlugWidgetEventName/entries/#/PointingToDeclaration/core/ai.devrev.sdk.model/-plug-widget-event-name/entries.html
 $dokka.location:ai.devrev.sdk.model/PlugWidgetEventName/valueOf/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-plug-widget-event-name/value-of.html
 $dokka.location:ai.devrev.sdk.model/PlugWidgetEventName/values/#/PointingToDeclaration/core/ai.devrev.sdk.model/-plug-widget-event-name/values.html
 $dokka.location:ai.devrev.sdk.model/PushNotification///PointingToDeclaration/core/ai.devrev.sdk.model/-push-notification/index.html
@@ -266,6 +271,9 @@ $dokka.location:ai.devrev.sdk.support/SupportEvent.OnWidgetReopened/OnWidgetReop
 $dokka.location:ai.devrev.sdk.support/SupportEvent.OnWidgetReopened/name/#/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/-on-widget-reopened/name.html
 $dokka.location:ai.devrev.sdk.support/SupportEvent///PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/index.html
 $dokka.location:ai.devrev.sdk.support/SupportEvent/name/#/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/name.html
+$dokka.location:ai.devrev.sdk.utils////PointingToDeclaration/core/ai.devrev.sdk.utils/index.html
+$dokka.location:ai.devrev.sdk.utils/Constants///PointingToDeclaration/core/ai.devrev.sdk.utils/-constants/index.html
+$dokka.location:ai.devrev.sdk.utils/Constants/LOG_TAG/#/PointingToDeclaration/core/ai.devrev.sdk.utils/-constants/-l-o-g_-t-a-g.html
 $dokka.location:ai.devrev.sdk////PointingToDeclaration/core/ai.devrev.sdk/index.html
 $dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.Any]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
 $dokka.location:ai.devrev.sdk//areOnDemandSessionsEnabled/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/are-on-demand-sessions-enabled.html
@@ -307,6 +315,7 @@ $dokka.location:ai.devrev.sdk/DevRev/registerDeviceToken/#android.content.Contex
 $dokka.location:ai.devrev.sdk/DevRev/setCustomKey/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-custom-key.html
 $dokka.location:ai.devrev.sdk/DevRev/setInAppLinkHandler/#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-in-app-link-handler.html
 $dokka.location:ai.devrev.sdk/DevRev/setShouldDismissModalsOnOpenLink/#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-should-dismiss-modals-on-open-link.html
+$dokka.location:ai.devrev.sdk/DevRev/setShouldPreferSystemTheme/#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-should-prefer-system-theme.html
 $dokka.location:ai.devrev.sdk/DevRev/unregisterDevice/#android.content.Context#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/unregister-device.html
 $dokka.location:ai.devrev.sdk/DevRev/updateTheme/#ai.devrev.sdk.model.DevRevTheme/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/update-theme.html
 $dokka.location:ai.devrev.sdk/DevRev/updateUser/#ai.devrev.sdk.model.Identity/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/update-user.html
@@ -326,4 +335,4 @@ ai.devrev.sdk.plug.view
 ai.devrev.sdk.security
 ai.devrev.sdk.store
 ai.devrev.sdk.support
-
+ai.devrev.sdk.utils

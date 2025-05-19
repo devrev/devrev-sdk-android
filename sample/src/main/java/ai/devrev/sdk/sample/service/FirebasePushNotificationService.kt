@@ -1,5 +1,6 @@
 package ai.devrev.sdk.sample.service
 
+import ai.devrev.sdk.DevRev
 import ai.devrev.sdk.sample.MainActivity
 import ai.devrev.sdk.sample.R
 import ai.devrev.sdk.sample.utils.SharedPrefUtil
@@ -11,6 +12,7 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import org.json.JSONObject
 
 class FirebasePushNotificationService : FirebaseMessagingService() {
 
@@ -29,10 +31,14 @@ class FirebasePushNotificationService : FirebaseMessagingService() {
 
         Log.d(TAG, "From: ${remoteMessage.from}")
 
-        remoteMessage.notification?.let { notification ->
-            val title = notification.title ?: getString(R.string.devrev_sdk)
-            val body = notification.body ?: getString(R.string.empty_body)
-            sendNotification(title, body)
+        remoteMessage.data["message"]?.let { message ->
+            try {
+                val messageObject = JSONObject(message)
+                val title: String = messageObject.getJSONObject("actor").getString("display_handle")
+                sendNotification(title, message)
+            } catch (e: Exception) {
+                Log.e(TAG, "Error parsing message JSON", e)
+            }
         }
     }
 
@@ -40,6 +46,8 @@ class FirebasePushNotificationService : FirebaseMessagingService() {
         try {
             val intent = Intent(this, MainActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+                putExtra("notification_pressed", true)
+                putExtra("message", messageBody)
             }
 
             val pendingIntent = PendingIntent.getActivity(
@@ -49,24 +57,26 @@ class FirebasePushNotificationService : FirebaseMessagingService() {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             )
 
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                getString(R.string.devrev_sdk),
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            val manager = getSystemService(NotificationManager::class.java)
-            manager?.createNotificationChannel(channel)
+            val channelId = CHANNEL_ID
+            val notificationManager = getSystemService(NotificationManager::class.java)
 
-            val notificationBuilder = NotificationCompat.Builder(this, CHANNEL_ID)
+            val channelName = getString(R.string.devrev_sdk)
+            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
+            notificationManager.createNotificationChannel(channel)
+
+            val messageObject = JSONObject(messageBody)
+
+            val notificationBuilder = NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(title)
-                .setContentText(messageBody)
+                .setContentText(messageObject.getString("body"))
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
-            manager.notify(0, notificationBuilder.build())
+            notificationManager.notify(System.currentTimeMillis().toInt(), notificationBuilder.build())
         } catch (e: Exception) {
-            Log.e(TAG, getString(R.string.notification_error))
+            Log.e(TAG, "${getString(R.string.notification_error)}: ${e.message}")
         }
     }
 

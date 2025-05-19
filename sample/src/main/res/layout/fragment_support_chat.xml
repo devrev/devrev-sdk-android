@@ -68,7 +68,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#D3D3D3"
-        android:text="@string/create_a_new_conversation"
+        android:text="@string/show_the_support_chat"
         android:textColor="@android:color/black"
         android:drawablePadding="8dp"
         android:gravity="center_vertical|start"/>
@@ -80,7 +80,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#D3D3D3"
-        android:text="@string/show_the_support_chat"
+        android:text="@string/create_a_new_conversation"
         android:textColor="@android:color/black"
         android:gravity="center_vertical|start" />
 

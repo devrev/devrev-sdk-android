@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.5
+
+### Added
+- Added `setShouldPreferSystemTheme` for dynamic theme handling. 
+- Added support for masking compose views in session recordings & analytics. 
+
+### Fixed
+- Improved the initialization sequence of the observability SDK. 
+
 ## 1.1.4
 
 ### Changed

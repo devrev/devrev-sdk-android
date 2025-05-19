@@ -1,76 +1,92 @@
+# DevRev SDK for Android
+DevRev SDK, used for integrating DevRev services into your Android app.
+
 ## Table of contents
-- [Requirements](#requirements)
-- [Integration](#integration)
-  - [Step 1](#step-1)
-  - [Step 2](#step-2)
-- [Setting up the DevRev SDK](#setting-up-the-devrev-sdk)
-  - [Step 1: Credentials](#step-1-credentials)
-  - [Step 2: Configuration](#step-2-configuration)
-- [Features](#features)
-  - [Identification](#identification)
-    - [Anonymous identification](#anonymous-identification)
-    - [Unverified identification](#unverified-identification)
-    - [Verified identification](#verified-identification)
-    - [Examples](#examples)
-    - [Updating the user](#updating-the-user)
-    - [Logout](#logout)
-  - [PLuG support chat](#plug-support-chat)
-  - [Analytics](#analytics)
+- [DevRev SDK for Android](#devrev-sdk-for-android)
+  - [Table of contents](#table-of-contents)
+  - [Quickstart guide](#quickstart-guide)
+    - [Requirements](#requirements)
+    - [Integration](#integration)
+      - [Step 1](#step-1)
+      - [Step 2](#step-2)
+    - [Set up the DevRev SDK](#set-up-the-devrev-sdk)
+    - [Sample app](#sample-app)
+  - [Features](#features)
+    - [Identification](#identification)
+      - [Anonymous identification](#anonymous-identification)
+      - [Unverified identification](#unverified-identification)
+      - [Verified identification](#verified-identification)
+      - [Examples](#examples)
+      - [Updating the user](#updating-the-user)
+      - [Logout](#logout)
+    - [PLuG support chat](#plug-support-chat)
+      - [Creating a new conversation](#creating-a-new-conversation)
+    - [In-app link handling](#in-app-link-handling)
       - [Examples](#examples-1)
-  - [Observability](#observability)
-    - [Opting in/out](#opting-inout)
-    - [Session recording](#session-recording)
-    - [Session properties](#session-properties)
-    - [Masking sensitive data](#masking-sensitive-data)
-      - [Mask](#mask)
-        - [Using tag](#using-tag)
+    - [Dynamic theme configuration](#dynamic-theme-configuration)
+    - [Analytics](#analytics)
+      - [Examples](#examples-2)
+    - [Session analytics](#session-analytics)
+      - [Opting-in or out](#opting-in-or-out)
+      - [Session recording](#session-recording)
+      - [Session properties](#session-properties)
+      - [Masking sensitive data](#masking-sensitive-data)
+        - [Mask](#mask)
+          - [Using tag](#using-tag)
           - [Example](#example)
-        - [Using API](#using-api)
-          - [Examples](#examples-2)
-      - [Unmask](#unmask)
-        - [Using tag](#using-tag-1)
-          - [Example](#example-1)
-        - [Using API](#using-api-1)
+          - [Using API](#using-api)
           - [Examples](#examples-3)
-      - [Mask jetpack compose views](#mask-jetpack-compose-views)
+        - [Unmask](#unmask)
+          - [Using tag](#using-tag-1)
+          - [Example](#example-1)
+          - [Using API](#using-api-1)
+          - [Examples](#examples-4)
+        - [Mask jetpack compose views](#mask-jetpack-compose-views)
           - [Example](#example-2)
-      - [Mask webView elements](#mask-webview-elements)
+        - [Mask webView elements](#mask-webview-elements)
           - [Example](#example-3)
-      - [Unmask webView elements](#unmask-webview-elements)
+        - [Unmask webView elements](#unmask-webview-elements)
           - [Example](#example-4)
-    - [Timers](#timers)
-      - [Examples](#examples-4)
-    - [Screen tracking](#screen-tracking)
-      - [Examples](#examples-5)
-  - [Screen Transition Management](#screen-transition-management)
-    - [Check if the screen is transitioning](#check-if-the-screen-is-transitioning)
-      - [Set screen transitioning state](#set-screen-transitioning-state)
-  - [On-Demand Session Processing](#on-demand-session-processing)
-    - [Process all on-demand sessions](#process-all-on-demand-sessions)
-  - [Push notifications](#push-notifications)
-    - [Registering for push notifications](#registering-for-push-notifications)
-    - [Unregistering from push notifications](#unregistering-from-push-notifications)
-    - [Handling push notifications](#handling-push-notifications)
-      - [Examples](#examples-6)
-- [Sample app](#sample-app)
-- [Migration Guide](#migration-guide)
-- [FAQ](#faq)
+      - [Timers](#timers)
+        - [Examples](#examples-5)
+      - [Screen tracking](#screen-tracking)
+        - [Examples](#examples-6)
+    - [Screen transition management](#screen-transition-management)
+      - [Check if the screen is transitioning](#check-if-the-screen-is-transitioning)
+        - [Set screen transitioning state](#set-screen-transitioning-state)
+    - [Push notifications](#push-notifications)
+      - [Register for push notifications](#register-for-push-notifications)
+      - [Unregister from push notifications](#unregister-from-push-notifications)
+      - [Handle push notifications](#handle-push-notifications)
+        - [Examples](#examples-7)
+  - [Sample app](#sample-app)
+  - [Troubleshooting](#troubleshooting)
+  - [Migration guide](#migration-guide)
 
-
-# Requirements
-
+## Quickstart guide
+### Requirements
 - Android Studio 2022.1.1 or later
 - Android Gradle Plugin version 7.4 or later
 - Gradle version 7.6 or later
 - Minimum Android SDK 24
 
-# Integration
+### Integration
+To integrate the latest version of our SDK into your app, follow these steps:
 
-## Step 1
+#### Step 1
+Our SDK is available on Maven Central. To access it, add `mavenCentral` to your root level `build.gradle` file.
 
+```gradle
+repositories {
+    mavenCentral()
+}
+```
+
+After completing these steps in your gradle files, you should be able to import and use the DevRev SDK in your Android application.
+
+#### Step 2
 - Kotlin
-
-Add the following dependencies to your app's `build.gradle.kts` file to get the [latest version](https://github.com/devrev/devrev-sdk-android/) of our SDK:
+Add the following dependencies to your app's `build.gradle.kts` file to get the latest version of our SDK:
 ```kotlin
 dependencies {
     implementation("ai.devrev.sdk:devrev-sdk:<version>")
@@ -78,47 +94,19 @@ dependencies {
 ```
 
 - Groovy
-
-Add the following dependencies to your app's `build.gradle` file to get the [latest version](https://github.com/devrev/devrev-sdk-android/) of our SDK:
+Add the following dependencies to your app's `build.gradle` file to get the latest version of our SDK:
 ```groovy
 dependencies {
     implementation 'ai.devrev.sdk:devrev-sdk:<version>'
 }
 ```
 
-## Step 2
-Our SDK is hosted on mavenCentral, so to gain access to it, just include the mavenCentral to your root's `build.gradle.kts` (Kotlin) or `build.gradle` (Groovy) file.
-```kotlin
-repositories {
-    mavenCentral()
-}
-```
-After this step, it should be possible to import and use the DevRev SDK in your Android application.
+### Set up the DevRev SDK
+1. Open the DevRev web app at [https://app.devrev.ai](https://app.devrev.ai) and go to the **Settings** page.
+2. Under **PLuG settings** copy the value under **Your unique App ID**.
+3. After obtaining the credentials, you can configure the DevRev SDK in your app.
 
-After adding the lines about in your `build.gradle.kts` Kotlin or `build.gradle` Groovy script you should be able to import and use the DevRev SDK.
-
-
-# Setting up the DevRev SDK
-## Step 1: Credentials
-1. Open the **Settings** page.
-
-
-   <img src="docs/screenshots/screenshot-settings-home.png" />
-
-
-2. Open the **PLuG Settings** page, and copy the value under **Your Unique App ID**.
-
-
-   <img src="docs/screenshots/screenshot-support-settings.png" width="250" />
-   <br />
-   <img src="docs/screenshots/screenshot-support-settings-id.png" width="400" />
-
-## Step 2: Configuration
-
-> [!IMPORTANT]
-> The SDK must be configured before you can use any of its features.
-
-Once you have the credentials, you can configure the DevRev SDK in your app. The SDK will be ready to use once you have called the configuration method:
+The SDK will be ready for use once you execute the following configuration method.
 - Kotlin
 ```kotlin
 DevRev.configure(context: Context, appId: String, prefersDialogMode: Boolean)
@@ -141,10 +129,10 @@ DevRev.INSTANCE.isConfigured();
 > [!NOTE]
 > `prefersDialogMode`, if set to true, enables the SDK to open the screens in the app's main task/activity
 
-To configure the SDK, you need to call the following method inside your `Application` class:
+4. To configure the SDK, you need to call the following method inside your `Application` class:
 
 > [!NOTE]
-> In case you do not have a custom `Application` class, you have to extend one like in the following example:
+If you don’t have a custom `Application` class, create one as shown below.
 
 - Kotlin
 ```kotlin
@@ -179,26 +167,30 @@ public class FooApplication extends Application {
 }
 ```
 
-In the `onCreate` method in your `Application`, you need to configure the DevRev SDK with the required parameters. Here you need to use the credentials that we have created before.
-
-Moreover, the custom application should be defined in `AndroidManifest.xml` like in the following example:
+5. In the `onCreate` method of your `Application`, configure the DevRev SDK with the required parameters using the credentials obtained earlier.
+6. Ensure that the custom application is specified in the `AndroidManifest.xml`, as shown below:
 ```xml
 <application
     android:name=".FooApplication">
 </application>
 ```
 
-# Features
-## Identification
-Certain features of the DevRev SDK **require** a user identification. There are two methods to identify your users:
-- **Anonymous users**: Creates an anonymous user with an optional user identifier, no other data is stored or associated with the user.
-- **Unverified users**: Identifies the user with a unique identifier, but does not verify the user's identity with the DevRev backend.
+### Sample app
+This repository includes a sample app demonstrating use cases with both XML-based UI and Jetpack Compose.
+
+Before running the sample app, make sure to configure it with your DevRev credentials. To do this, update the `ai.devrev.sdk.sample.DevRevApplication` class with your credentials.
+
+## Features
+### Identification
+To access certain features of the DevRev SDK, user identification is required.
+
+The identification function should be placed appropriately in your app after the user logs in. If you have the user information available at app launch, call the function after the `DevRev.configure(context, appID)` method.
 
 > [!IMPORTANT]
-> The user, organization and account traits in the `Identity` structure also support custom fields, which need to be configured in the DevRev web app before they can be used. For more information, see [Object customization](https://devrev.ai/docs/product/object-customization).
+> The `Identity` structure allows for custom fields in the user, organization, and account traits. These fields must be configured through the DevRev app before they can be utilized. For more information, refer to [Object customization](https://devrev.ai/docs/product/object-customization).
 
-### Anonymous identification
-The anonymous identification method is used to create an anonymous user with a random user identifier.
+#### Anonymous identification
+The anonymous identification method allows you to create an anonymous user with an optional user identifier, ensuring that no other data is stored or associated with the user.
 
 - Kotlin
 
@@ -216,11 +208,10 @@ DevRev.INSTANCE.identifyAnonymousUser(
 );
 ```
 
-### Unverified identification
-The unverified identification method is used to identify the user with a unique identifier, but does not verify the user's identity with the DevRev backend.
+#### Unverified identification
+The unverified identification method identifies users with a unique identifier, but it does not verify their identity with the DevRev backend.
 
 - Kotlin
-
 ```kotlin
 DevRev.identifyUnverifiedUser(
     identity: Identity
@@ -228,16 +219,15 @@ DevRev.identifyUnverifiedUser(
 ```
 
 - Java
-
 ```java
 DevRev.INSTANCE.identifyUnverifiedUser(
     Identity identity
 );
 ```
 
-The function accepts the `Identity` object, with the user identifier (`userId`) as the only required property, all other properties are optional.
+The function accepts the `DevRev.Identity` structure, with the user identifier (`userID`) as the only required property, all other properties are optional.
 
-### Verified identification
+#### Verified identification
 The verified identification method is used to identify the user with a unique identifier and verify the user's identity with the DevRev backend.
 
 ```kotlin
@@ -248,10 +238,8 @@ DevRev.identifyVerifiedUser(userId: String, sessionToken: String)
 DevRev.INSTANCE.identifyVerifiedUser(String userId, String sessionToken);
 ```
 
-### Examples
-
+#### Examples
 - Kotlin
-
 ```kotlin
 // Identify an anonymous user without a user identifier.
 DevRev.identifyAnonymousUser("abcd1234")
@@ -261,7 +249,6 @@ DevRev.identifyUnverifiedUser(Identity(userId = "foo@example.org"))
 ```
 
 - Java
-
 ```java
 // Identify an anonymous user without a user identifier.
 DevRev.INSTANCE.identifyAnonymousUser("abcd1234");
@@ -284,11 +271,10 @@ DevRev.isUserIdentified
 DevRev.INSTANCE.isUserIdentified();
 ```
 
-### Updating the user
-You can update the user's information using the following method:
+#### Updating the user
+To update a user's information, use the following method:
 
 - Kotlin
-
 ```kotlin
 DevRev.updateUser(
     identity: Identity
@@ -296,7 +282,6 @@ DevRev.updateUser(
 ```
 
 - Java
-
 ```java
 DevRev.INSTANCE.updateUser(
     Identity identity
@@ -308,8 +293,7 @@ The function accepts the `DevRev.Identity` ojbect.
 > [!IMPORTANT]
 > The `userID` property can *not* be updated.
 
-### Logout
-
+#### Logout
 You can perform a logout of the current user by calling the following method:
 
 ```kotlin
@@ -322,25 +306,33 @@ DevRev.INSTANCE.logout(Context context, String deviceId);
 
 The user will be logged out by clearing their credentials, as well as unregistering the device from receiving push notifications, and stopping the session recording.
 
-## PLuG support chat
-
-After completing user identification, it is possible to start using the chat (conversations) dialog supported by our DevRev SDK.
-
-In order to open the chat dialog, application should use `showSupport` API, as demonstrated in the following example:
+### PLuG support chat
+Once user identification is complete, you can start using the chat (conversations) dialog supported by our DevRev SDK. To open the chat dialog, your application should use the `showSupport` API, as shown in the following example:
 
 - Kotlin
-
 ```kotlin
 DevRev.showSupport(context: Context)
 ```
 
 - Java
-
 ```java
 DevRevExtKt.showSupport(DevRev.INSTANCE, context);
 ```
 
-DevRev SDK also exposes the support button, which can be added to your application. Including it in the current screen requires adding the following code in your XML layout:
+#### Creating a new conversation
+You have the ability to create a new conversation from within your app. The method will show the support chat screen and create a new conversation at the same time.
+
+- Kotlin
+```kotlin
+DevRev.createSupportConversation(context: Context)
+```
+
+- Java
+```java
+DevRev.INSTANCE.createSupportConversation(context);
+```
+
+The DevRev SDK also provides a support button, which can be integrated into your application. To include it on the current screen, add the following code to your XML layout:
 ```xml
 <ai.devrev.sdk.plug.view.PlugFloatingActionButton
     android:id="@+id/plug_fab"
@@ -358,19 +350,72 @@ and/or
 ```kotlin
 android:backgroundTint="@your_background_color"
 ```
-so that you can customize it to your own needs.
-The button will show up on your screen. The button will show up on your screen. Please check the following screenshot to visualize how the support button is expected to look in our application:
 
-<img src="docs/screenshots/screenshot-sample-identifying-the-user.png" width="220"/>
+At this stage, your app is fully configured to utilize all functionalities of the DevRev SDK. Pressing the support button directs the user to the chat interface, enabling effective interaction and support.
 
-At this point, it should be possible to run the app and use all the functionalities of the DevRev PLuG SDK. Pressing the support button would navigate user to the chat.
+### In-app link handling
+The DevRev SDK provides a mechanism to handle links opened from within any screen that is part of the DevRev SDK.
 
-<img src="docs/screenshots/screenshot-sample-support-view.png" width="220"/>
+You can fully customize the link handling behavior by setting the specialized in-app link handler. That way you can decide what should happen when a link is opened from within the app.
 
-## Analytics
-The DevRev SDK supports sending custom analytic events using a name and a string hashmap.
+- Kotlin
+```kotlin
+DevRev.setInAppLinkHandler(handler: (String) -> Unit)
+```
 
-You can track them using the following function:
+- Java
+```java
+DevRev.INSTANCE.setInAppLinkHandler(Function1<String, Unit> handler)
+```
+
+You can further customize the behavior by setting the `setShouldDismissModalsOnOpenLink` boolean flag. This flag controls whether the DevRev SDK should dismiss the top-most modal screen when a link is opened.
+
+- Kotlin
+```kotlin
+DevRev.setShouldDismissModalsOnOpenLink(value: boolean)
+```
+
+- Java
+```java
+DevRev.INSTANCE.setShouldDismissModalsOnOpenLink(boolean value)
+```
+
+#### Examples
+- Kotlin
+```kotlin
+DevRev.setInAppLinkHandler { link ->
+    // Do something here
+}
+
+DevRev.setShouldDismissModalsOnOpenLink(false)
+```
+
+- Java
+```java
+DevRev.INSTANCE.setInAppLinkHandler(link -> {
+    // Do something here
+    return kotlin.Unit.INSTANCE;
+});
+
+DevRev.INSTANCE.setShouldDismissModalsOnOpenLink(false);
+```
+
+### Dynamic theme configuration
+
+The DevRev SDK allows you to configure the theme dynamically based on the system appearance, or use the theme configured on the DevRev portal. By default, the theme will be dynamic and follow the system appearance.
+
+- Kotlin
+```kotlin
+DevRev.setShouldPreferSystemTheme(value: Boolean)
+```
+
+- Java
+```java
+DevRev.INSTANCE.setShouldPreferSystemTheme(boolean value);
+```
+
+### Analytics
+The DevRev SDK allows you to send custom analytic events by using a name and a string dictionary. You can track these events using the following function:
 
 - Kotlin
 ```kotlin
@@ -382,73 +427,97 @@ DevRevAnalyticsExtKt.trackEvent(DevRev instance, String name, HashMap<String, St
 ```
 
 #### Examples
-
 - Kotlin
 ```kotlin
 DevRev.trackEvent(name = "open-message-screen", properties = {"id": "foo-bar-1337"})
 ```
+
 - Java
 ```java
 DevRevAnalyticsExtKt.trackEvent(DevRev.INSTANCE, "open-message-screen", new HashMap<>().put("id", "foo-bar-1337"));
 ```
-## Observability
+
+### Session analytics
 The DevRev SDK provides observability features to help you understand how your users are interacting with your app.
 
-### Opting in/out
-The end user can give the consent to opt in/out of the observability feature.
+#### Opting-in or out
+Session analytics features are opted-in by default, enabling them from the start. However, you can opt-out using the following method:
 
 - Kotlin
 ```kotlin
 DevRev.stopAllMonitoring()
 ```
+
 - Java
 ```java
 DevRevObservabilityExtKt.stopAllMonitoring(DevRev.INSTANCE);
 ```
-This method stops and deletes the current session recording and also disables the session recording by our SDK for this user in the future.
+
+To opt back in, use the following method:
 
 - Kotlin
 ```kotlin
 DevRev.resumeAllMonitoring()
 ```
+
 - Java
 ```java
 DevRevObservabilityExtKt.resumeAllMonitoring(DevRev.INSTANCE);
 ```
+
 You can check whether session monitoring has been enabled by using this property:
 ```kotlin
 DevRev.isMonitoringEnabled
 ```
+
 - Java
 ```java
 DevRevObservabilityExtKt.isMonitoringEnabled(DevRev.INSTANCE);
 ```
+
 If the user was disabled for session recording by using the stopAllMonitoring() method, you can use this method to enable recording at runtime.
 > [!NOTE]
 > This feature will only store a monitoring permission flag, it will **not** provide any UI or dialog.
 
-### Session recording
-You can enable session recording to record user interactions with your app.
+#### Session recording
+You can enable session recording to capture user interactions with your app.
 
 > [!CAUTION]
 > The session recording feature is opt-out and is enabled by default.
 
-The session recording feature has a number of methods to help you control the recording:
+Here are the available methods to help you control the session recording feature:
 
-| Kotlin                   | Java                                                               | Action                                                    |
-|--------------------------|--------------------------------------------------------------------|-----------------------------------------------------------|
-| DevRev.startRecording()  | DevRevObservabilityExtKt.startRecording(DevRev.INSTANCE, context); | Starts the session recording.                             |
-| DevRev.stopRecording()   | DevRevObservabilityExtKt.stopRecording(DevRev.INSTANCE);           | Stops the session recording and uploads it to the portal. |
-| DevRev.pauseRecording()  | DevRevObservabilityExtKt.pauseRecording(DevRev.INSTANCE);          | Pauses the ongoing session recording.                     |
-| DevRev.resumeRecording() | DevRevObservabilityExtKt.resumeRecording(DevRev.INSTANCE);         | Resumes a paused session recording.                       |
+- Kotlin
+
+| Method                                 | Action                                                                 |
+|----------------------------------------|------------------------------------------------------------------------|
+| `DevRev.startRecording()`              | Starts session recording.                                              |
+| `DevRev.stopRecording()`               | Stops session recording and uploads it to the portal.                  |
+| `DevRev.pauseRecording()`              | Pauses the ongoing session recording.                                  |
+| `DevRev.resumeRecording()`             | Resumes a paused session recording.                                    |
+| `DevRev.processAllOnDemandSessions()`  | Uploads all offline sessions on demand, including the current one.     |
+
+- Java
+
+| Method                                                                      | Action                                                                 |
+|-----------------------------------------------------------------------------|------------------------------------------------------------------------|
+| `DevRevObservabilityExtKt.startRecording(DevRev.INSTANCE, context)`         | Starts session recording.                                              |
+| `DevRevObservabilityExtKt.stopRecording(DevRev.INSTANCE)`                   | Stops session recording and uploads it to the portal.                  |
+| `DevRevObservabilityExtKt.pauseRecording(DevRev.INSTANCE)`                  | Pauses the ongoing session recording.                                  |
+| `DevRevObservabilityExtKt.resumeRecording(DevRev.INSTANCE)`                 | Resumes a paused session recording.                                    |
+| `DevRevObservabilityExtKt.processAllOnDemandSessions(DevRev.INSTANCE)`      | Uploads all offline sessions on demand, including the current one.     |
+
+
 Using this property will return the status of the session recording:
 ```kotlin
 DevRev.isRecording
 ```
+
 - Java
 ```java
 DevRevObservabilityExtKt.isRecording(DevRev.INSTANCE);
 ```
+
 To check if on-demand sessions are enabled, use:
 ```kotlin
 DevRev.areOnDemandSessionsEnabled
@@ -458,7 +527,7 @@ DevRev.areOnDemandSessionsEnabled
 DevRevObservabilityExtKt.areOnDemandSessionsEnabled(DevRev.INSTANCE);
 ```
 
-### Session properties
+#### Session properties
 You can add custom properties to the session recording to help you understand the context of the session. The properties are defined as a dictionary of string values.
 
 - Kotlin
@@ -469,7 +538,7 @@ DevRev.addSessionProperties(properties: HashMap<String, Any>)
 ```java
 DevRevObservabilityExtKt.addSessionProperties(DevRev.INSTANCE, HashMap<String, Object> properties);
 ```
-You also have the ability to clear the session properties in scenarios like user logout or when the session ends.
+To clear the session properties in scenarios such as user logout or when the session ends, use the following method:
 
 - Kotlin
 ```kotlin
@@ -480,14 +549,13 @@ DevRev.clearSessionProperties()
 DevRevObservabilityExtKt.clearSessionProperties(DevRev.INSTANCE);
 ```
 
-### Masking sensitive data
+#### Masking sensitive data
 To protect sensitive data, the DevRev SDK provides an auto-masking feature that masks data before sending to the server. Input views such as text fields, text views, and web views are automatically masked.
 
 While the auto-masking feature may be sufficient for most situations, you can manually mark/unmark additional views as sensitive.
 
-#### Mask
-
-##### Using tag
+##### Mask
+###### Using tag
 > [!NOTE]
 > Use Tag method only when you don't have any other tag already applied to your UI element.
 
@@ -518,7 +586,7 @@ View anyView = findViewById(R.id.anyView);
 anyView.setTag("devrev-mask");
 ```
 
-##### Using API
+###### Using API
 - Kotlin
 ```kotlin
 DevRev.markSensitiveViews(sensitiveViews: List<View>)
@@ -550,9 +618,8 @@ sensitiveViewsList.add(view2);
 DevRevObservabilityExtKt.markSensitiveViews(DevRev.INSTANCE, sensitiveViewsList);
 ```
 
-#### Unmask
-
-##### Using tag
+##### Unmask
+###### Using tag
 > [!NOTE]
 > Use Tag method only when you don't have any other tag already applied to your UI element.
 
@@ -583,7 +650,7 @@ View anyView = findViewById(R.id.anyView);
 anyView.setTag("devrev-unmask");
 ```
 
-##### Using API
+###### Using API
 - Kotlin
 ```kotlin
 DevRev.unmarkSensitiveViews(sensitiveViews: List<View>)
@@ -615,7 +682,7 @@ sensitiveViewsList.add(view2);
 DevRevObservabilityExtKt.unmarkSensitiveViews(DevRev.INSTANCE, sensitiveViewsList);
 ```
 
-#### Mask jetpack compose views
+##### Mask jetpack compose views
 If you want to mask any Jetpack Compose UI element(s) or view(s), you can apply a mask on it using a modifier.
 
 ```kotlin
@@ -624,7 +691,7 @@ modifier = Modifier.markAsMaskedLocation("Name or ID of the Compose View")
 
 ###### Example
 ```kotlin
-TextField(    
+TextField(
        modifier = Modifier
              .markAsMaskedLocation("myTextField")
              .padding(horizontal = 20.dp)
@@ -634,8 +701,7 @@ TextField(
 )
 ```
 
-#### Mask webView elements
-
+##### Mask webView elements
 If you wish to mask any WebView element on a Web page explicitly, you can mask it by using class 'devrev-mask'
 
 ###### Example
@@ -643,8 +709,7 @@ If you wish to mask any WebView element on a Web page explicitly, you can mask i
 <label class="devrev-mask">OTP: 12345</label>
 ```
 
-#### Unmask webView elements
-
+##### Unmask webView elements
 If you wish to explicitly un-mask any manually masked WebView element, you can un-mask it by using class 'devrev-unmask'
 
 ###### Example
@@ -652,23 +717,24 @@ If you wish to explicitly un-mask any manually masked WebView element, you can u
 <input type="text" placeholder="Enter Username" name="username" required class="devrev-unmask">
 ```
 
-### Timers
-As part of the observability features, the DevRev SDK provides a timer mechanism to help you measure the time spent on a specific task. Events such as response time, loading time, or any other time-based event can be measured using the timer.
+#### Timers
+The DevRev SDK offers a timer mechanism to measure the time spent on specific tasks, allowing you to track events such as response time, loading time, or any other duration-based metrics.
 
 The mechanism works using balanced start and stop methods that both accept a timer name and an optional dictionary of properties.
 
-Start a timer using the method:
+To start a timer, use the following method:
 
 - Kotlin
 ```kotlin
 DevRev.startTimer(name: String, properties: HashMap<String, String>)
 ```
+
 - Java
 ```java
 DevRevObservabilityExtKt.startTimer(DevRev.INSTANCE, String name, HashMap<String, String> properties);
 ```
 
-And balance it with the stop method:
+To stop a timer, use the following method:
 
 - Kotlin
 ```kotlin
@@ -679,8 +745,7 @@ DevRev.endTimer(name: String, properties: HashMap<String, String>)
 DevRevObservabilityExtKt.endTimer(DevRev.INSTANCE, String name, HashMap<String, String> properties);
 ```
 
-#### Examples
-
+##### Examples
 - Kotlin
 ```kotlin
 DevRev.startTimer("response-time", properties: {"id": "foo-bar-1337"})
@@ -698,8 +763,8 @@ DevRevObservabilityExtKt.startTimer(DevRev.INSTANCE, "response-time", new HashMa
 DevRevObservabilityExtKt.endTimer(DevRev.INSTANCE, "response-time", new HashMap<String, String>().put("id", "foo-bar-1337"));
 ```
 
-### Screen tracking
-The DevRev SDK provides automatic screen tracking to help you understand how users are navigating through your app. While activities are automatically tracked, you can also manually track screens/fragments using the following method:
+#### Screen tracking
+The DevRev SDK offers automatic screen tracking to help you understand how users navigate through your app. Although view controllers are automatically tracked, you can manually track screens using the following method:
 
 - Kotlin
 ```kotlin
@@ -710,8 +775,7 @@ DevRev.trackScreenName(screenName: String)
 DevRevObservabilityExtKt.trackScreenName(DevRev.INSTANCE, String screenName);
 ```
 
-#### Examples
-
+##### Examples
 - Kotlin
 ```kotlin
 DevRev.trackScreenName("profile-screen")
@@ -721,12 +785,11 @@ DevRev.trackScreenName("profile-screen")
 DevRevObservabilityExtKt.trackScreenName(DevRev.INSTANCE, "profile-screen");
 ```
 
-## Screen Transition Management
-The DevRev SDK allows tracking of screen transitions to understand user navigation within your app.  
+### Screen transition management
+The DevRev SDK allows tracking of screen transitions to understand user navigation within your app.
 You can check if a screen transition is in progress and manually update the state using the following methods:
 
-### Check if the screen is transitioning
-
+#### Check if the screen is transitioning
 - Kotlin
 ```kotlin
 val isTransitioning = DevRev.isInScreenTransitioning
@@ -736,7 +799,7 @@ val isTransitioning = DevRev.isInScreenTransitioning
 boolean isTransitioning = DevRevObservabilityExtKt.isInScreenTransitioning(DevRev.INSTANCE);
 ```
 
-#### Set screen transitioning state
+##### Set screen transitioning state
 - Kotlin
 ```kotlin
 DevRev.setInScreenTransitioning(true) // start transition
@@ -744,43 +807,26 @@ DevRev.setInScreenTransitioning(false) // stop transition
 ```
 - Java
 ```java
-DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, true) // Start transition  
+DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, true) // Start transition
 DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, false) //Stop transition
 ```
 
-## On-Demand Session Processing
+### Push notifications
 
-This function stops the ongoing user recording and sends all on-demand sessions along with the current recording.
+You can configure your app to receive push notifications from the DevRev SDK. The SDK is designed to handle push notifications and execute actions based on the notification's content.
 
-### Process all on-demand sessions
-
-- Kotlin
-```kotlin
-DevRev.processAllOnDemandSessions()
-```
-
-- Java
-```java
-DevRevObservabilityExtKt.processAllOnDemandSessions(DevRev.INSTANECE);
-```
-
-## Push notifications
-
-You can configure your app to receive push notifications from the DevRev SDK. The SDK is able to handle push notifications and perform actions based on the content of the notification.
-
-The DevRev backend sends push notifications to your app to notify users about new messages in the PLuG support chat. In the future, the push notification support will be expanded with additional features.
+The DevRev backend sends push notifications to your app to notify users about new messages in the PLuG support chat.
 
 > [!CAUTION]
-> In order to receive push notifications, you need to configure your DevRev organization by following the [Push Notifications integration guide](#).
+To receive push notifications, you need to configure your DevRev organization by following the instructions in the [push notifications](https://developer.devrev.ai/public/sdks/mobile/push-notification) section.
 
-You need to make sure that your Android app is configured to receive push notifications. You can follow the [Firebase documentation](https://firebase.google.com/docs/cloud-messaging/android/client) to set up your app to receive push notifications.
+You need to ensure that your Android app is configured to receive push notifications. To set it up, follow the [Firebase documentation](https://firebase.google.com/docs/cloud-messaging/android/client).
 
-### Registering for push notifications
-
+#### Register for push notifications
 > [!IMPORTANT]
 > Push notifications require that the SDK has been configured and the user has been identified (unverified and anonymous users). The user identification is required to send the push notification to the correct user.
 
-The DevRev SDK provides a method to register your device for receiving push notifications. You can call the following method to register for push notifications:
+The DevRev SDK offers a method to register your device for receiving push notifications. You can register for push notifications using the following method:
 
 - Kotlin
 ```kotlin
@@ -798,13 +844,12 @@ DevRev.INSTANCE.registerDeviceToken(
   String deviceId
 );
 ```
-The method requires a device identifier, which is persistent across device restarts and app launches. This can be a Firebase installation ID, Android ID, or an identifier unique to your system.
-
-To obtain the device token for Firebase Cloud Messaging:
+The method requires a device identifier that persists across device restarts and app launches. This could be a Firebase installation ID, Android ID, or a unique system identifier. To obtain the device token for Firebase Cloud Messaging, follow these steps:
 
 1. Use the `FirebaseMessaging` object.
 2. Call the `firebaseMessaging.token.await()` method.
-3. This method will generate and return the device token.
+
+This method will generate and return the device token.
 
 ```kotlin
 val firebaseMessaging = FirebaseMessaging.getInstance()
@@ -812,9 +857,12 @@ val token = firebaseMessaging.token.await()
 // Use the token as needed
 ```
 
-### Unregistering from push notifications
+#### Unregister from push notifications
+If your app no longer needs to receive push notifications, you can unregister the device.
 
-In cases when your app no longer wants to receive push notifications, you can unregister the device from receiving them. The method to unregister the device is:
+Use the following method to unregister the device:
+
+The method requires the device identifier, which should be the same as the one used when registering the device.
 
 - Kotlin
 ```kotlin
@@ -831,11 +879,8 @@ DevRev.INSTANCE.unregisterDevice(
 );
 ```
 
-The method requires the device identifier, which is the same as the one used for registering the device.
-
-### Handling push notifications
-
-The DevRev SDK currently doesn't supports automatic handling of push notifications. The message payload received in the notification needs to be passed to the SDK to automatically open the PLuG chat and handle navigation internally.
+#### Handle push notifications
+The DevRev SDK currently does not support automatic handling of push notifications. To open the PLuG chat and manage navigation internally, you must pass the message payload received in the notification to the SDK.
 
 - Kotlin
 ```kotlin
@@ -851,12 +896,12 @@ DevRev.INSTANCE.processPushNotification(
     String userInfo
 );
 ```
-In order to extract the notification payload:
+To extract the notification payload, do the following:
 1. In Firebase Cloud Messaging (FCM), when a push notification is received, it triggers the `onMessageReceived` function in your `FirebaseMessagingService` class.
 2. This function receives a `RemoteMessage` object as a parameter, which contains the notification data.
-3. The `RemoteMessage` object has a property called data, which is a map containing key-value pairs of the notification payload.
-4. To extract a specific piece of data from the payload, you can use the key to access the value in the data map.
-5. In this case, to get the "message" from the payload, you would use:
+3. The `RemoteMessage` object has a `data` property, which is a map containing key-value pairs of the notification payload.
+4. To extract a specific piece of data from the payload, use the key to access the value in the data map.
+5. To retrieve the "message" from the payload:
 
 - Kotlin
 ```kotlin
@@ -868,8 +913,7 @@ val message = remoteMessage.data["message"]
 String messageData = remoteMessage.getData().get("message");
 ```
 
-#### Examples
-
+##### Examples
 - Kotlin
 ```kotlin
 class MyFirebaseMessagingService: FirebaseMessagingService {
@@ -896,18 +940,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 }
 ```
 
-# Sample app
-The sample app showcasing both the functionality and the XML implementation has been provided as part of this repository. The users are kindly encouraged to run the sample app before integrating DevRev SDK in the destination application.
-> [!NOTE]
-> The sample is yet to be updated with the latest version of the SDK. Stay Tuned!
+## Troubleshooting
+- **Issue**: Encountering problems with DevRev SDK integration.
+    **Solution**: Verify the correct SDK dependency setup in the project. Ensure `mavenCentral` is accessible from the IDE, and confirm accurate detection of the selected DevRev SDK version.
 
-# Migration Guide
+- **Issue**: The `showSupport()` function or XML button is unresponsive.
+    **Solution**: Confirm that user identification is performed before using the `showSupport()` function or XML button.
 
+- **Issue**: Incorrect operation due to `App ID` and `secret` misconfiguration.
+    **Solution**: Ensure correct functionality by double-checking that both `App ID` and `secret` values are accurately configured in your application or sample app.
+
+## Migration guide
 If you are migrating from the legacy UserExperior SDK to the new DevRev SDK, please refer to the [Migration Guide](./MIGRATION.md) for detailed instructions and feature equivalence.
-
-# FAQ
-In case of any issues with the integration of the DevRev SDK, please verify that the dependency is correctly set in the project. In addition, please make sure that `mavenCentral` is reachable from the IDE and that the DevRev PluG SDK version of choice was correctly detected.
-
-In case the `showSupport()` function or XML button are not responding, make sure the user has been identified beforehand.
-
-Please check that the app ID (`appId`) is correctly configured in your application or sample app.
