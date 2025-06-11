@@ -9,6 +9,7 @@ DevRev SDK, used for integrating DevRev services into your Android app.
     - [Integration](#integration)
       - [Step 1](#step-1)
       - [Step 2](#step-2)
+      - [Proguard rules](#proguard-rules)
     - [Set up the DevRev SDK](#set-up-the-devrev-sdk)
     - [Sample app](#sample-app)
   - [Features](#features)
@@ -99,6 +100,13 @@ Add the following dependencies to your app's `build.gradle` file to get the late
 dependencies {
     implementation 'ai.devrev.sdk:devrev-sdk:<version>'
 }
+```
+
+#### Proguard rules
+If you are using Proguard in your project, you must add the following lines to your configuration: 
+```bash
+-keep class ai.devrev.** { *; }
+-keep class com.userexperior.* { *; }
 ```
 
 ### Set up the DevRev SDK
@@ -941,14 +949,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 ```
 
 ## Troubleshooting
-- **Issue**: Encountering problems with DevRev SDK integration.
-    **Solution**: Verify the correct SDK dependency setup in the project. Ensure `mavenCentral` is accessible from the IDE, and confirm accurate detection of the selected DevRev SDK version.
+- **Issue**: Can't import the SDK into my app.
+  **Solution**: Double-check the setup process and ensure that `mavenCentral()` is present in the project level repositories block.
 
-- **Issue**: The `showSupport()` function or XML button is unresponsive.
-    **Solution**: Confirm that user identification is performed before using the `showSupport()` function or XML button.
+- **Issue**: How does the DevRev SDK handle errors?
+  **Solution**: The DevRev SDK reports all errors using Android's logging utility. Look for error messages in Android Studio's Logcat after applying `DEVREV SDK` filter.
 
-- **Issue**: Incorrect operation due to `App ID` and `secret` misconfiguration.
-    **Solution**: Ensure correct functionality by double-checking that both `App ID` and `secret` values are accurately configured in your application or sample app.
+- **Issue**: Support chat won't show.
+  **Solution**: Ensure you have correctly called one of the identification methods: `DevRev.identifyUnverifiedUser(...)`, `DevRev.identifyVerifiedUser(...)`, or `DevRev.identifyAnonymousUser(...)`.
+
+- **Issue**: Not receiving push notifications.
+  **Solution**: Ensure that your app is configured to receive push notifications and that your device is registered with the DevRev SDK.
 
 ## Migration guide
 If you are migrating from the legacy UserExperior SDK to the new DevRev SDK, please refer to the [Migration Guide](./MIGRATION.md) for detailed instructions and feature equivalence.

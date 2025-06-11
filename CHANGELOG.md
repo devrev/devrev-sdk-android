@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.0
+
+### Changed
+- Improved the communication with the DevRev backend.
+- Improved the encryption techniques used throughout the SDK.
+
 ## 1.1.5
 
 ### Added

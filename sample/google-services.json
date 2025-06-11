@@ -8,17 +8,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1001237930288:android:7b2c19eb3181f8c4ede8f5",
+        "mobilesdk_app_id": "1:1001237930288:android:e6e30f1e0b5e8013ede8f5",
         "android_client_info": {
-          "package_name": "ai.devrev.sdk.bridge.reactnative.sample"
+          "package_name": "ai.devrev.sdk.bridge.devrevSdkFlutterSample"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1001237930288-2ak63an8u4p9jjbtdusd90f04su3pdm9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyBNEHH0CBGTCSh1R-QyeQC4t7U0HmDii9g"
@@ -26,19 +21,45 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1001237930288-2ak63an8u4p9jjbtdusd90f04su3pdm9.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1001237930288-hotgoru17eoib0brnplbtcd73h5c4oug.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.ue.wallet"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001237930288:android:7b2c19eb3181f8c4ede8f5",
+        "android_client_info": {
+          "package_name": "ai.devrev.sdk.bridge.reactnative.sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNEHH0CBGTCSh1R-QyeQC4t7U0HmDii9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001237930288:android:55617553aaf2ffecede8f5",
+        "android_client_info": {
+          "package_name": "ai.devrev.sdk.reactnative.expo.sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNEHH0CBGTCSh1R-QyeQC4t7U0HmDii9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
         }
       }
     },
@@ -49,12 +70,7 @@
           "package_name": "ai.devrev.sdk.sample"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1001237930288-2ak63an8u4p9jjbtdusd90f04su3pdm9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyBNEHH0CBGTCSh1R-QyeQC4t7U0HmDii9g"
@@ -62,19 +78,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1001237930288-2ak63an8u4p9jjbtdusd90f04su3pdm9.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1001237930288-hotgoru17eoib0brnplbtcd73h5c4oug.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.ue.wallet"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     },
@@ -85,12 +89,7 @@
           "package_name": "com.userexperior.uewallet"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "1001237930288-2ak63an8u4p9jjbtdusd90f04su3pdm9.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyBNEHH0CBGTCSh1R-QyeQC4t7U0HmDii9g"
@@ -98,19 +97,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1001237930288-2ak63an8u4p9jjbtdusd90f04su3pdm9.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "1001237930288-hotgoru17eoib0brnplbtcd73h5c4oug.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.ue.wallet"
-              }
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }
