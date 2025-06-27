@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.1
+
+### Changed
+- Improved the backward compatibility between v1.x.x and v2.x.x
+
 ## 2.0.0
 
 ### Changed

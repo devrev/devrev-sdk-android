@@ -9,6 +9,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -34,7 +36,9 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -51,6 +55,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var notificationHandler: NotificationHandler
@@ -91,7 +96,7 @@ fun SampleApp(viewModel: SharedViewModel = viewModel()) {
             launchSingleTop = true
         }
     }
-    MaterialTheme{
+    MaterialTheme {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -115,7 +120,10 @@ fun SampleApp(viewModel: SharedViewModel = viewModel()) {
                         navigationIcon = {
                             if (currentDestination?.route != AppRoute.HOME.route) {
                                 IconButton(onClick = { navController.navigateUp() }) {
-                                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                                    Icon(
+                                        Icons.AutoMirrored.Filled.ArrowBack,
+                                        contentDescription = "Back"
+                                    )
                                 }
                             } else {
                                 Box(modifier = Modifier.size(48.dp))
@@ -123,7 +131,8 @@ fun SampleApp(viewModel: SharedViewModel = viewModel()) {
                         },
                         actions = {
                             IconButton(onClick = {
-                                val currentRoute = navController.currentBackStackEntry?.destination?.route
+                                val currentRoute =
+                                    navController.currentBackStackEntry?.destination?.route
                                 if (currentRoute != null) {
                                     when (currentRoute) {
                                         AppRoute.HOME.route -> {
@@ -132,6 +141,7 @@ fun SampleApp(viewModel: SharedViewModel = viewModel()) {
                                                 launchSingleTop = true
                                             }
                                         }
+
                                         else -> {
                                             val fragment = when (currentRoute) {
                                                 AppRoute.IDENTIFICATION.route -> IdentificationFragment()
@@ -141,8 +151,13 @@ fun SampleApp(viewModel: SharedViewModel = viewModel()) {
                                                 else -> null
                                             }
                                             if (fragment != null) {
-                                                val fragmentManager = (context as FragmentActivity).supportFragmentManager
-                                                reloadFragment(fragmentManager, fragment, R.id.fragment_container_view)
+                                                val fragmentManager =
+                                                    (context as FragmentActivity).supportFragmentManager
+                                                reloadFragment(
+                                                    fragmentManager,
+                                                    fragment,
+                                                    R.id.fragment_container_view
+                                                )
                                             }
                                         }
                                     }
@@ -164,11 +179,15 @@ fun SampleApp(viewModel: SharedViewModel = viewModel()) {
 }
 
 @Composable
-fun NavHostContainer(paddingValues: PaddingValues, navController: NavHostController, viewModel: SharedViewModel) {
+fun NavHostContainer(
+    paddingValues: PaddingValues,
+    navController: NavHostController,
+    viewModel: SharedViewModel
+) {
     NavHost(navController, startDestination = AppRoute.HOME.route) {
         composable(AppRoute.HOME.route) {
             viewModel.resetTitle()
-            HomeComposable(Modifier.padding(paddingValues), navController)
+            HomeComposable(Modifier.padding(paddingValues), navController, viewModel)
         }
         composable(AppRoute.IDENTIFICATION.route) {
             viewModel.changeTitle(stringResource(R.string.identification))
@@ -190,16 +209,30 @@ fun NavHostContainer(paddingValues: PaddingValues, navController: NavHostControl
 }
 
 @Composable
-fun HomeComposable(modifier: Modifier = Modifier, navController: NavHostController) {
+fun HomeComposable(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    viewModel: SharedViewModel
+) {
     val isConfigured by remember { mutableStateOf(DevRev.isConfigured) }
     val isUserIdentified by remember { mutableStateOf(DevRev.isUserIdentified) }
     val isMonitoringEnabled by remember { mutableStateOf(DevRev.isMonitoringEnabled) }
+    val scale = remember { Animatable(1f) }
+    val coroutineScope = rememberCoroutineScope()
 
     val buttonItems = listOf(
         ButtonItem(stringResource(R.string.identification)) { navController.navigate(AppRoute.IDENTIFICATION.route) },
-        ButtonItem(stringResource(R.string.support_chat)) { navController.navigate(AppRoute.SUPPORT_CHAT.route) },
+        ButtonItem(stringResource(R.string.support_chat)) {
+            viewModel.setInScreenTransitioning(true)
+            navController.navigate(AppRoute.SUPPORT_CHAT.route)
+        },
         ButtonItem(stringResource(R.string.push_notifications)) { navController.navigate(AppRoute.PUSH_NOTIFICATIONS.route) },
         ButtonItem(stringResource(R.string.session_analytics)) { navController.navigate(AppRoute.SESSION_ANALYTICS.route) }
+    )
+
+    val debugButtons = listOf(
+        ButtonItem(stringResource(R.string.anr)) { viewModel.ANR() },
+        ButtonItem(stringResource(R.string.crash)) { viewModel.crash() }
     )
 
     Column(
@@ -216,7 +249,8 @@ fun HomeComposable(modifier: Modifier = Modifier, navController: NavHostControll
         LazyColumn {
             items(stateItems) { (label, state) ->
                 Row(
-                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp)
+                    modifier = Modifier
+                        .padding(vertical = 8.dp, horizontal = 8.dp)
                         .fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -224,31 +258,22 @@ fun HomeComposable(modifier: Modifier = Modifier, navController: NavHostControll
                     Text(label)
                     CircularCheckbox(
                         checked = state,
-                        onCheckedChange = {  }
+                        onCheckedChange = { }
                     )
                 }
             }
             item {
                 textRow(stringResource(R.string.feature))
-            }
-            items(buttonItems) { item ->
-                Button(
-                    onClick = item.onClick,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.LightGray,
-                        contentColor = Color.Black
-                    )
-                ) {
-                    Box(
-                        modifier = Modifier.fillMaxWidth(),
-                        contentAlignment = Alignment.CenterStart
-                    ) {
-                        Text(item.label)
+                ButtonsRow(buttonItems)
+                textRow(stringResource(R.string.debug))
+                ButtonsRow(debugButtons)
+                textRow(stringResource(R.string.animation))
+                Button(ButtonItem(stringResource(R.string.play_animation)) {coroutineScope.launch {
+                    repeat(4) {
+                        scale.animateTo(1.2f, animationSpec = spring(dampingRatio = 0.4f))
+                        scale.animateTo(1f, animationSpec = spring(dampingRatio = 0.4f))
                     }
-                }
+                } }, Modifier.scale(scale.value))
             }
         }
     }
@@ -300,6 +325,40 @@ fun CircularCheckbox(
                 contentDescription = null,
                 tint = Color.White
             )
+        }
+    }
+}
+
+@Composable
+fun ButtonsRow(
+    buttonList: List<ButtonItem>,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        buttonList.forEach { item ->
+            Button(item)
+        }
+    }
+}
+
+@Composable
+fun Button(item: ButtonItem, additionalModifier: Modifier = Modifier) {
+    Button(
+        onClick = item.onClick,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .then(additionalModifier),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.LightGray,
+            contentColor = Color.Black
+        )
+    ) {
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Text(item.label)
         }
     }
 }
