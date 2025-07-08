@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.2
+
+### Fixed
+- Fixed an issue where the obfuscated classes were leading to class name conflicts.  
+
 ## 2.0.1
 
 ### Changed
