@@ -9,7 +9,7 @@ DevRev SDK, used for integrating DevRev services into your Android app.
     - [Integration](#integration)
       - [Step 1](#step-1)
       - [Step 2](#step-2)
-      - [Proguard rules](#proguard-rules)
+      - [ProGuard rules](#proguard-rules)
     - [Set up the DevRev SDK](#set-up-the-devrev-sdk)
     - [Sample app](#sample-app)
   - [Features](#features)
@@ -17,6 +17,9 @@ DevRev SDK, used for integrating DevRev services into your Android app.
       - [Anonymous identification](#anonymous-identification)
       - [Unverified identification](#unverified-identification)
       - [Verified identification](#verified-identification)
+        - [Generate an AAT](#generate-an-aat)
+        - [Exchange your AAT for a session token](#exchange-your-aat-for-a-session-token)
+        - [Identifying the verified user](#identifying-the-verified-user)
       - [Examples](#examples)
       - [Updating the user](#updating-the-user)
       - [Logout](#logout)
@@ -42,11 +45,11 @@ DevRev SDK, used for integrating DevRev services into your Android app.
           - [Example](#example-1)
           - [Using API](#using-api-1)
           - [Examples](#examples-4)
-        - [Mask jetpack compose views](#mask-jetpack-compose-views)
+        - [Mask Jetpack Compose views](#mask-jetpack-compose-views)
           - [Example](#example-2)
-        - [Mask webView elements](#mask-webview-elements)
+        - [Mask web view elements](#mask-web-view-elements)
           - [Example](#example-3)
-        - [Unmask webView elements](#unmask-webview-elements)
+        - [Unmask web view elements](#unmask-web-view-elements)
           - [Example](#example-4)
       - [Timers](#timers)
         - [Examples](#examples-5)
@@ -54,28 +57,28 @@ DevRev SDK, used for integrating DevRev services into your Android app.
         - [Examples](#examples-6)
     - [Screen transition management](#screen-transition-management)
       - [Check if the screen is transitioning](#check-if-the-screen-is-transitioning)
-        - [Set screen transitioning state](#set-screen-transitioning-state)
+      - [Set screen transitioning state](#set-screen-transitioning-state)
     - [Push notifications](#push-notifications)
       - [Register for push notifications](#register-for-push-notifications)
       - [Unregister from push notifications](#unregister-from-push-notifications)
       - [Handle push notifications](#handle-push-notifications)
         - [Examples](#examples-7)
-  - [Sample app](#sample-app)
   - [Troubleshooting](#troubleshooting)
+    - [ProGuard](#proguard)
   - [Migration guide](#migration-guide)
 
 ## Quickstart guide
 ### Requirements
-- Android Studio 2022.1.1 or later
-- Android Gradle Plugin version 7.4 or later
-- Gradle version 7.6 or later
-- Minimum Android SDK 24
+- Android Studio 2025.1.1 or later.
+- Android Gradle Plugin 8.2 or later.
+- Gradle 8.9 or later.
+- Minimum Android API level should be 24.
 
 ### Integration
 To integrate the latest version of our SDK into your app, follow these steps:
 
 #### Step 1
-Our SDK is available on Maven Central. To access it, add `mavenCentral` to your root level `build.gradle` file.
+The DevRev SDK is available on Maven Central. To access it, add `mavenCentral` to your root-level `build.gradle` file.
 
 ```gradle
 repositories {
@@ -83,7 +86,7 @@ repositories {
 }
 ```
 
-After completing these steps in your gradle files, you should be able to import and use the DevRev SDK in your Android application.
+After completing these steps in your Gradle files, you should be able to import and use the DevRev SDK in your Android app.
 
 #### Step 2
 - Kotlin
@@ -102,8 +105,8 @@ dependencies {
 }
 ```
 
-#### Proguard rules
-If you are using Proguard in your project, you must add the following lines to your configuration: 
+#### ProGuard rules
+If you are using ProGuard in your project, you must add the following lines to your configuration:
 ```bash
 -keep class ai.devrev.** { *; }
 -keep class com.userexperior.* { *; }
@@ -236,8 +239,48 @@ DevRev.INSTANCE.identifyUnverifiedUser(
 The function accepts the `DevRev.Identity` structure, with the user identifier (`userID`) as the only required property, all other properties are optional.
 
 #### Verified identification
-The verified identification method is used to identify the user with a unique identifier and verify the user's identity with the DevRev backend.
+The verified identification method is used to identify users with an identifier unique to your system within the DevRev platform. The verification is done through a token exchange process between you and the DevRev backend.
 
+The steps to identify a verified user are as follows:
+1. Generate an AAT for your system (preferably through your backend).
+2. Exchange your AAT for a session token for each user of your system.
+3. Pass the user identifier and the exchanged session token to the `DevRev.identifyVerifiedUser(userId, sessionToken)` method.
+
+> [!CAUTION]
+> For security reasons we **strongly recommend** that the token exchange is executed on your backend to prevent exposing your application access token (AAT).
+##### Generate an AAT
+1. Open the DevRev web app at [https://app.devrev.ai](https://app.devrev.ai) and go to the **Settings** page.
+2. Open the **PLuG Tokens** page.
+3. Under the **Application access tokens** panel, click **New token** and copy the token that's displayed.
+
+> [!IMPORTANT]
+> Ensure that you copy the generated application access token, as you cannot view it again.
+##### Exchange your AAT for a session token
+In order to proceed with identifying the user, you need to exchange your AAT for a session token. This step will help you identify a user of your own system within the DevRev platform.
+
+Here is a simple example of an API request to the DevRev backend to exchange your AAT for a session token:
+> [!CAUTION]
+> Make sure that you replace the `<AAT>` and `<YOUR_USER_ID>` with the actual values.
+```bash
+curl \
+--location 'https://api.devrev.ai/auth-tokens.create' \
+--header 'accept: application/json, text/plain, */*' \
+--header 'content-type: application/json' \
+--header 'authorization: <AAT>' \
+--data '{
+  "rev_info": {
+    "user_ref": "<YOUR_USER_ID>"
+  }
+}'
+```
+
+The response of the API call will contain a session token that you can use with the verified identification method in your app.
+
+> [!NOTE]
+> As a good practice, **your** app should retrieve the exchanged session token from **your** backend at app launch or any relevant app lifecycle event.
+
+##### Identifying the verified user
+Pass the user identifier and the exchanged session token to the verified identification method:
 ```kotlin
 DevRev.identifyVerifiedUser(userId: String, sessionToken: String)
 ```
@@ -252,8 +295,11 @@ DevRev.INSTANCE.identifyVerifiedUser(String userId, String sessionToken);
 // Identify an anonymous user without a user identifier.
 DevRev.identifyAnonymousUser("abcd1234")
 
-// Identify an unverified user with its email address an user identifier.
+// Identify an unverified user with its email address as a user identifier.
 DevRev.identifyUnverifiedUser(Identity(userId = "foo@example.org"))
+
+// Identify a verified user with its user identifier and session token.
+DevRev.identifyVerifiedUser("foo@example.org", "session-token-1234")
 ```
 
 - Java
@@ -261,13 +307,16 @@ DevRev.identifyUnverifiedUser(Identity(userId = "foo@example.org"))
 // Identify an anonymous user without a user identifier.
 DevRev.INSTANCE.identifyAnonymousUser("abcd1234");
 
-// Identify an unverified user with its email address an user identifier.
+// Identify an unverified user with its email address as a user identifier.
 DevRev.identifyUnverifiedUser(
-        new Identity("foo@example.org", null, null, null, null, null)
+    new Identity("foo@example.org", null, null, null, null, null)
 );
+
+// Identify a verified user with its user identifier and session token.
+DevRev.INSTANCE.identifyVerifiedUser("foo@example.org", "session-token-1234");
 ```
 
-The identification function should be placed at the appropriate place in your app after you login your user. If you have the user information at app launch, call the function after the `DevRev.configure(context, appID)` method.
+The identification function should be placed at the appropriate place in your app after you log in your user. If you have the user information at app launch, call the function after the `DevRev.configure(context, appID)` method.
 
 Use this property to check whether the user has been provided to the SDK:
 - Kotlin
@@ -296,7 +345,7 @@ DevRev.INSTANCE.updateUser(
 );
 ```
 
-The function accepts the `DevRev.Identity` ojbect.
+The function accepts the `DevRev.Identity` object.
 
 > [!IMPORTANT]
 > The `userID` property can *not* be updated.
@@ -690,8 +739,8 @@ sensitiveViewsList.add(view2);
 DevRevObservabilityExtKt.unmarkSensitiveViews(DevRev.INSTANCE, sensitiveViewsList);
 ```
 
-##### Mask jetpack compose views
-If you want to mask any Jetpack Compose UI element(s) or view(s), you can apply a mask on it using a modifier.
+##### Mask Jetpack Compose views
+If you want to mask any Jetpack Compose UI elements or views, you can apply a mask on it using a modifier.
 
 ```kotlin
 modifier = Modifier.markAsMaskedLocation("Name or ID of the Compose View")
@@ -709,16 +758,16 @@ TextField(
 )
 ```
 
-##### Mask webView elements
-If you wish to mask any WebView element on a Web page explicitly, you can mask it by using class 'devrev-mask'
+##### Mask web view elements
+If you wish to mask any `WebView` element on a web page explicitly, you can mask it by using the class 'devrev-mask'.
 
 ###### Example
 ```html
 <label class="devrev-mask">OTP: 12345</label>
 ```
 
-##### Unmask webView elements
-If you wish to explicitly un-mask any manually masked WebView element, you can un-mask it by using class 'devrev-unmask'
+##### Unmask web view elements
+If you wish to explicitly unmask any manually masked `WebView` element, you can unmask it by using the class 'devrev-unmask'.
 
 ###### Example
 ```html
@@ -772,7 +821,7 @@ DevRevObservabilityExtKt.endTimer(DevRev.INSTANCE, "response-time", new HashMap<
 ```
 
 #### Screen tracking
-The DevRev SDK offers automatic screen tracking to help you understand how users navigate through your app. Although view controllers are automatically tracked, you can manually track screens using the following method:
+The DevRev SDK offers automatic screen tracking to help you understand how users navigate through your app. Although activities and fragments are automatically tracked, you can manually track screens using the following method:
 
 - Kotlin
 ```kotlin
@@ -807,16 +856,22 @@ val isTransitioning = DevRev.isInScreenTransitioning
 boolean isTransitioning = DevRevObservabilityExtKt.isInScreenTransitioning(DevRev.INSTANCE);
 ```
 
-##### Set screen transitioning state
+#### Set screen transitioning state
 - Kotlin
 ```kotlin
-DevRev.setInScreenTransitioning(true) // start transition
-DevRev.setInScreenTransitioning(false) // stop transition
+// Mark the transition as started.
+DevRev.setInScreenTransitioning(true)
+
+// Mark the transition as stopped.
+DevRev.setInScreenTransitioning(false)
 ```
 - Java
 ```java
-DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, true) // Start transition
-DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, false) //Stop transition
+// Mark the transition as started.
+DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, true)
+
+// Mark the transition as stopped.
+DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, false)
 ```
 
 ### Push notifications
@@ -950,7 +1005,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 ## Troubleshooting
 - **Issue**: Can't import the SDK into my app.
-  **Solution**: Double-check the setup process and ensure that `mavenCentral()` is present in the project level repositories block.
+  **Solution**: Double-check the setup process and ensure that `mavenCentral()` is present in the project-level repositories block.
 
 - **Issue**: How does the DevRev SDK handle errors?
   **Solution**: The DevRev SDK reports all errors using Android's logging utility. Look for error messages in Android Studio's Logcat after applying `DEVREV SDK` filter.
@@ -960,6 +1015,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 - **Issue**: Not receiving push notifications.
   **Solution**: Ensure that your app is configured to receive push notifications and that your device is registered with the DevRev SDK.
+
+### ProGuard
+- **Issue**: Missing class `com.google.android.play.core.splitcompat.SplitCompatApplication`.
+  **Solution**: Add the following line to your `proguard-rules.pro` file: `-dontwarn com.google.android.play.core.**`.
+
+- **Issue**: Missing class issue due to transitive Flutter dependencies.
+  **Solution**: Add the following lines to your `proguard-rules.pro` file:
+  ```bash
+  -keep class io.flutter.** { *; }
+  -keep class io.flutter.plugins.** { *; }
+  -keep class GeneratedPluginRegistrant { *; }
+  ```
 
 ## Migration guide
 If you are migrating from the legacy UserExperior SDK to the new DevRev SDK, please refer to the [Migration Guide](./MIGRATION.md) for detailed instructions and feature equivalence.

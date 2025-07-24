@@ -2,10 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.3
+
+### Fixed
+- Fixed an issue with manual unmasking of input components. 
+- Fixed an issue with session uploads when the app is rapidly killed.
+
 ## 2.0.2
 
 ### Fixed
-- Fixed an issue where the obfuscated classes were leading to class name conflicts.  
+- Fixed an issue with missing sessions when migrating from 1.x.x to 2.x.x.
 
 ## 2.0.1
 
