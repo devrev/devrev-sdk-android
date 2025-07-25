@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.0.4
+
+### Fixed
+- Fixed an issue with upload failure due to ClassCastException in the WorkManager
+
 ## 2.0.3
 
 ### Fixed
