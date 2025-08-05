@@ -165,8 +165,15 @@ $dokka.location:ai.devrev.sdk.model.revuser////PointingToDeclaration/core/ai.de
 $dokka.location:ai.devrev.sdk.model.revuser/AssociationsMetaData///PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-associations-meta-data/index.html
 $dokka.location:ai.devrev.sdk.model.revuser/AssociationsMetaData/AssociationsMetaData/#kotlin.Int/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-associations-meta-data/-associations-meta-data.html
 $dokka.location:ai.devrev.sdk.model.revuser/AssociationsMetaData/total/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-associations-meta-data/total.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevOrg///PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-org/index.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevOrg/RevOrg/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-org/-rev-org.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevOrg/displayId/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-org/display-id.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevOrg/displayName/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-org/display-name.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevOrg/id/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-org/id.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevOrg/idV1/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-org/id-v1.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevOrg/type/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-org/type.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel///PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/index.html
-$dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/RevUserApiModel/#ai.devrev.sdk.model.revuser.AssociationsMetaData?#kotlin.String?#kotlin.String?#ai.devrev.sdk.model.revuser.UserMetaData?#kotlin.String?#kotlin.collections.Map[kotlin.String,kotlinx.serialization.json.JsonElement]?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.String?#kotlin.String#kotlin.String?#kotlin.Boolean?#ai.devrev.sdk.model.revuser.UserMetaData?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.String?#kotlin.String?/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/-rev-user-api-model.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/RevUserApiModel/#ai.devrev.sdk.model.revuser.AssociationsMetaData?#kotlin.String?#kotlin.String?#ai.devrev.sdk.model.revuser.UserMetaData?#kotlin.String?#kotlin.collections.Map[kotlin.String,kotlinx.serialization.json.JsonElement]?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.String?#kotlin.String#kotlin.String?#kotlin.Boolean?#ai.devrev.sdk.model.revuser.UserMetaData?#kotlin.String?#kotlin.String?#ai.devrev.sdk.model.revuser.RevOrg?#kotlin.collections.List[kotlin.String]?#kotlin.String?#kotlin.String?#kotlin.String?/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/-rev-user-api-model.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/associationsMetadata/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/associations-metadata.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/browser/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/browser.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/browserLanguage/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/browser-language.html
@@ -185,6 +192,7 @@ $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/idV1/#/PointingToDec
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/isVerified/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/is-verified.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/modifiedBy/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/modified-by.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/modifiedDate/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/modified-date.html
+$dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/revOrg/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/rev-org.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/revOrgId/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/rev-org-id.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/schemaFragmentIds/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/schema-fragment-ids.html
 $dokka.location:ai.devrev.sdk.model.revuser/RevUserApiModel/state/#/PointingToDeclaration/core/ai.devrev.sdk.model.revuser/-rev-user-api-model/state.html
@@ -405,6 +413,7 @@ $dokka.location:ai.devrev.sdk//resumeRecording/ai.devrev.sdk.DevRev#/PointingToD
 $dokka.location:ai.devrev.sdk//sendException/ai.devrev.sdk.DevRev#kotlin.Throwable#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/send-exception.html
 $dokka.location:ai.devrev.sdk//setDeviceLocation/ai.devrev.sdk.DevRev#kotlin.Double#kotlin.Double/PointingToDeclaration/core/ai.devrev.sdk/set-device-location.html
 $dokka.location:ai.devrev.sdk//setInScreenTransitioning/ai.devrev.sdk.DevRev#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk/set-in-screen-transitioning.html
+$dokka.location:ai.devrev.sdk//setMaskLocationProvider/ai.devrev.sdk.DevRev#com.userexperior.bridge.model.MaskLocationProvider/PointingToDeclaration/core/ai.devrev.sdk/set-mask-location-provider.html
 $dokka.location:ai.devrev.sdk//setUserExperiorListener/ai.devrev.sdk.DevRev#com.userexperior.interfaces.recording.UserExperiorListener/PointingToDeclaration/core/ai.devrev.sdk/set-user-experior-listener.html
 $dokka.location:ai.devrev.sdk//showSupport/ai.devrev.sdk.DevRev#android.content.Context/PointingToDeclaration/core/ai.devrev.sdk/show-support.html
 $dokka.location:ai.devrev.sdk//startRecording/ai.devrev.sdk.DevRev#android.content.Context/PointingToDeclaration/core/ai.devrev.sdk/start-recording.html

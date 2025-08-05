@@ -23,6 +23,11 @@ DevRev SDK, used for integrating DevRev services into your Android app.
       - [Examples](#examples)
       - [Updating the user](#updating-the-user)
       - [Logout](#logout)
+      - [Identity model](#identity-model)
+        - [Properties](#properties)
+          - [UserTraits](#usertraits)
+          - [OrganizationTraits](#organizationtraits)
+          - [AccountTraits](#accounttraits)
     - [PLuG support chat](#plug-support-chat)
       - [Creating a new conversation](#creating-a-new-conversation)
     - [In-app link handling](#in-app-link-handling)
@@ -51,6 +56,8 @@ DevRev SDK, used for integrating DevRev services into your Android app.
           - [Example](#example-3)
         - [Unmask web view elements](#unmask-web-view-elements)
           - [Example](#example-4)
+      - [Custom masking provider](#custom-masking-provider)
+        - [Example](#example-5)
       - [Timers](#timers)
         - [Examples](#examples-5)
       - [Screen tracking](#screen-tracking)
@@ -362,6 +369,70 @@ DevRev.INSTANCE.logout(Context context, String deviceId);
 ```
 
 The user will be logged out by clearing their credentials, as well as unregistering the device from receiving push notifications, and stopping the session recording.
+
+#### Identity model
+The `Identity` class is used to provide user, organization, and account information when identifying users or updating their details. This class is used primarily with the `identifyUnverifiedUser` and `updateUser` methods.
+
+##### Properties
+The `Identity` class contains the following properties:
+
+| Property             | Type                  | Required | Description                                   |
+|----------------------|-----------------------|----------|-----------------------------------------------|
+| `userID`             | `String`              | ✅        | A unique identifier for the user              |
+| `organizationID`     | `String?`             | ❌        | An identifier for the user's organization     |
+| `accountID`          | `String?`             | ❌        | An identifier for the user's account          |
+| `userTraits`         | `UserTraits?`         | ❌        | Additional information about the user         |
+| `organizationTraits` | `OrganizationTraits?` | ❌        | Additional information about the organization |
+| `accountTraits`      | `AccountTraits?`      | ❌        | Additional information about the account      |
+
+> [!NOTE]
+> The custom fields properties defined as part of the user, organization and account traits, must be configured in the DevRev web app **before** they can be used. See [Object customization](https://devrev.ai/docs/product/object-customization) for more information.
+
+###### UserTraits
+The `UserTraits` class contains detailed information about the user:
+
+> [!NOTE]
+> All properties in `UserTraits` are optional.
+
+| Property       | Type                | Description                               |
+|----------------|---------------------|-------------------------------------------|
+| `displayName`  | `String?`           | The displayed name of the user            |
+| `email`        | `String?`           | The user's email address                  |
+| `fullName`     | `String?`           | The user's full name                      |
+| `description`  | `String?`           | A description of the user                 |
+| `phoneNumbers` | `List<String>?`     | List of the user's phone numbers          |
+| `customFields` | `Map<String, Any>?` | Map of custom fields configured in DevRev |
+
+###### OrganizationTraits
+The `OrganizationTraits` class contains detailed information about the organization:
+
+> [!NOTE]
+> All properties in `OrganizationTraits` are optional.
+
+| Property       | Type                | Description                               |
+|----------------|---------------------|-------------------------------------------|
+| `displayName`  | `String?`           | The displayed name of the organization    |
+| `domain`       | `String?`           | The organization's domain                 |
+| `description`  | `String?`           | A description of the organization         |
+| `phoneNumbers` | `List<String>?`     | List of the organization's phone numbers  |
+| `tier`         | `String?`           | The organization's tier or plan level     |
+| `customFields` | `Map<String, Any>?` | Map of custom fields configured in DevRev |
+
+###### AccountTraits
+The `AccountTraits` class contains detailed information about the account:
+
+> [!NOTE]
+> All properties in `AccountTraits` are optional.
+
+| Property       | Type                | Description                                  |
+|----------------|---------------------|----------------------------------------------|
+| `displayName`  | `String?`           | The displayed name of the account            |
+| `domains`      | `List<String>?`     | List of domains associated with the account  |
+| `description`  | `String?`           | A description of the account                 |
+| `phoneNumbers` | `List<String>?`     | List of the account's phone numbers          |
+| `websites`     | `List<String>?`     | List of websites associated with the account |
+| `tier`         | `String?`           | The account's tier or plan level             |
+| `customFields` | `Map<String, Any>?` | Map of custom fields configured in DevRev    |
 
 ### PLuG support chat
 Once user identification is complete, you can start using the chat (conversations) dialog supported by our DevRev SDK. To open the chat dialog, your application should use the `showSupport` API, as shown in the following example:
@@ -773,6 +844,70 @@ If you wish to explicitly unmask any manually masked `WebView` element, you can 
 ```html
 <input type="text" placeholder="Enter Username" name="username" required class="devrev-unmask">
 ```
+
+#### Custom masking provider
+
+For advanced use cases, you can provide a custom masking provider to explicitly specify which regions of the UI should be masked during snapshots.
+
+You can implement your own masking logic by creating a class that implements the `MaskLocationProvider` interface and setting your custom object as the masking provider. This allows you to specify explicit regions to be masked or to skip snapshots entirely.
+
+- `DevRev.setMaskLocationProvider(maskLocationProvider: MaskLocationProvider)`  
+  Sets a custom provider that determines which UI regions should be masked during snapshots. This overrides any previously set provider.
+
+- `MaskLocationProvider`  
+  Interface that must be implemented to return a `SnapshotMask` object containing masked regions and snapshot behavior.
+
+- `SnapshotMask`  
+  Class used to describe regions of the screen to be masked and whether a snapshot should be skipped.
+
+- `SnapshotMask.Location`  
+  Represents a specific rectangular area of the screen that should be masked.
+
+##### Example
+- Kotlin
+```kotlin
+import com.userexperior.bridge.model.MaskLocationProvider
+import com.userexperior.bridge.model.SnapshotMask
+import com.userexperior.bridge.model.SnapshotMask.Location
+import ai.devrev.sdk.DevRev
+
+class MyMaskingProvider : MaskLocationProvider {
+    override fun provideSnapshotMask(): SnapshotMask {
+        val region = SnapshotMask.Location(x = 10, y = 10, width = 100, height = 40)
+        return SnapshotMask(
+            locations = listOf(region),
+            shouldSkip = false
+        )
+    }
+}
+
+DevRev.setMaskLocationProvider(MyMaskingProvider())
+```
+
+- Java
+```java
+import java.util.Arrays;
+import com.userexperior.bridge.model.MaskLocationProvider;
+import com.userexperior.bridge.model.SnapshotMask;
+import com.userexperior.bridge.model.SnapshotMask.Location;
+import ai.devrev.sdk.DevRev;
+
+public class MyMaskingProvider implements MaskLocationProvider {
+    @Override
+    public SnapshotMask provideSnapshotMask() {
+        Location region = new Location(10, 10, 100, 40);
+        return new SnapshotMask(
+            Arrays.asList(region),
+            false
+        );
+    }
+}
+
+DevRev.setMaskLocationProvider(new MyMaskingProvider());
+```
+
+> [!NOTE]
+> Setting a new provider will override any previously set masking location provider.
 
 #### Timers
 The DevRev SDK offers a timer mechanism to measure the time spent on specific tasks, allowing you to track events such as response time, loading time, or any other duration-based metrics.

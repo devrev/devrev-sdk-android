@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.0
+
+> Note: Version 2.1.0 has been skipped to maintain version parity across different mobile platforms.
+
+### Added
+- Added an external masking API for custom masking use cases.
+
+### Fixed
+- Fixed an issue related to rendering of the event properties.
+- Improved the verified identification flow.
+- Fixed an issue with the session upload flow. 
+
 ## 2.0.4
 
 ### Fixed
