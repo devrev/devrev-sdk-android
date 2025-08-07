@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.1
+
+### Fixed
+- Improved the Flutter session replay experience.
+
 ## 2.2.0
 
 > Note: Version 2.1.0 has been skipped to maintain version parity across different mobile platforms.
