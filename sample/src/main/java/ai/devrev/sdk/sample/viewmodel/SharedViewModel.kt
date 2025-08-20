@@ -3,7 +3,6 @@ package ai.devrev.sdk.sample.viewmodel
 import ai.devrev.sdk.DevRev
 import ai.devrev.sdk.isMonitoringEnabled
 import ai.devrev.sdk.isRecording
-import ai.devrev.sdk.setInScreenTransitioning
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,15 +33,5 @@ class SharedViewModel : ViewModel() {
         title.value = newTitle
     }
 
-    fun crash() {
-        throw RuntimeException("Crash")
-    }
-
-    fun ANR() {
-        Thread.sleep(10000)
-    }
-
-    fun setInScreenTransitioning(value: Boolean) {
-        DevRev.setInScreenTransitioning(value)
-    }
 }
+

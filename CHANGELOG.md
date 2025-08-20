@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2.2.2
+
+### Fixed
+- Improved the presentation of support widget in edge to edge scenarios.
+- Improved the session analytics and metrics.
+
 ## 2.2.1
 
 ### Fixed

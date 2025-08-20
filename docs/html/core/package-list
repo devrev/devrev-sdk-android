@@ -398,6 +398,7 @@ $dokka.location:ai.devrev.sdk.utils/DefaultLogger/v/#kotlin.String/PointingToDec
 $dokka.location:ai.devrev.sdk.utils/DefaultLogger/w/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.utils/-default-logger/w.html
 $dokka.location:ai.devrev.sdk////PointingToDeclaration/core/ai.devrev.sdk/index.html
 $dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.Any]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
+$dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.String]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
 $dokka.location:ai.devrev.sdk//areOnDemandSessionsEnabled/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/are-on-demand-sessions-enabled.html
 $dokka.location:ai.devrev.sdk//clearSessionProperties/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/clear-session-properties.html
 $dokka.location:ai.devrev.sdk//endTimer/ai.devrev.sdk.DevRev#kotlin.String#java.util.HashMap[kotlin.String,kotlin.String]/PointingToDeclaration/core/ai.devrev.sdk/end-timer.html
