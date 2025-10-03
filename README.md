@@ -25,14 +25,14 @@ DevRev SDK, used for integrating DevRev services into your Android app.
         - [User traits](#user-traits)
         - [Organization traits](#organization-traits)
         - [Account traits](#account-traits)
-    - [PLuG support chat](#plug-support-chat)
-      - [Creating a new conversation](#creating-a-new-conversation)
+    - [Support chat](#support-chat)
+      - [Create a new support conversation](#create-a-new-support-conversation)
       - [Support button](#support-button)
     - [In-app link handling](#in-app-link-handling)
     - [Dynamic theme configuration](#dynamic-theme-configuration)
     - [Analytics](#analytics)
     - [Session analytics](#session-analytics)
-    - [Opt-in or out](#opt-in-or-out)
+    - [Opt in or out](#opt-in-or-out)
       - [Session recording](#session-recording)
       - [Session properties](#session-properties)
       - [Mask sensitive data](#mask-sensitive-data)
@@ -61,7 +61,7 @@ DevRev SDK, used for integrating DevRev services into your Android app.
 - Android Gradle Plugin 8.2 or later.
 - Gradle 8.9 or later.
 - Minimum Android API level 24.
-- Recommended: An SSH key configured locally and registered with [GitHub](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
+- (Recommended) An SSH key configured locally and registered with [GitHub](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh).
 
 ### Integration
 
@@ -100,7 +100,7 @@ After completing these steps in your gradle files, you should be able to import 
 
 If you are using ProGuard in your project, add the following lines to your configuration:
 
-```bash
+```proguard
 -keep class ai.devrev.** { *; }
 -keep class com.userexperior.* { *; }
 ```
@@ -109,7 +109,7 @@ If you are using ProGuard in your project, add the following lines to your confi
 
 1. Open the DevRev web app at [https://app.devrev.ai](https://app.devrev.ai) and go to the **Settings** page.
 2. Under **PLuG settings** copy the value under **Your unique App ID**.
-3. After obtaining the credentials, you can configure the DevRev SDK in your app.
+3. Configure the DevRev SDK in your app using the obtained credentials.
 
 > [!WARNING]
 > The DevRev SDK must be configured before you can use any of its features.
@@ -463,9 +463,9 @@ The `AccountTraits` class contains detailed information about the account:
 | `tier` | `String?` | The account's tier or plan level |
 | `customFields` | `[String: Any]?` | Dictionary of custom fields configured in DevRev |
 
-### PLuG support chat
+### Support chat
 
-Once user identification is complete, you can start using the chat (conversations) dialog supported by our DevRev SDK. To open the chat dialog, your application should use the `showSupport` API, as shown in the following example:
+Once the user identification is complete, you can start using the chat (conversations) dialog supported by our DevRev SDK. To open the chat dialog, your application should use the `showSupport` API, as shown in the following example:
 
 - Kotlin
     ```kotlin
@@ -476,9 +476,9 @@ Once user identification is complete, you can start using the chat (conversation
     DevRevExtKt.showSupport(DevRev.INSTANCE, context);
     ```
 
-#### Creating a new conversation
+#### Create a new support conversation
 
-You have the ability to create a new conversation from within your app. The method will show the support chat screen and create a new conversation at the same time.
+You can initiate a new support conversation directly from your app. This method displays the support chat screen and simultaneously creates a new conversation.
 
 - Kotlin
     ```kotlin
@@ -611,7 +611,7 @@ For example:
 
 The DevRev SDK provides observability features to help you understand how your users are interacting with your app.
 
-### Opt-in or out
+### Opt in or out
 
 Session analytics features are opted-in by default, enabling them from the start. However, you can opt-out using the following method:
 
@@ -645,8 +645,6 @@ You can check whether session monitoring has been enabled by using this property
     ```java
     DevRevObservabilityExtKt.isMonitoringEnabled(DevRev.INSTANCE);
     ```
-
-If the user was disabled for session recording by using the `stopAllMonitoring()` method, you can use this method to enable recording at runtime.
 
 > [!NOTE]
 > This feature will only store a monitoring permission flag, it will **not** provide any UI or dialog.
@@ -931,7 +929,7 @@ class MyMaskingProvider : MaskLocationProvider {
       // Register the custom masking provider
       DevRev.setMaskLocationProvider(this)
     }
-    
+
     override fun provideSnapshotMask(): SnapshotMask {
       // Create a MutableSet to hold the masked regions
       val locations: MutableSet<Rect> = mutableSetOf()
@@ -966,7 +964,7 @@ public class MyMaskingProvider implements MaskLocationProvider {
       // Register the custom masking provider
       DevRevObservabilityExtKt.setMaskLocationProvider(DevRev.INSTANCE, this);
     }
-    
+
     @Override
     public SnapshotMask provideSnapshotMask() {
         // Create a Set to hold the masked regions
@@ -979,7 +977,7 @@ public class MyMaskingProvider implements MaskLocationProvider {
         // Add the regions to the Set
         locations.add(rect1);
         locations.add(rect2);
-        
+
         return new SnapshotMask(
             locations,
             false
@@ -1102,7 +1100,7 @@ DevRevObservabilityExtKt.setInScreenTransitioning(DevRev.INSTANCE, false)
 
 You can configure your app to receive push notifications from the DevRev SDK. The SDK is designed to handle push notifications and execute actions based on the notification's content.
 
-The DevRev backend sends push notifications to your app to notify users about new messages in the PLuG support chat.
+The DevRev backend sends push notifications to your app to notify users about new messages in the support chat.
 
 #### Configuration
 
@@ -1138,7 +1136,7 @@ The method requires a device identifier that persists across device restarts and
 1. Use the `FirebaseMessaging` object.
 2. Call the `firebaseMessaging.token.await()` method.
 
-This method will generate and return the device token.
+This method generates and returns the device token.
 
 ```kotlin
 val firebaseMessaging = FirebaseMessaging.getInstance()
@@ -1249,15 +1247,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 ### ProGuard
 
+When trying to build your app with ProGuard enabled, refer to these common issues and their solutions.
+
+> [!NOTE]
+> You can always refer to the [Android ProGuard documentation](https://developer.android.com/topic/performance/app-optimization/enable-app-optimization#proguard) for more information.
+
 - **Issue**: Missing class `com.google.android.play.core.splitcompat.SplitCompatApplication`.
-  **Solution**: Add the following line to your `proguard-rules.pro` file: `-dontwarn com.google.android.play.core.**`.
+  **Solution**: Add the following line to your `proguard-rules.pro` file:
+  ```proguard
+  -dontwarn com.google.android.play.core.**
+  ```
 
 - **Issue**: Missing class issue due to transitive Flutter dependencies.
   **Solution**: Add the following lines to your `proguard-rules.pro` file:
-  ```bash
+  ```proguard
   -keep class io.flutter.** { *; }
   -keep class io.flutter.plugins.** { *; }
   -keep class GeneratedPluginRegistrant { *; }
+  ```
+
+- **Issue**: Missing class `org.s1f4j.impl.StaticLoggerBinder`.
+  **Solution**: Add the following line to your `proguard-rules.pro` file:
+  ```proguard
+  -dontwarn org.slf4j.impl.StaticLoggerBinder
   ```
 
 ## Migration guide
