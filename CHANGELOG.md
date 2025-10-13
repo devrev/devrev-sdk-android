@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fixed an issue related to rendering of the event properties.
 - Improved the verified identification flow.
-- Fixed an issue with the session upload flow. 
+- Fixed an issue with the session upload flow.
 
 ## 2.0.4
 
@@ -59,7 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.0.3
 
 ### Fixed
-- Fixed an issue with manual unmasking of input components. 
+- Fixed an issue with manual unmasking of input components.
 - Fixed an issue with session uploads when the app is rapidly killed.
 
 ## 2.0.2
@@ -81,11 +81,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 1.1.5
 
 ### Added
-- Added `setShouldPreferSystemTheme` for dynamic theme handling. 
-- Added support for masking compose views in session recordings & analytics. 
+- Added `setShouldPreferSystemTheme` for dynamic theme handling.
+- Added support for masking compose views in session recordings & analytics.
 
 ### Fixed
-- Improved the initialization sequence of the observability SDK. 
+- Improved the initialization sequence of the observability SDK.
 
 ## 1.1.4
 
@@ -100,20 +100,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced the session analytics feature to work better across different environments.
 
 ### Fixed
-- Fix the bugs related to on-demand sessions providing a more stable experience. 
+- Fix the bugs related to on-demand sessions providing a more stable experience.
 
 ## 1.1.2
 
 ### Fixed
-- Fix the session recording experience in the SDK. 
+- Fix the session recording experience in the SDK.
 
 ## 1.1.1
 
-### Added 
+### Added
 - Added new methods that allow tracking of screen transitions to understand user navigation within your app.
 
 ### Fixed
-- Fix the session recording upload bug. 
+- Fix the session recording upload bug.
 
 ## 1.1.0
 

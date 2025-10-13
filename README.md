@@ -39,8 +39,10 @@ DevRev SDK, used for integrating DevRev services into your Android app.
         - [Mask using predefined tags](#mask-using-predefined-tags)
         - [Mask web view elements](#mask-web-view-elements)
         - [Unmask web view elements](#unmask-web-view-elements)
+      - [User interaction tracking](#user-interaction-tracking)
       - [Custom masking provider](#custom-masking-provider)
       - [Timers](#timers)
+      - [Track handled exceptions](#track-handled-exceptions)
       - [Track screens](#track-screens)
     - [Manage screen transitions](#manage-screen-transitions)
       - [Check if the screen is transitioning](#check-if-the-screen-is-transitioning)
@@ -902,6 +904,32 @@ For example:
 <input type="text" placeholder="Enter Username" name="username" required class="devrev-unmask">
 ```
 
+#### User interaction tracking
+
+The DevRev SDK automatically tracks user interactions such as taps, swipes, and scrolls. However, in some cases you may want to disable this tracking to prevent sensitive user actions from being recorded.
+
+To **temporarily disable** user interaction tracking, use the following method:
+
+- Kotlin
+    ```kotlin
+    DevRev.pauseUserInteractionTracking()
+    ```
+- Java
+    ```java
+    DevRevObservabilityExtKt.pauseUserInteractionTracking(DevRev.INSTANCE);
+    ```
+  
+To **resume** user interaction tracking, use the following method:
+
+- Kotlin
+    ```kotlin
+    DevRev.resumeUserInteractionTracking()
+    ```
+- Java
+    ```java
+    DevRevObservabilityExtKt.resumeUserInteractionTracking(DevRev.INSTANCE);
+    ```
+
 #### Custom masking provider
 
 For advanced use cases, you can provide a custom masking provider to explicitly specify which regions of the UI should be masked during snapshots.
@@ -1035,6 +1063,55 @@ DevRevObservabilityExtKt.startTimer(DevRev.INSTANCE, "response-time", new HashMa
 // Perform the task that you want to measure.
 
 DevRevObservabilityExtKt.endTimer(DevRev.INSTANCE, "response-time", new HashMap<String, String>().put("id", "task-1337"));
+```
+
+#### Track handled exceptions
+
+You can report a handled exception from a catch block using the `sendException` function.
+This ensures that even if the exception is handled in your app, it will still be logged for diagnostics.
+
+- Kotlin
+```kotlin
+DevRev.sendException(
+    exceptionObj: Throwable,
+    exceptionTag: String
+)
+```
+
+- Java
+```java
+DevRevObservabilityExtKt.sendException(
+    DevRev.INSTANCE,
+    Throwable exceptionObj,
+    String exceptionTag
+);
+```
+
+For example:
+
+- Kotlin
+```kotlin
+try {
+    // Your code that may produce an exception
+} catch (e: Throwable) {
+    DevRev.sendException(
+        exceptionObj = e,
+        exceptionTag = "login-failure"
+    )
+}
+```
+
+- Java
+```java
+try {
+    // your code that may throw
+} catch (Throwable e) {
+    DevRevObservabilityExtKt.sendException(
+        DevRev.INSTANCE,
+        e,
+        "login-failure"
+    );
+}
 ```
 
 #### Track screens
