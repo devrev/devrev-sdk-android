@@ -12,7 +12,6 @@ DevRev SDK, used for integrating DevRev services into your Android app.
     - [Sample app](#sample-app)
   - [Features](#features)
     - [Identification](#identification)
-      - [Identify an anonymous user](#identify-an-anonymous-user)
       - [Identify an unverified user](#identify-an-unverified-user)
       - [Identify a verified user](#identify-a-verified-user)
         - [Generate an AAT](#generate-an-aat)
@@ -39,8 +38,10 @@ DevRev SDK, used for integrating DevRev services into your Android app.
         - [Mask using predefined tags](#mask-using-predefined-tags)
         - [Mask web view elements](#mask-web-view-elements)
         - [Unmask web view elements](#unmask-web-view-elements)
+      - [User interaction tracking](#user-interaction-tracking)
       - [Custom masking provider](#custom-masking-provider)
       - [Timers](#timers)
+      - [Track handled exceptions](#track-handled-exceptions)
       - [Track screens](#track-screens)
     - [Manage screen transitions](#manage-screen-transitions)
       - [Check if the screen is transitioning](#check-if-the-screen-is-transitioning)
@@ -209,23 +210,6 @@ The identification function should be placed appropriately in your app after the
 > [!TIP]
 > The `Identity` structure allows for custom fields in the user, organization, and account traits. These fields must be configured through the DevRev app before they can be utilized. For more information, refer to [Object customization](https://devrev.ai/docs/product/object-customization).
 
-#### Identify an anonymous user
-
-The anonymous identification method allows you to create an anonymous user with an optional user identifier, ensuring that no other data is stored or associated with the user.
-
-- Kotlin
-    ```kotlin
-    DevRev.identifyAnonymousUser(
-        userId: String
-    )
-    ```
-- Java
-    ```java
-    DevRev.INSTANCE.identifyAnonymousUser(
-        String userId
-    );
-    ```
-
 #### Identify an unverified user
 
 The unverified identification method identifies users with a unique identifier, but it does not verify their identity with the DevRev backend.
@@ -322,9 +306,6 @@ For example:
 
 - Kotlin
     ```kotlin
-    // Identify an anonymous user without a user identifier.
-    DevRev.identifyAnonymousUser("abcd1234")
-
     // Identify an unverified user with its email address as a user identifier.
     DevRev.identifyUnverifiedUser(Identity(userId = "foo@example.org"))
 
@@ -333,9 +314,6 @@ For example:
     ```
 - Java
     ```java
-    // Identify an anonymous user without a user identifier.
-    DevRev.INSTANCE.identifyAnonymousUser("abcd1234");
-
     // Identify an unverified user with its email address as a user identifier.
     DevRev.identifyUnverifiedUser(
         new Identity("foo@example.org", null, null, null, null, null)
@@ -902,6 +880,32 @@ For example:
 <input type="text" placeholder="Enter Username" name="username" required class="devrev-unmask">
 ```
 
+#### User interaction tracking
+
+The DevRev SDK automatically tracks user interactions such as taps, swipes, and scrolls. However, in some cases you may want to disable this tracking to prevent sensitive user actions from being recorded.
+
+To **temporarily disable** user interaction tracking, use the following method:
+
+- Kotlin
+    ```kotlin
+    DevRev.pauseUserInteractionTracking()
+    ```
+- Java
+    ```java
+    DevRevObservabilityExtKt.pauseUserInteractionTracking(DevRev.INSTANCE);
+    ```
+  
+To **resume** user interaction tracking, use the following method:
+
+- Kotlin
+    ```kotlin
+    DevRev.resumeUserInteractionTracking()
+    ```
+- Java
+    ```java
+    DevRevObservabilityExtKt.resumeUserInteractionTracking(DevRev.INSTANCE);
+    ```
+
 #### Custom masking provider
 
 For advanced use cases, you can provide a custom masking provider to explicitly specify which regions of the UI should be masked during snapshots.
@@ -1035,6 +1039,55 @@ DevRevObservabilityExtKt.startTimer(DevRev.INSTANCE, "response-time", new HashMa
 // Perform the task that you want to measure.
 
 DevRevObservabilityExtKt.endTimer(DevRev.INSTANCE, "response-time", new HashMap<String, String>().put("id", "task-1337"));
+```
+
+#### Track handled exceptions
+
+You can report a handled exception from a catch block using the `sendException` function.
+This ensures that even if the exception is handled in your app, it will still be logged for diagnostics.
+
+- Kotlin
+```kotlin
+DevRev.sendException(
+    exceptionObj: Throwable,
+    exceptionTag: String
+)
+```
+
+- Java
+```java
+DevRevObservabilityExtKt.sendException(
+    DevRev.INSTANCE,
+    Throwable exceptionObj,
+    String exceptionTag
+);
+```
+
+For example:
+
+- Kotlin
+```kotlin
+try {
+    // Your code that may produce an exception
+} catch (e: Throwable) {
+    DevRev.sendException(
+        exceptionObj = e,
+        exceptionTag = "login-failure"
+    )
+}
+```
+
+- Java
+```java
+try {
+    // your code that may throw
+} catch (Throwable e) {
+    DevRevObservabilityExtKt.sendException(
+        DevRev.INSTANCE,
+        e,
+        "login-failure"
+    );
+}
 ```
 
 #### Track screens
@@ -1240,7 +1293,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
   **Solution**: The DevRev SDK reports all errors using Android's logging utility. Look for error messages in Android Studio's Logcat after applying `DEVREV SDK` filter.
 
 - **Issue**: Support chat won't show.
-  **Solution**: Ensure you have correctly called one of the identification methods: `DevRev.identifyUnverifiedUser(...)`, `DevRev.identifyVerifiedUser(...)`, or `DevRev.identifyAnonymousUser(...)`.
+  **Solution**: Ensure you have correctly called one of the identification methods: `DevRev.identifyUnverifiedUser(...)` or `DevRev.identifyVerifiedUser(...)`.
 
 - **Issue**: Not receiving push notifications.
   **Solution**: Ensure that your app is configured to receive push notifications and that your device is registered with the DevRev SDK.
