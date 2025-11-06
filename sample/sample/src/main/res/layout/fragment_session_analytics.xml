@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        tools:context=".SessionAnalyticsFragment"
+        android:paddingTop="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status"
+            android:textSize="12sp"
+            android:paddingTop="16dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="#454141"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/session_monitoring_enabled"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <CheckBox
+                android:id="@+id/is_monitoring_enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RoundCheckBox" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingEnd="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/session_recorded"
+                android:textColor="@color/black"
+                android:textSize="16dp" />
+
+            <CheckBox
+                android:id="@+id/is_session_recorded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RoundCheckBox" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/session_monitoring"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="#454141"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/stop_all_monitoring_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/stop_all_monitoring"
+            android:paddingStart="8dp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|start" />
+
+        <Button
+            android:id="@+id/resume_all_monitoring_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/resume_all_monitoring"
+            android:paddingStart="8dp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|start" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/session_recording"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="#454141"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/start_recording_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/start_recording"
+            android:paddingStart="8dp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|start" />
+
+        <Button
+            android:id="@+id/stop_recording_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/stop_recording"
+            android:paddingStart="8dp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|start" />
+
+        <Button
+            android:id="@+id/pause_recording_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/pause_recording"
+            android:paddingStart="8dp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|start" />
+
+        <Button
+            android:id="@+id/resume_recording_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/resume_recording"
+            android:paddingStart="8dp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical|start" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/timers"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/start_timer_with_properties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="@string/start_timer"
+            android:gravity="center_vertical|start" />
+
+        <Button
+            android:id="@+id/end_timer_with_properties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="@string/end_timer"
+            android:gravity="center_vertical|start" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manual_masking_unmasking"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/manual_masked_item"
+            android:paddingStart="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="16dp"
+            android:tag="devrev-mask"/>
+
+        <EditText
+            android:id="@+id/manual_unmasked_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/manual_unmasked_item"
+            android:inputType="text"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/on_demand_sessions"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/process_all_on_demand_session_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="@string/process_all_on_demand_sessions"
+            android:gravity="center_vertical|start" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/web_view"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/open_webview_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="@string/open_webview"
+            android:gravity="center_vertical|start"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/list_views"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/open_recyclerview_list_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="@string/open_recyclerview_list"
+            android:gravity="center_vertical|start"/>
+
+        <Button
+            android:id="@+id/open_compose_view_list_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="@string/open_compose_view_list"
+            android:gravity="center_vertical|start"/>
+    </LinearLayout>
+</ScrollView>
