@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>DevRev</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
 <script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
@@ -25,20 +25,18 @@
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
 <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
 <script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
-<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
-    <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-            <a class="library-name--link" href="../../../index.html">
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
                     core
             </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
@@ -48,9 +46,9 @@
         <div class="library-version" id="library-version">
         </div>
         <div class="navigation-controls">
-        <div class="filter-section filter-section_loading" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":core:dokkaHtml/release">androidJvm</button>
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":core/main">androidJvm</button>
             <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
                 <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
                         data-role="dropdown-toggle"
@@ -59,16 +57,16 @@
                         aria-expanded="false"
                         aria-label="Toggle source sets"
                 ></button>
-                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
-                    <div class="dropdown--header"><span>Platform filter</span>
-                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
                             <i class="ui-kit-icon ui-kit-icon_cross"></i>
                         </button>
                     </div>
                         <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
                             <label class="checkbox">
-                                <input type="checkbox" class="checkbox--input" id=":core:dokkaHtml/release"
-                                       data-filter=":core:dokkaHtml/release"/>
+                                <input type="checkbox" class="checkbox--input" id=":core/main"
+                                       data-filter=":core/main"/>
                                 <span class="checkbox--icon"></span>
                                 androidJvm
                             </label>
@@ -76,7 +74,7 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
+        </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
                     type="button">Switch theme
             </button>
@@ -84,123 +82,125 @@
                 API
             </div>
         </div>
-    </nav>
-        <div id="container">
-            <div class="sidebar" id="leftColumn">
-                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
-                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header">
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
                             <span>
                                     core
                             </span>
-                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
-                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
-                            </button>
-                        </div>
-                        <div class="sidebar--inner" id="sideMenu"></div>
-                    </ul>
-                    <div class="dropdown--overlay"></div>
-                </div>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
             </div>
-            <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="core::ai.devrev.sdk/DevRev///PointingToDeclaration//197447377">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="core::ai.devrev.sdk/DevRev///PointingToDeclaration//-2055549142">
   <div class="breadcrumbs"><a href="../../../index.html">core</a><span class="delimiter">/</span><a href="../index.html">ai.devrev.sdk</a><span class="delimiter">/</span><span class="current">DevRev</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Dev</span><wbr></wbr><span><span>Rev</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">DevRev</a></div><p class="paragraph">An entry point to the DevRev SDK.</p><p class="paragraph">Certain features of the SDK might require prior user identification before being called, make sure you have triggered the appropriate identification method before calling the features./// An entry point to the DevRev SDK.</p><p class="paragraph">Certain features of the SDK might require prior user identification before being called, make sure you have triggered the appropriate identification method before calling the features.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">DevRev</a></div><p class="paragraph">An entry point to the DevRev SDK.</p><p class="paragraph">Certain features of the SDK might require prior user identification before being called, make sure you have triggered the appropriate identification method before calling the features./// An entry point to the DevRev SDK.</p><p class="paragraph">Certain features of the SDK might require prior user identification before being called, make sure you have triggered the appropriate identification method before calling the features.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
     <div class="tabs-section-body">
       <div data-togglable="PROPERTY">
-        <h2 class="">Properties</h2>
-        <div class="table"><a data-name="-14298317%2FProperties%2F197447377" anchor-label="areOnDemandSessionsEnabled" id="-14298317%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+        <h2 class="tableheader">Properties</h2>
+        <div class="table"><a data-name="-14298317%2FProperties%2F-2055549142" anchor-label="areOnDemandSessionsEnabled" id="-14298317%2FProperties%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../are-on-demand-sessions-enabled.html"><span>are</span><wbr></wbr><span>On</span><wbr></wbr><span>Demand</span><wbr></wbr><span>Sessions</span><wbr></wbr><span><span>Enabled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-14298317%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-14298317%2FProperties%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../are-on-demand-sessions-enabled.html">areOnDemandSessionsEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">A flag denoting whether on-demand sessions are enabled.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../are-on-demand-sessions-enabled.html">areOnDemandSessionsEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">A flag denoting whether on-demand sessions are enabled.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-40923581%2FProperties%2F197447377" anchor-label="isConfigured" id="-40923581%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-40923581%2FProperties%2F-2055549142" anchor-label="isConfigured" id="-40923581%2FProperties%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-configured.html"><span>is</span><wbr></wbr><span><span>Configured</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-40923581%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-40923581%2FProperties%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-configured.html">isConfigured</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-configured.html">isConfigured</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="895645319%2FProperties%2F197447377" anchor-label="isInScreenTransitioning" id="895645319%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="895645319%2FProperties%2F-2055549142" anchor-label="isInScreenTransitioning" id="895645319%2FProperties%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../is-in-screen-transitioning.html"><span>is</span><wbr></wbr><span>In</span><wbr></wbr><span>Screen</span><wbr></wbr><span><span>Transitioning</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="895645319%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="895645319%2FProperties%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../is-in-screen-transitioning.html">isInScreenTransitioning</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if the application is currently in a screen transition state.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../is-in-screen-transitioning.html">isInScreenTransitioning</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Checks if the application is currently in a screen transition state.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-60914486%2FProperties%2F197447377" anchor-label="isMonitoringEnabled" id="-60914486%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-60914486%2FProperties%2F-2055549142" anchor-label="isMonitoringEnabled" id="-60914486%2FProperties%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../is-monitoring-enabled.html"><span>is</span><wbr></wbr><span>Monitoring</span><wbr></wbr><span><span>Enabled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-60914486%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-60914486%2FProperties%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../is-monitoring-enabled.html">isMonitoringEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">A flag denoting whether session monitoring is enabled.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../is-monitoring-enabled.html">isMonitoringEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">A flag denoting whether session monitoring is enabled.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-892045902%2FProperties%2F197447377" anchor-label="isRecording" id="-892045902%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-892045902%2FProperties%2F-2055549142" anchor-label="isRecording" id="-892045902%2FProperties%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../is-recording.html"><span>is</span><wbr></wbr><span><span>Recording</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-892045902%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-892045902%2FProperties%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../is-recording.html">isRecording</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">A flag denoting whether the session is being recorded.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../is-recording.html">isRecording</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">A flag denoting whether the session is being recorded.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-636019525%2FProperties%2F197447377" anchor-label="isUserIdentified" id="-636019525%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-636019525%2FProperties%2F-2055549142" anchor-label="isUserIdentified" id="-636019525%2FProperties%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-user-identified.html"><span>is</span><wbr></wbr><span>User</span><wbr></wbr><span><span>Identified</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-636019525%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-636019525%2FProperties%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-user-identified.html">isUserIdentified</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">val </span><a href="is-user-identified.html">isUserIdentified</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
                 </div>
               </div>
             </div>
@@ -208,603 +208,648 @@
         </div>
       </div>
       <div data-togglable="FUNCTION">
-        <h2 class="">Functions</h2>
-        <div class="table"><a data-name="-1722604327%2FFunctions%2F197447377" anchor-label="addSessionProperties" id="-1722604327%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1722604327%2FFunctions%2F-2055549142" anchor-label="addSessionProperties" id="-1722604327%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../add-session-properties.html"><span>add</span><wbr></wbr><span>Session</span><wbr></wbr><span><span>Properties</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1722604327%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1722604327%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-name/index.html"><span class="token annotation builtin">JvmName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;addSessionPropertiesAny&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../add-session-properties.html"><span class="token function"><strike>addSessionProperties</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../add-session-properties.html"><span class="token function">addSessionProperties</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds properties to the session. The properties will be sent along any analytic events.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.jvm/-jvm-name/index.html"><span class="token annotation builtin">JvmName</span></a><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;addSessionPropertiesAny&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../add-session-properties.html"><span class="token function"><strike>addSessionProperties</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../add-session-properties.html"><span class="token function">addSessionProperties</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Adds properties to the session. The properties will be sent along any analytic events.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1510739491%2FFunctions%2F197447377" anchor-label="clearSessionProperties" id="-1510739491%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-384571671%2FFunctions%2F-2055549142" anchor-label="captureError" id="-384571671%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../capture-error.html"><span>capture</span><wbr></wbr><span><span>Error</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-384571671%2FFunctions%2F-2055549142"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../capture-error.html"><span class="token function">captureError</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">exception<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-throwable/index.html">Throwable</a><span class="token punctuation">, </span></span><span class="parameter ">tag<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Track handled exception by sending them to Observability from a catch block</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1510739491%2FFunctions%2F-2055549142" anchor-label="clearSessionProperties" id="-1510739491%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../clear-session-properties.html"><span>clear</span><wbr></wbr><span>Session</span><wbr></wbr><span><span>Properties</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1510739491%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1510739491%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../clear-session-properties.html"><span class="token function">clearSessionProperties</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Clears the session properties.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../clear-session-properties.html"><span class="token function">clearSessionProperties</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Clears the session properties.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1161449313%2FFunctions%2F197447377" anchor-label="configure" id="1161449313%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="1161449313%2FFunctions%2F-2055549142" anchor-label="configure" id="1161449313%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="configure.html"><span><span>configure</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1161449313%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1161449313%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="configure.html"><span class="token function">configure</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">appId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">prefersDialogMode<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Configures the SDK with the app ID.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="configure.html"><span class="token function">configure</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">appId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">prefersDialogMode<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Configures the SDK with the app ID.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1836892622%2FFunctions%2F197447377" anchor-label="createSupportConversation" id="1836892622%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-899215343%2FFunctions%2F-2055549142" anchor-label="configureRageTap" id="-899215343%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../configure-rage-tap.html"><span>configure</span><wbr></wbr><span>Rage</span><wbr></wbr><span><span>Tap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-899215343%2FFunctions%2F-2055549142"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../configure-rage-tap.html"><span class="token function">configureRageTap</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">minimumTaps<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span><span class="token constant">3</span><span class="token punctuation">, </span></span><span class="parameter ">maximumRadius<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">40.0</span><span class="token punctuation">, </span></span><span class="parameter ">timeWindow<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">1.0</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Configures the rage tap detection parameters</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1836892622%2FFunctions%2F-2055549142" anchor-label="createSupportConversation" id="1836892622%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="create-support-conversation.html"><span>create</span><wbr></wbr><span>Support</span><wbr></wbr><span><span>Conversation</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1836892622%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1836892622%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-support-conversation.html"><span class="token function">createSupportConversation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Creates a new support conversation on top of the current activity/fragment</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-support-conversation.html"><span class="token function">createSupportConversation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Creates a new support conversation on top of the current activity/fragment</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1426664240%2FFunctions%2F197447377" anchor-label="endTimer" id="-1426664240%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1426664240%2FFunctions%2F-2055549142" anchor-label="endTimer" id="-1426664240%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../end-timer.html"><span>end</span><wbr></wbr><span><span>Timer</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1426664240%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1426664240%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../end-timer.html"><span class="token function">endTimer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Ends a previously started timer.Ends a previously started timer.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../end-timer.html"><span class="token function">endTimer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Ends a previously started timer.Ends a previously started timer.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1499333727%2FFunctions%2F197447377" anchor-label="identifyAnonymousUser" id="-1499333727%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1499333727%2FFunctions%2F-2055549142" anchor-label="identifyAnonymousUser" id="-1499333727%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="identify-anonymous-user.html"><span>identify</span><wbr></wbr><span>Anonymous</span><wbr></wbr><span><span>User</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1499333727%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1499333727%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="identify-anonymous-user.html"><span class="token function"><strike>identifyAnonymousUser</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Identifies an anonymous user after the SDK has been configured.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="identify-anonymous-user.html"><span class="token function"><strike>identifyAnonymousUser</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Identifies an anonymous user after the SDK has been configured.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1665515454%2FFunctions%2F197447377" anchor-label="identifyUnverifiedUser" id="-1665515454%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1665515454%2FFunctions%2F-2055549142" anchor-label="identifyUnverifiedUser" id="-1665515454%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="identify-unverified-user.html"><span>identify</span><wbr></wbr><span>Unverified</span><wbr></wbr><span><span>User</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1665515454%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1665515454%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="identify-unverified-user.html"><span class="token function">identifyUnverifiedUser</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identity<span class="token operator">: </span><a href="../../ai.devrev.sdk.model/-identity/index.html">Identity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Identifies an unverified user after the SDK has been configured.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="identify-unverified-user.html"><span class="token function">identifyUnverifiedUser</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identity<span class="token operator">: </span><a href="../../ai.devrev.sdk.model/-identity/index.html">Identity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Identifies an unverified user after the SDK has been configured.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-113922019%2FFunctions%2F197447377" anchor-label="identifyVerifiedUser" id="-113922019%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-113922019%2FFunctions%2F-2055549142" anchor-label="identifyVerifiedUser" id="-113922019%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="identify-verified-user.html"><span>identify</span><wbr></wbr><span>Verified</span><wbr></wbr><span><span>User</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-113922019%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-113922019%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="identify-verified-user.html"><span class="token function">identifyVerifiedUser</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">sessionToken<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Identifies a verified user after the SDK has been configured.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="identify-verified-user.html"><span class="token function">identifyVerifiedUser</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">userId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">sessionToken<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Identifies a verified user after the SDK has been configured.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-385953269%2FFunctions%2F197447377" anchor-label="logout" id="-385953269%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-385953269%2FFunctions%2F-2055549142" anchor-label="logout" id="-385953269%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="logout.html"><span><span>logout</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-385953269%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-385953269%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="logout.html"><span class="token function">logout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">deviceId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Logs out the current identified user and resets the session. The process will also unregister the user's device from receiving push notifications, and stop any ongoing session recording.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="logout.html"><span class="token function">logout</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">deviceId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Logs out the current identified user and resets the session. The process will also unregister the user's device from receiving push notifications, and stop any ongoing session recording.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-935936465%2FFunctions%2F197447377" anchor-label="markSensitiveViews" id="-935936465%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-935936465%2FFunctions%2F-2055549142" anchor-label="markSensitiveViews" id="-935936465%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../mark-sensitive-views.html"><span>mark</span><wbr></wbr><span>Sensitive</span><wbr></wbr><span><span>Views</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-935936465%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-935936465%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../mark-sensitive-views.html"><span class="token function">markSensitiveViews</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sensitiveViews<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Mark the passed views as sensitive.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../mark-sensitive-views.html"><span class="token function">markSensitiveViews</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sensitiveViews<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Mark the passed views as sensitive.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1987932170%2FFunctions%2F197447377" anchor-label="onSupportEventListener" id="1987932170%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="1987932170%2FFunctions%2F-2055549142" anchor-label="onSupportEventListener" id="1987932170%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../on-support-event-listener.html"><span>on</span><wbr></wbr><span>Support</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Listener</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1987932170%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1987932170%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../on-support-event-listener.html"><span class="token function">onSupportEventListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span class="token punctuation">(</span><a href="../../ai.devrev.sdk.support/-support-event/index.html">SupportEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A listener to observe all support related event.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../on-support-event-listener.html"><span class="token function">onSupportEventListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span class="token punctuation">(</span><a href="../../ai.devrev.sdk.support/-support-event/index.html">SupportEvent</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A listener to observe all support related event.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1460449986%2FFunctions%2F197447377" anchor-label="pauseRecording" id="-1460449986%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1460449986%2FFunctions%2F-2055549142" anchor-label="pauseRecording" id="-1460449986%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../pause-recording.html"><span>pause</span><wbr></wbr><span><span>Recording</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1460449986%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1460449986%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../pause-recording.html"><span class="token function">pauseRecording</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Pauses the ongoing user recording session.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../pause-recording.html"><span class="token function">pauseRecording</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Pauses the ongoing user recording session.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-560582479%2FFunctions%2F197447377" anchor-label="pauseUserInteractionTracking" id="-560582479%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-560582479%2FFunctions%2F-2055549142" anchor-label="pauseUserInteractionTracking" id="-560582479%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../pause-user-interaction-tracking.html"><span>pause</span><wbr></wbr><span>User</span><wbr></wbr><span>Interaction</span><wbr></wbr><span><span>Tracking</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-560582479%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-560582479%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../pause-user-interaction-tracking.html"><span class="token function">pauseUserInteractionTracking</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Pauses user interaction tracking.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../pause-user-interaction-tracking.html"><span class="token function">pauseUserInteractionTracking</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Pauses user interaction tracking.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-42161664%2FFunctions%2F197447377" anchor-label="processAllOnDemandSessions" id="-42161664%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-42161664%2FFunctions%2F-2055549142" anchor-label="processAllOnDemandSessions" id="-42161664%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../process-all-on-demand-sessions.html"><span>process</span><wbr></wbr><span>All</span><wbr></wbr><span>On</span><wbr></wbr><span>Demand</span><wbr></wbr><span><span>Sessions</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-42161664%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-42161664%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../process-all-on-demand-sessions.html"><span class="token function">processAllOnDemandSessions</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Processes all on-demand sessions.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../process-all-on-demand-sessions.html"><span class="token function">processAllOnDemandSessions</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Processes all on-demand sessions.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-69298287%2FFunctions%2F197447377" anchor-label="processPushNotification" id="-69298287%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-69298287%2FFunctions%2F-2055549142" anchor-label="processPushNotification" id="-69298287%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="process-push-notification.html"><span>process</span><wbr></wbr><span>Push</span><wbr></wbr><span><span>Notification</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-69298287%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-69298287%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="process-push-notification.html"><span class="token function">processPushNotification</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">userInfo<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Processes the push notification and performs the necessary actions.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="process-push-notification.html"><span class="token function">processPushNotification</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">userInfo<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Processes the push notification and performs the necessary actions.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-340499117%2FFunctions%2F197447377" anchor-label="refreshToken" id="-340499117%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-340499117%2FFunctions%2F-2055549142" anchor-label="refreshToken" id="-340499117%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../../ai.devrev.sdk.interfaces/refresh-token.html"><span>refresh</span><wbr></wbr><span><span>Token</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-340499117%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-340499117%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../../ai.devrev.sdk.interfaces/refresh-token.html"><span class="token function">refreshToken</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Refreshes the token based on the configuration.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../../ai.devrev.sdk.interfaces/refresh-token.html"><span class="token function">refreshToken</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Refreshes the token based on the configuration.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-369125214%2FFunctions%2F197447377" anchor-label="registerDeviceToken" id="-369125214%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-369125214%2FFunctions%2F-2055549142" anchor-label="registerDeviceToken" id="-369125214%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="register-device-token.html"><span>register</span><wbr></wbr><span>Device</span><wbr></wbr><span><span>Token</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-369125214%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-369125214%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-device-token.html"><span class="token function">registerDeviceToken</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">deviceToken<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">deviceId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Registers the device token used for receiving push notifications from DevRev.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="register-device-token.html"><span class="token function">registerDeviceToken</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">deviceToken<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">deviceId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Registers the device token used for receiving push notifications from DevRev.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-247178723%2FFunctions%2F197447377" anchor-label="resumeAllMonitoring" id="-247178723%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-247178723%2FFunctions%2F-2055549142" anchor-label="resumeAllMonitoring" id="-247178723%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../resume-all-monitoring.html"><span>resume</span><wbr></wbr><span>All</span><wbr></wbr><span><span>Monitoring</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-247178723%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-247178723%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../resume-all-monitoring.html"><span class="token function">resumeAllMonitoring</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a flag that resumes the session monitoring.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../resume-all-monitoring.html"><span class="token function">resumeAllMonitoring</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a flag that resumes the session monitoring.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1896292235%2FFunctions%2F197447377" anchor-label="resumeRecording" id="-1896292235%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1896292235%2FFunctions%2F-2055549142" anchor-label="resumeRecording" id="-1896292235%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../resume-recording.html"><span>resume</span><wbr></wbr><span><span>Recording</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1896292235%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1896292235%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../resume-recording.html"><span class="token function">resumeRecording</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Resumes a paused recording session.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../resume-recording.html"><span class="token function">resumeRecording</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Resumes a paused recording session.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1543350360%2FFunctions%2F197447377" anchor-label="resumeUserInteractionTracking" id="-1543350360%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1543350360%2FFunctions%2F-2055549142" anchor-label="resumeUserInteractionTracking" id="-1543350360%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../resume-user-interaction-tracking.html"><span>resume</span><wbr></wbr><span>User</span><wbr></wbr><span>Interaction</span><wbr></wbr><span><span>Tracking</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1543350360%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1543350360%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../resume-user-interaction-tracking.html"><span class="token function">resumeUserInteractionTracking</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Resumes user interaction tracking.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../resume-user-interaction-tracking.html"><span class="token function">resumeUserInteractionTracking</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Resumes user interaction tracking.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="686300868%2FFunctions%2F197447377" anchor-label="sendException" id="686300868%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="686300868%2FFunctions%2F-2055549142" anchor-label="sendException" id="686300868%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../send-exception.html"><span>send</span><wbr></wbr><span><span>Exception</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="686300868%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="686300868%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../send-exception.html"><span class="token function">sendException</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">exceptionObj<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-throwable/index.html">Throwable</a><span class="token punctuation">, </span></span><span class="parameter ">exceptionTag<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Track handled exception by sending them to Observability from a catch block</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../send-exception.html"><span class="token function"><strike>sendException</strike></span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">exceptionObj<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-throwable/index.html">Throwable</a><span class="token punctuation">, </span></span><span class="parameter ">exceptionTag<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Track handled exception by sending them to Observability from a catch block</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="517623941%2FFunctions%2F197447377" anchor-label="setCustomKey" id="517623941%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-9779547%2FFunctions%2F-2055549142" anchor-label="setAppFrameworkInfo" id="-9779547%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../set-app-framework-info.html"><span>set</span><wbr></wbr><span>App</span><wbr></wbr><span>Framework</span><wbr></wbr><span><span>Info</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-9779547%2FFunctions%2F-2055549142"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-app-framework-info.html"><span class="token function">setAppFrameworkInfo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">version<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets the application framework information.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="517623941%2FFunctions%2F-2055549142" anchor-label="setCustomKey" id="517623941%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-custom-key.html"><span>set</span><wbr></wbr><span>Custom</span><wbr></wbr><span><span>Key</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="517623941%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="517623941%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-custom-key.html"><span class="token function">setCustomKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-custom-key.html"><span class="token function">setCustomKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-487263811%2FFunctions%2F197447377" anchor-label="setDeviceLocation" id="-487263811%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-487263811%2FFunctions%2F-2055549142" anchor-label="setDeviceLocation" id="-487263811%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../set-device-location.html"><span>set</span><wbr></wbr><span>Device</span><wbr></wbr><span><span>Location</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-487263811%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-487263811%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-device-location.html"><span class="token function">setDeviceLocation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">longitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-device-location.html"><span class="token function">setDeviceLocation</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">latitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token punctuation">, </span></span><span class="parameter ">longitude<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1967650016%2FFunctions%2F197447377" anchor-label="setInAppLinkHandler" id="-1967650016%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1967650016%2FFunctions%2F-2055549142" anchor-label="setInAppLinkHandler" id="-1967650016%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-in-app-link-handler.html"><span>set</span><wbr></wbr><span>In</span><wbr></wbr><span>App</span><wbr></wbr><span>Link</span><wbr></wbr><span><span>Handler</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1967650016%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1967650016%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-in-app-link-handler.html"><span class="token function">setInAppLinkHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">An optional in-app link handler, which can be used to intercept and handle in-app links.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-in-app-link-handler.html"><span class="token function">setInAppLinkHandler</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">handler<span class="token operator">: </span><span class="token punctuation">(</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">An optional in-app link handler, which can be used to intercept and handle in-app links.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1435239292%2FFunctions%2F197447377" anchor-label="setInScreenTransitioning" id="-1435239292%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1435239292%2FFunctions%2F-2055549142" anchor-label="setInScreenTransitioning" id="-1435239292%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../set-in-screen-transitioning.html"><span>set</span><wbr></wbr><span>In</span><wbr></wbr><span>Screen</span><wbr></wbr><span><span>Transitioning</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1435239292%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1435239292%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-in-screen-transitioning.html"><span class="token function">setInScreenTransitioning</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inScreenTransitioning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets the screen transition state of the application.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-in-screen-transitioning.html"><span class="token function">setInScreenTransitioning</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">inScreenTransitioning<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets the screen transition state of the application.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-822179107%2FFunctions%2F197447377" anchor-label="setMaskLocationProvider" id="-822179107%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-822179107%2FFunctions%2F-2055549142" anchor-label="setMaskLocationProvider" id="-822179107%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../set-mask-location-provider.html"><span>set</span><wbr></wbr><span>Mask</span><wbr></wbr><span>Location</span><wbr></wbr><span><span>Provider</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-822179107%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-822179107%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-mask-location-provider.html"><span class="token function">setMaskLocationProvider</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">maskLocationProvider<span class="token operator">: </span><span data-unresolved-link="com.userexperior.bridge.model/MaskLocationProvider///PointingToDeclaration/">MaskLocationProvider</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a custom mask location provider for masking sensitive areas in the UI.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-mask-location-provider.html"><span class="token function">setMaskLocationProvider</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">maskLocationProvider<span class="token operator">: </span><span data-unresolved-link="com.userexperior.bridge.model/MaskLocationProvider///PointingToDeclaration/">MaskLocationProvider</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a custom mask location provider for masking sensitive areas in the UI.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-457412366%2FFunctions%2F197447377" anchor-label="setShouldDismissModalsOnOpenLink" id="-457412366%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-457412366%2FFunctions%2F-2055549142" anchor-label="setShouldDismissModalsOnOpenLink" id="-457412366%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-should-dismiss-modals-on-open-link.html"><span>set</span><wbr></wbr><span>Should</span><wbr></wbr><span>Dismiss</span><wbr></wbr><span>Modals</span><wbr></wbr><span>On</span><wbr></wbr><span>Open</span><wbr></wbr><span><span>Link</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-457412366%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-457412366%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-should-dismiss-modals-on-open-link.html"><span class="token function">setShouldDismissModalsOnOpenLink</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a flag that controls whether the modals should be dismissed after an in-app link is opened.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-should-dismiss-modals-on-open-link.html"><span class="token function">setShouldDismissModalsOnOpenLink</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a flag that controls whether the modals should be dismissed after an in-app link is opened.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="581542331%2FFunctions%2F197447377" anchor-label="setShouldPreferSystemTheme" id="581542331%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="581542331%2FFunctions%2F-2055549142" anchor-label="setShouldPreferSystemTheme" id="581542331%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="set-should-prefer-system-theme.html"><span>set</span><wbr></wbr><span>Should</span><wbr></wbr><span>Prefer</span><wbr></wbr><span>System</span><wbr></wbr><span><span>Theme</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="581542331%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="581542331%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-should-prefer-system-theme.html"><span class="token function">setShouldPreferSystemTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">shouldPreferSystemTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">When set to true (default), the DevRev UI will adapt theme dynamically to the system appearance. Set this flag to false to force the DevRev UI to use the default theme configured in the DevRev portal.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-should-prefer-system-theme.html"><span class="token function">setShouldPreferSystemTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">shouldPreferSystemTheme<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">When set to true (default), the DevRev UI will adapt theme dynamically to the system appearance. Set this flag to false to force the DevRev UI to use the default theme configured in the DevRev portal.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="176037400%2FFunctions%2F197447377" anchor-label="setUserExperiorListener" id="176037400%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="176037400%2FFunctions%2F-2055549142" anchor-label="setUserExperiorListener" id="176037400%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../set-user-experior-listener.html"><span>set</span><wbr></wbr><span>User</span><wbr></wbr><span>Experior</span><wbr></wbr><span><span>Listener</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="176037400%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="176037400%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-user-experior-listener.html"><span class="token function">setUserExperiorListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">listener<span class="token operator">: </span><span data-unresolved-link="com.userexperior.interfaces.recording/UserExperiorListener///PointingToDeclaration/">UserExperiorListener</span></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../set-user-experior-listener.html"><span class="token function">setUserExperiorListener</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">listener<span class="token operator">: </span><span data-unresolved-link="com.userexperior.interfaces.recording/UserExperiorListener///PointingToDeclaration/">UserExperiorListener</span></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="579020800%2FFunctions%2F197447377" anchor-label="showSupport" id="579020800%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="579020800%2FFunctions%2F-2055549142" anchor-label="showSupport" id="579020800%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../show-support.html"><span>show</span><wbr></wbr><span><span>Support</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="579020800%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="579020800%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../show-support.html"><span class="token function">showSupport</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Shows the support chat.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../show-support.html"><span class="token function">showSupport</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Shows the support chat.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1443984221%2FFunctions%2F197447377" anchor-label="startRecording" id="1443984221%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="1443984221%2FFunctions%2F-2055549142" anchor-label="startRecording" id="1443984221%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../start-recording.html"><span>start</span><wbr></wbr><span><span>Recording</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1443984221%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1443984221%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../start-recording.html"><span class="token function">startRecording</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Starts a user recording session.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../start-recording.html"><span class="token function">startRecording</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Starts a user recording session.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2031399913%2FFunctions%2F197447377" anchor-label="startTimer" id="-2031399913%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-2031399913%2FFunctions%2F-2055549142" anchor-label="startTimer" id="-2031399913%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../start-timer.html"><span>start</span><wbr></wbr><span><span>Timer</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2031399913%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2031399913%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../start-timer.html"><span class="token function">startTimer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Starts a timer at any point in the app in order to measure time metrics for events such as load or response time.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../start-timer.html"><span class="token function">startTimer</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Starts a timer at any point in the app in order to measure time metrics for events such as load or response time.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="714358194%2FFunctions%2F197447377" anchor-label="stopAllMonitoring" id="714358194%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="714358194%2FFunctions%2F-2055549142" anchor-label="stopAllMonitoring" id="714358194%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../stop-all-monitoring.html"><span>stop</span><wbr></wbr><span>All</span><wbr></wbr><span><span>Monitoring</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="714358194%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="714358194%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../stop-all-monitoring.html"><span class="token function">stopAllMonitoring</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a flag that stops all session monitoring.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../stop-all-monitoring.html"><span class="token function">stopAllMonitoring</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Sets a flag that stops all session monitoring.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-712255862%2FFunctions%2F197447377" anchor-label="stopRecording" id="-712255862%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-712255862%2FFunctions%2F-2055549142" anchor-label="stopRecording" id="-712255862%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../stop-recording.html"><span>stop</span><wbr></wbr><span><span>Recording</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-712255862%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-712255862%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../stop-recording.html"><span class="token function">stopRecording</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Stops an ongoing user recording sessions and uploads the session to the portal.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../stop-recording.html"><span class="token function">stopRecording</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Stops an ongoing user recording sessions and uploads the session to the portal.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1232028043%2FFunctions%2F197447377" anchor-label="trackEvent" id="1232028043%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="1232028043%2FFunctions%2F-2055549142" anchor-label="trackEvent" id="1232028043%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../track-event.html"><span>track</span><wbr></wbr><span><span>Event</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1232028043%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1232028043%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../track-event.html"><span class="token function">trackEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Tracks an event described with a name and optional property payload.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../track-event.html"><span class="token function">trackEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">properties<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-hash-map/index.html">HashMap</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Tracks an event described with a name and optional property payload.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-673781331%2FFunctions%2F197447377" anchor-label="trackScreenName" id="-673781331%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-673781331%2FFunctions%2F-2055549142" anchor-label="trackScreenName" id="-673781331%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../track-screen-name.html"><span>track</span><wbr></wbr><span>Screen</span><wbr></wbr><span><span>Name</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-673781331%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-673781331%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../track-screen-name.html"><span class="token function">trackScreenName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">screenName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Manually tracks a screen name for identification.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../track-screen-name.html"><span class="token function">trackScreenName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">screenName<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Manually tracks a screen name for identification.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1700692042%2FFunctions%2F197447377" anchor-label="unmarkSensitiveViews" id="-1700692042%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1700692042%2FFunctions%2F-2055549142" anchor-label="unmarkSensitiveViews" id="-1700692042%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="../unmark-sensitive-views.html"><span>unmark</span><wbr></wbr><span>Sensitive</span><wbr></wbr><span><span>Views</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1700692042%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1700692042%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../unmark-sensitive-views.html"><span class="token function">unmarkSensitiveViews</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sensitiveViews<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Unmark the passed views as being sensitive.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="index.html">DevRev</a><span class="token punctuation">.</span><a href="../unmark-sensitive-views.html"><span class="token function">unmarkSensitiveViews</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">sensitiveViews<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://developer.android.com/reference/kotlin/android/view/View.html">View</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Unmark the passed views as being sensitive.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1728319053%2FFunctions%2F197447377" anchor-label="unregisterDevice" id="-1728319053%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1728319053%2FFunctions%2F-2055549142" anchor-label="unregisterDevice" id="-1728319053%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="unregister-device.html"><span>unregister</span><wbr></wbr><span><span>Device</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1728319053%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1728319053%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="unregister-device.html"><span class="token function">unregisterDevice</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">deviceId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Unregisters the device from receiving push notifications from DevRev.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="unregister-device.html"><span class="token function">unregisterDevice</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">context<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/content/Context.html">Context</a><span class="token punctuation">, </span></span><span class="parameter ">deviceId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Unregisters the device from receiving push notifications from DevRev.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-584351765%2FFunctions%2F197447377" anchor-label="updateTheme" id="-584351765%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-584351765%2FFunctions%2F-2055549142" anchor-label="updateTheme" id="-584351765%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="update-theme.html"><span>update</span><wbr></wbr><span><span>Theme</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-584351765%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-584351765%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="update-theme.html"><span class="token function">updateTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">theme<span class="token operator">: </span><a href="../../ai.devrev.sdk.model/-dev-rev-theme/index.html">DevRevTheme</a></span></span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="update-theme.html"><span class="token function">updateTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">theme<span class="token operator">: </span><a href="../../ai.devrev.sdk.model/-dev-rev-theme/index.html">DevRevTheme</a></span></span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-871167866%2FFunctions%2F197447377" anchor-label="updateUser" id="-871167866%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-871167866%2FFunctions%2F-2055549142" anchor-label="updateUser" id="-871167866%2FFunctions%2F-2055549142" data-filterable-set=":core/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":core/main" data-filterable-set=":core/main">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="update-user.html"><span>update</span><wbr></wbr><span><span>User</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-871167866%2FFunctions%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-871167866%2FFunctions%2F-2055549142"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">fun </span><a href="update-user.html"><span class="token function">updateUser</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identity<span class="token operator">: </span><a href="../../ai.devrev.sdk.model/-identity/index.html">Identity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Updates the properties of the current user.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="update-user.html"><span class="token function">updateUser</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">identity<span class="token operator">: </span><a href="../../ai.devrev.sdk.model/-identity/index.html">Identity</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Updates the properties of the current user.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -815,17 +860,21 @@
   </div>
 </div>
     <div class="footer">
-        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
-        <span>© 2025 Copyright</span>
-        <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
-    </div>
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2025 Copyright</div>
+                </div>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

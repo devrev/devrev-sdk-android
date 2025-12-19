@@ -384,7 +384,9 @@ $dokka.location:ai.devrev.sdk////PointingToDeclaration/core/ai.devrev.sdk/index
 $dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.Any]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
 $dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.String]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
 $dokka.location:ai.devrev.sdk//areOnDemandSessionsEnabled/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/are-on-demand-sessions-enabled.html
+$dokka.location:ai.devrev.sdk//captureError/ai.devrev.sdk.DevRev#kotlin.Throwable#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/capture-error.html
 $dokka.location:ai.devrev.sdk//clearSessionProperties/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/clear-session-properties.html
+$dokka.location:ai.devrev.sdk//configureRageTap/ai.devrev.sdk.DevRev#kotlin.Int#kotlin.Double#kotlin.Double/PointingToDeclaration/core/ai.devrev.sdk/configure-rage-tap.html
 $dokka.location:ai.devrev.sdk//endTimer/ai.devrev.sdk.DevRev#kotlin.String#java.util.HashMap[kotlin.String,kotlin.String]/PointingToDeclaration/core/ai.devrev.sdk/end-timer.html
 $dokka.location:ai.devrev.sdk//isInScreenTransitioning/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/is-in-screen-transitioning.html
 $dokka.location:ai.devrev.sdk//isMonitoringEnabled/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/is-monitoring-enabled.html
@@ -398,6 +400,7 @@ $dokka.location:ai.devrev.sdk//resumeAllMonitoring/ai.devrev.sdk.DevRev#/Pointin
 $dokka.location:ai.devrev.sdk//resumeRecording/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/resume-recording.html
 $dokka.location:ai.devrev.sdk//resumeUserInteractionTracking/ai.devrev.sdk.DevRev#/PointingToDeclaration/core/ai.devrev.sdk/resume-user-interaction-tracking.html
 $dokka.location:ai.devrev.sdk//sendException/ai.devrev.sdk.DevRev#kotlin.Throwable#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/send-exception.html
+$dokka.location:ai.devrev.sdk//setAppFrameworkInfo/ai.devrev.sdk.DevRev#android.content.Context#kotlin.String#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/set-app-framework-info.html
 $dokka.location:ai.devrev.sdk//setDeviceLocation/ai.devrev.sdk.DevRev#kotlin.Double#kotlin.Double/PointingToDeclaration/core/ai.devrev.sdk/set-device-location.html
 $dokka.location:ai.devrev.sdk//setInScreenTransitioning/ai.devrev.sdk.DevRev#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk/set-in-screen-transitioning.html
 $dokka.location:ai.devrev.sdk//setMaskLocationProvider/ai.devrev.sdk.DevRev#com.userexperior.bridge.model.MaskLocationProvider/PointingToDeclaration/core/ai.devrev.sdk/set-mask-location-provider.html

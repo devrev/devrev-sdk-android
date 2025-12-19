@@ -29,11 +29,12 @@ class RecyclerViewListFragment : Fragment() {
         // Observe items from ViewModel
         viewModel.items.observe(viewLifecycleOwner) { items ->
             recyclerView.adapter = RecyclerViewListAdapter(items) { cardView, position ->
-                if (position % 2 == 0) {
-                    viewModel.markSensitive(cardView)
-                } else {
-                    viewModel.unmarkSensitive(cardView)
-                }
+                cardView.setOnClickListener({
+                    handleSensitiveMarking(cardView, position)
+                    recyclerView.adapter?.notifyDataSetChanged()
+                })
+
+                handleSensitiveMarking(cardView, position)
             }
         }
 
@@ -59,5 +60,14 @@ class RecyclerViewListFragment : Fragment() {
                 }
             }
         )
+    }
+
+    private fun handleSensitiveMarking(view: View, position: Int) {
+        // Since views are recycled, we need to explicitly mark and unmark views for both even and odd positions.
+        if (position % 2 == 0) {
+            viewModel.markSensitive(view)
+        } else {
+            viewModel.unmarkSensitive(view)
+        }
     }
 }
