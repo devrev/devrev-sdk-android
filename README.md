@@ -41,7 +41,7 @@ DevRev SDK, used for integrating DevRev services into your Android app.
       - [User interaction tracking](#user-interaction-tracking)
       - [Custom masking provider](#custom-masking-provider)
       - [Timers](#timers)
-      - [Track handled exceptions](#track-handled-exceptions)
+      - [Capture errors](#capture-errors)
       - [Track screens](#track-screens)
     - [Manage screen transitions](#manage-screen-transitions)
       - [Check if the screen is transitioning](#check-if-the-screen-is-transitioning)
@@ -1041,25 +1041,25 @@ DevRevObservabilityExtKt.startTimer(DevRev.INSTANCE, "response-time", new HashMa
 DevRevObservabilityExtKt.endTimer(DevRev.INSTANCE, "response-time", new HashMap<String, String>().put("id", "task-1337"));
 ```
 
-#### Track handled exceptions
+#### Capture errors
 
-You can report a handled exception from a catch block using the `sendException` function.
+You can report a handled exception from a catch block using the `captureError` function.
 This ensures that even if the exception is handled in your app, it will still be logged for diagnostics.
 
 - Kotlin
 ```kotlin
-DevRev.sendException(
-    exceptionObj: Throwable,
-    exceptionTag: String
+DevRev.captureError(
+    exception: Throwable,
+    tag: String
 )
 ```
 
 - Java
 ```java
-DevRevObservabilityExtKt.sendException(
+DevRevObservabilityExtKt.captureError(
     DevRev.INSTANCE,
-    Throwable exceptionObj,
-    String exceptionTag
+    Throwable exception,
+    String tag
 );
 ```
 
@@ -1070,9 +1070,9 @@ For example:
 try {
     // Your code that may produce an exception
 } catch (e: Throwable) {
-    DevRev.sendException(
-        exceptionObj = e,
-        exceptionTag = "login-failure"
+    DevRev.captureError(
+        exception = e,
+        tag = "login-failure"
     )
 }
 ```
@@ -1082,7 +1082,7 @@ try {
 try {
     // your code that may throw
 } catch (Throwable e) {
-    DevRevObservabilityExtKt.sendException(
+    DevRevObservabilityExtKt.captureError(
         DevRev.INSTANCE,
         e,
         "login-failure"
