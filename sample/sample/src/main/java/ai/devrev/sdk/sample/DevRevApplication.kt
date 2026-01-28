@@ -16,7 +16,7 @@ class DevRevApplication : Application() {
         FirebaseApp.initializeApp(this)
         DevRev.configure(
             context = this,
-            appId = "APP_ID_HERE",
+            appId = "DvRvStPZG9uOmNvcmU6ZHZydi1pbi0xOmRldm8vMjY5SVFhZEZ6ejpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjUtMDQtMjUgMTI6Mzc6MTkuNDc4MjEzNTc0ICswMDAwIFVUQw==xlxendsDvRv",
         )
 
         DevRev.setShouldDismissModalsOnOpenLink(false)
