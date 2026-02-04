@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.2.13
+
+### Added
+- Added the isAsyncConfigFetchEnabled API to enable/disable async config fetch optimization.
+
+### Fixed
+- Fixed memory leaks in session recording service that could retain destroyed activities and services.
+
+## 2.2.12
+
+### Fixed
+- Improved session capturing stability and reliability.
+
+### Changed
+- Removed redundant dependencies for reduced SDK size and enhanced security. 
+
+## 2.2.11
+
+### Fixed
+- Fixed an issue with bitmap capture for Flutter's `SurfaceView`. 
+
 ## 2.2.10
 
 ### Added
