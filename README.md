@@ -147,7 +147,11 @@ Use this property to check whether the DevRev SDK has been configured:
     ```
 
 > [!TIP]
-> The property `prefersDialogMode`, when set to `true`, enables the SDK to open the screens in the app's main task/activity.
+> The SDK supports feature configuration for enhanced control:
+> - `enableFrameCapture`: Enable/disable screenshot capture during session recording (default: `true`)
+> - `autoStartRecording`: Automatically start recording after SDK configuration (default: `true`)
+> - `prefersDialogMode`: Open SDK screens as bottom sheets instead of separate activities (default: `false`)
+> - `supportWidgetTheme`: Controls the appearance of the in-app support widget (default: system theme)
 
 1. Call the following method inside your `Application` class to configure the SDK:
 
@@ -185,6 +189,131 @@ Use this property to check whether the DevRev SDK has been configured:
     }
     }
     ```
+
+### Feature Configuration Examples
+
+#### Custom Configuration
+
+You can customize SDK behavior by creating a custom `FeatureConfiguration`:
+
+- Kotlin
+    ```kotlin
+    import ai.devrev.sdk.DevRev
+    import ai.devrev.sdk.model.FeatureConfiguration
+    import ai.devrev.sdk.model.SupportWidgetTheme
+
+    class FooApplication : Application() {
+        override fun onCreate() {
+            super.onCreate()
+            DevRev.configure(
+                context = this,
+                appId = "<APP_ID>",
+                featureConfiguration = FeatureConfiguration(
+                    enableFrameCapture = false,    // Disable screenshot capture
+                    autoStartRecording = true,     // Auto-start recording (default)
+                    prefersDialogMode = false,      // Use activity mode (default)
+                    supportWidgetTheme = SupportWidgetTheme(prefersSystemTheme = true)      // Use system theme (default)
+                )
+            )
+        }
+    }
+    ```
+
+- Java
+    ```java
+    import ai.devrev.sdk.DevRev;
+    import ai.devrev.sdk.model.FeatureConfiguration;
+    import ai.devrev.sdk.model.SupportWidgetTheme;
+
+    public class FooApplication extends Application {
+        @Override
+        public void onCreate() {
+            super.onCreate();
+            DevRev.INSTANCE.configure(
+                this,
+                "<APP_ID>",
+                new FeatureConfiguration(
+                    false,   // enableFrameCapture - Disable screenshot capture
+                    true,    // autoStartRecording - Auto-start recording (default)
+                    false,   // prefersDialogMode - Use activity mode (default)
+                    new SupportWidgetTheme(true, null, null, null)  // Use system theme (default)
+                )
+            );
+        }
+    }
+    ```
+
+#### Runtime Configuration Updates
+
+You can update `enableFrameCapture` at runtime:
+
+- Kotlin
+    ```kotlin
+    // Update frame capture setting at runtime
+    DevRev.updateFeatureConfiguration(
+        context = this,
+        featureConfiguration = FeatureConfiguration(
+            enableFrameCapture = false
+        )
+    )
+    ```
+
+- Java
+    ```java
+    // Update frame capture setting at runtime
+    DevRev.INSTANCE.updateFeatureConfiguration(
+        this,
+        new FeatureConfiguration(
+            false,  // enableFrameCapture - Disable screenshot capture
+            true,   // autoStartRecording - Ignored (can't be updated at runtime)
+            false   // prefersDialogMode - Ignored (can't be updated at runtime)
+        )
+    );
+    ```
+
+> [!NOTE]
+> The `autoStartRecording` and `prefersDialogMode` flags can only be set during initial configuration and cannot be changed at runtime. To control recording manually, use `DevRev.startRecording()` and `DevRev.stopRecording()` methods.
+
+#### Update the support widget theme
+
+You can update the support widget theme at runtime:
+
+- Kotlin
+    ```kotlin
+    DevRev.updateFeatureConfiguration(
+        context = this,
+        featureConfiguration = FeatureConfiguration(
+            supportWidgetTheme = SupportWidgetTheme(
+                false,                              // prefersSystemTheme
+                "#202020",                          // primaryTextColor
+                "#34C759",                          // accentColor
+                mapOf("bottom" to "20px", "side" to "16px")  // spacing
+            )
+        )
+    )
+    ```
+- Java
+    ```java
+    SupportWidgetTheme theme = new SupportWidgetTheme(false, "#202020", "#34C759",
+        new HashMap<String, String>() {{
+            put("bottom", "20px");
+            put("side", "16px");
+        }});
+    DevRev.INSTANCE.updateFeatureConfiguration(
+        this,
+        new FeatureConfiguration(false, true, false, theme)
+    );
+    ```
+
+> [!NOTE]
+> All properties in `SupportWidgetTheme` are optional.
+
+| Property             | Type                   | Default | Description                                                                        |
+| -------------------- | ---------------------- | ------- | ---------------------------------------------------------------------------------- |
+| `prefersSystemTheme` | `Boolean?`             | `null`  | When `true`, follows the device appearance; when `false`, uses your custom colors. |
+| `primaryTextColor`   | `String?`              | `null`  | Hex or RGB value for primary text in the support widget.                           |
+| `accentColor`        | `String?`              | `null`  | Hex or RGB value applied to buttons and highlights.                                |
+| `spacing`            | `Map<String, String>?` | `null`  | CSS-like spacing overrides; `"bottom"` and `"side"` keys are recognized.           |
 
 1. In the `onCreate` method of your `Application`, configure the DevRev SDK with the required parameters using the credentials obtained earlier.
 2. Ensure that the custom application is specified in the `AndroidManifest.xml`, as shown below:

@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-mergeDebugResources-85:/layout/fragment_identify.xml",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_identify.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-mergeDebugResources-85:/layout/fragment_push_notifications.xml",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_push_notifications.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-mergeDebugResources-85:/layout/fragment_support_chat.xml",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_support_chat.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-mergeDebugResources-85:/layout/fragment_session_analytics.xml",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_session_analytics.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-mergeDebugResources-85:/layout/activity_main.xml",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/activity_main.xml"
+    }
+]

@@ -147,6 +147,7 @@ fun SampleApp(viewModel: SharedViewModel = viewModel()) {
                                                 AppRoute.SUPPORT_CHAT.route -> SupportChatFragment()
                                                 AppRoute.PUSH_NOTIFICATIONS.route -> PushNotificationsFragment()
                                                 AppRoute.SESSION_ANALYTICS.route -> SessionAnalyticsFragment()
+                                                AppRoute.CAMERA.route -> CameraFragment()
                                                 else -> null
                                             }
                                             if (fragment != null) {
@@ -203,6 +204,10 @@ fun NavHostContainer(
         composable(AppRoute.SESSION_ANALYTICS.route) {
             viewModel.changeTitle(stringResource(R.string.session_analytics))
             FragmentTransfer(SessionAnalyticsFragment())
+        }
+        composable(AppRoute.CAMERA.route) {
+            viewModel.changeTitle(stringResource(R.string.camera))
+            FragmentTransfer(CameraFragment())
         }
     }
 }

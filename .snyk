@@ -7,184 +7,296 @@ ignore:
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution by Google
           for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2023-3635:
     - '*':
         reason: >-
           GzipSource in Okio mishandles exceptions when parsing malformed gzip
           buffers, potentially leading to a denial of service. Ignoring
           temporarily to monitor for upstream fixes.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-COMFASTERXMLJACKSONCORE-7569538:
     - '*':
         reason: >-
           Jackson-databind before 2.9.10.8 mishandles interactions between serialization
           gadgets and typing, related to JNDIConnectionSource. Ignoring temporarily to
           assess impact and monitor for patches.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2022-48476:
     - '*':
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution
           by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-49580:
     - '*':
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution
           by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2025-52999:
       - '*':
           reason: >-
             Temporarily ignored pending further evaluation or upstream resolution
             by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2020-29582:
     - '*':
         reason: >-
           Awaiting Realm's update to support Kotlin 2.1.0. Cannot upgrade Kotlin
           until Realm updates its dependency. Ignoring temporarily to monitor
           for Realm's updates.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-ORGJETBRAINSKOTLIN-2393744:
     - '*':
         reason: >-
           Awaiting Realm's update to support Kotlin 2.1.0. Cannot upgrade Kotlin until
           Realm updates its dependency. Ignoring temporarily to monitor for Realm's
           updates.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2022-40152:
     - '*':
         reason: >-
           Woodstox XML parser is vulnerable to stack overflow when processing
           malicious DTDs, potentially leading to denial of service. Ignoring
           temporarily to monitor for upstream fixes.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-COMFASTERXMLWOODSTOX-3091135:
     - '*':
         reason: >-
           Woodstox-core versions before 5.4.0 and between 6.0.0.pr1 and 6.4.0
           are vulnerable to denial of service via stack overflow when processing
           malicious DTDs. Ignoring temporarily to monitor for upstream fixes.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-COMFASTERXMLJACKSONCORE-10332631:
       - '*':
           reason: >-
             Woodstox-core versions before 5.4.0 and between 6.0.0.pr1 and 6.4.0
             are vulnerable to denial of service via stack overflow when processing
             malicious DTDs. Ignoring temporarily to monitor for upstream fixes.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2023-34339:
     - '*':
         reason: >-
           JetBrains Ktor before 2.3.1 could expose authentication data in
           exception messages. Ignoring temporarily to monitor for upstream
           fixes.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-43398:
     - '*':
         reason: >-
           REXML gem before 3.3.6 has a DoS vulnerability when parsing XML with
           deeply nested elements having the same local name attributes. Ignoring
           temporarily to monitor for upstream fixes.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-41946:
     - '*':
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution
           by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-47220:
     - '*':
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution
           by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-41123:
     - '*':
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution
           by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-49761:
     - '*':
         reason: >-
           REXML gem before 3.3.9 has a ReDoS vulnerability when parsing XML with
           many digits in hex numeric character references. Ignoring temporarily
           to monitor for upstream fixes.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-35176:
     - '*':
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution
           by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   CVE-2024-39908:
     - '*':
         reason: >-
           Temporarily ignored pending further evaluation or upstream resolution
           by Google for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-IOKTOR-8230428:
     - '*':
         reason: >-
           Temporarily ignored to assess impact and await potential upstream
           fixes for Ktor-related dependencies.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-IOKTOR-8492193:
     - '*':
         reason: >-
           Temporarily ignored to assess impact and await potential upstream
           fixes for Ktor-related dependencies. for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-COMFASTERXMLJACKSONCORE-10500754:
       - '*':
           reason: >-
             Temporarily ignored to assess impact and await potential upstream
             fixes for Ktor-related dependencies. for the Android Gradle Plugin.
-        expires: 2026-01-03T00:00:00.000Z
-        created: 2025-12-03T18:57:22.454Z
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
   SNYK-RUBY-REXML-12878608:
         - '*':
             reason: >-
               Temporarily ignored to assess impact and await potential upstream
               fixes for Ktor-related dependencies. for the Android Gradle Plugin.
-          expires: 2026-01-03T00:00:00.000Z
-          created: 2025-12-03T18:57:22.454Z
+          expires: 2026-03-24T00:00:00.000Z
+          created: 2026-02-24T00:00:00.000Z
   SNYK-JAVA-CHQOSLOGBACK-13169722:
         - '*':
             reason: >-
               Temporarily ignored to assess impact and await potential upstream
               fixes for Ktlint dependency resolution.
-          expires: 2026-01-03T00:00:00.000Z
-          created: 2025-12-03T18:57:22.454Z
+          expires: 2026-03-24T00:00:00.000Z
+          created: 2026-02-24T00:00:00.000Z
   SNYK-RUBY-REXML-13110060:
         - '*':
             reason: >-
               Temporarily ignored to assess impact and await potential upstream
               fixes for fastlane updates.
-          expires: 2026-01-03T00:00:00.000Z
-          created: 2025-12-03T18:57:22.454Z
+          expires: 2026-03-24T00:00:00.000Z
+          created: 2026-02-24T00:00:00.000Z
+  SNYK-RUBY-AWSSDKS3-14465282:
+    - '*':
+        reason: >-
+          Transitive dependency from fastlane. Requires Ruby environment update
+          to upgrade fastlane. Ignoring temporarily pending environment setup.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-RUBY-FARADAY-15253521:
+    - '*':
+        reason: >-
+          SSRF vulnerability in faraday. No direct fix available as fastlane
+          pins faraday to version 1.x. Awaiting upstream fastlane update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-COMGOOGLEPROTOBUF-8055227:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test tools (com.android.tools.utp).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-COMGOOGLEPROTOBUF-8055228:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test tools (com.google.testing.platform).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-11799531:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-12485151:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-5953332:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-12485149:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-12485150:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-14423947:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-6483812:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-5725787:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-8707739:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-8367012:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-IONETTY-8707740:
+    - '*':
+        reason: >-
+          Transitive dependency from Android test plugin (grpc-netty).
+          Cannot be directly upgraded. Awaiting upstream AGP update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
+  SNYK-JAVA-CHQOSLOGBACK-15062482:
+    - '*':
+        reason: >-
+          Transitive dependency from ktlint. Cannot be directly upgraded.
+          Awaiting upstream ktlint update.
+        expires: 2026-03-24T00:00:00.000Z
+        created: 2026-02-24T00:00:00.000Z
 patch: {}
