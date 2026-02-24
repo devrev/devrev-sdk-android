@@ -31,8 +31,9 @@ DevRev SDK, used for integrating DevRev services into your Android app.
     - [Dynamic theme configuration](#dynamic-theme-configuration)
     - [Analytics](#analytics)
     - [Session analytics](#session-analytics)
-    - [Opt in or out](#opt-in-or-out)
+      - [Opt in or out](#opt-in-or-out)
       - [Session recording](#session-recording)
+      - [Async config fetch](#async-config-fetch)
       - [Session properties](#session-properties)
       - [Mask sensitive data](#mask-sensitive-data)
         - [Mask using predefined tags](#mask-using-predefined-tags)
@@ -589,7 +590,7 @@ For example:
 
 The DevRev SDK provides observability features to help you understand how your users are interacting with your app.
 
-### Opt in or out
+#### Opt in or out
 
 Session analytics features are opted-in by default, enabling them from the start. However, you can opt-out using the following method:
 
@@ -675,6 +676,36 @@ To check if on-demand sessions are enabled, use:
     ```java
     DevRevObservabilityExtKt.areOnDemandSessionsEnabled(DevRev.INSTANCE);
     ```
+    
+#### Async config fetch
+
+> [!NOTE]
+> The sessions will only be uploaded when the app is in the background. 
+
+The SDK can be configured to fetch configuration asynchronously to improve app startup time. When enabled, the SDK uses cached configuration for immediate startup and fetches fresh configuration from the server in the background.
+
+> [!NOTE]
+> This setting should be called before `startRecording()` for it to take effect. Default is disabled for backward compatibility.
+
+- Kotlin
+    ```kotlin
+    DevRev.setAsyncConfigFetchEnabled(context, true)
+    ```
+- Java
+    ```java
+    DevRevObservabilityExtKt.setAsyncConfigFetchEnabled(DevRev.INSTANCE, context, true);
+    ```
+
+**Behavior when enabled:**
+- Uses cached config immediately to decide whether to start recording
+- If cached config says recording is disabled, recording won't start (respects dashboard setting)
+- Fetches fresh config in background without blocking startup
+- If fresh config disables recording after it started, recording stops immediately
+- Session uploads are deferred to when the app is in the background
+- Crash and ANR reports are prioritized and uploaded immediately
+- Regular session uploads occur sequentially (one at a time) to reduce network contention
+
+This optimization is particularly beneficial for apps experiencing slow startup times on poor network connections.
 
 #### Session properties
 
