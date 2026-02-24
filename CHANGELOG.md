@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.0
+
+### Added
+- Feature configuration for screen capture, auto-start recording, plug chat theme, and remote config (fresh vs cached/lazy fetch).
+
+### Changed
+- Deprecated `setShouldPreferSystemTheme` in favor of `SupportWidgetTheme.prefersSystemTheme` via `FeatureConfiguration`.
+- Updated WorkManager dependency to 2.10.1.
+
+### Fixed
+- Fixed memory leaks detected via LeakCanary in session recording, activity lifecycle, and screenshot services.
+- Fixed a potential crash when the current activity is null during screenshot capture.
+- Fixed blurred and distorted bitmaps captured for `SurfaceView` or `FlutterView` on certain devices.
+
+## 2.2.14
+
+### Fixed
+- Fixed an issue with session recordings on QR scan screens. 
+
 ## 2.2.13
 
 ### Added

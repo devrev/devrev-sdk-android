@@ -10,6 +10,8 @@ enum class AppRoute(val route: String) {
 
     PUSH_NOTIFICATIONS("push_notifications"),
 
-    SESSION_ANALYTICS("session_analytics")
+    SESSION_ANALYTICS("session_analytics"),
+
+    CAMERA("camera")
 
 }

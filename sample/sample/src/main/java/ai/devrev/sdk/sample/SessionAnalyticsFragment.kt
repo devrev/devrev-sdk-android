@@ -1,5 +1,6 @@
 package ai.devrev.sdk.sample
 
+import ai.devrev.sdk.sample.model.AppRoute
 import ai.devrev.sdk.sample.viewmodel.SessionAnalyticsViewModel
 import ai.devrev.sdk.sample.viewmodel.SharedViewModel
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 
 class SessionAnalyticsFragment : Fragment() {
 
@@ -44,7 +46,6 @@ class SessionAnalyticsFragment : Fragment() {
         val unmaskedField: EditText = view.findViewById(R.id.manual_unmasked_item)
 
         unmaskedField.tag = "devrev-unmask"
-
         val openWebViewButton: Button = view.findViewById(R.id.open_webview_button)
         openWebViewButton.setOnClickListener {
             parentFragmentManager.beginTransaction()
@@ -166,6 +167,22 @@ class SessionAnalyticsFragment : Fragment() {
             } catch (e: Exception) {
                 alertDialogBox(getString(R.string.end_timer_error),getString(R.string.timer_not_ended))
             }
+        }
+
+        val openCameraButton: Button=view.findViewById(R.id.openCameraButton)
+        openCameraButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, CameraFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+
+        val openGalleryButton: Button=view.findViewById(R.id.openGalleryButton)
+        openGalleryButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view,GalleryFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
         }
     }
 

@@ -6,6 +6,8 @@ plugins {
 
 apply(from = "$projectDir/dependencies.gradle.kts")
 val versions: Map<String, String> by extra
+val cameraxVersion = "1.3.0"
+
 
 android {
     namespace = "ai.devrev.sdk.sample"
@@ -74,4 +76,12 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation("androidx.camera:camera-core:${cameraxVersion}")
+    implementation("androidx.camera:camera-camera2:${cameraxVersion}")
+    implementation("androidx.camera:camera-lifecycle:${cameraxVersion}")
+    implementation("androidx.camera:camera-view:${cameraxVersion}")
+    implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("com.google.guava:guava:31.1-android")
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
 }

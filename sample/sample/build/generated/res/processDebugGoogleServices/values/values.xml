@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://ue-wallet.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1001237930288</string>
+    <string name="google_api_key" translatable="false">AIzaSyBNEHH0CBGTCSh1R-QyeQC4t7U0HmDii9g</string>
+    <string name="google_app_id" translatable="false">1:1001237930288:android:b86a5d1525e9697bede8f5</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBNEHH0CBGTCSh1R-QyeQC4t7U0HmDii9g</string>
+    <string name="google_storage_bucket" translatable="false">ue-wallet.firebasestorage.app</string>
+    <string name="project_id" translatable="false">ue-wallet</string>
+</resources>
