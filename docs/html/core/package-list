@@ -258,6 +258,15 @@ $dokka.location:ai.devrev.sdk.model/DeviceType///PointingToDeclaration/core/ai.
 $dokka.location:ai.devrev.sdk.model/DeviceType/entries/#/PointingToDeclaration/core/ai.devrev.sdk.model/-device-type/entries.html
 $dokka.location:ai.devrev.sdk.model/DeviceType/valueOf/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk.model/-device-type/value-of.html
 $dokka.location:ai.devrev.sdk.model/DeviceType/values/#/PointingToDeclaration/core/ai.devrev.sdk.model/-device-type/values.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration.Companion///PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/-companion/index.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration.Companion/default/#/PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/-companion/default.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration///PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/index.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration/FeatureConfiguration/#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean#ai.devrev.sdk.model.SupportWidgetTheme?/PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/-feature-configuration.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration/alwaysUseRemoteConfig/#/PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/always-use-remote-config.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration/autoStartRecording/#/PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/auto-start-recording.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration/enableFrameCapture/#/PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/enable-frame-capture.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration/prefersDialogMode/#/PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/prefers-dialog-mode.html
+$dokka.location:ai.devrev.sdk.model/FeatureConfiguration/supportWidgetTheme/#/PointingToDeclaration/core/ai.devrev.sdk.model/-feature-configuration/support-widget-theme.html
 $dokka.location:ai.devrev.sdk.model/Identity///PointingToDeclaration/core/ai.devrev.sdk.model/-identity/index.html
 $dokka.location:ai.devrev.sdk.model/Identity/Identity/#kotlin.String#kotlin.String?#kotlin.String?#ai.devrev.sdk.model.UserInfo?#ai.devrev.sdk.model.OrganizationInfo?#ai.devrev.sdk.model.AccountInfo?/PointingToDeclaration/core/ai.devrev.sdk.model/-identity/-identity.html
 $dokka.location:ai.devrev.sdk.model/Identity/accountId/#/PointingToDeclaration/core/ai.devrev.sdk.model/-identity/account-id.html
@@ -315,6 +324,12 @@ $dokka.location:ai.devrev.sdk.model/PushNotification/subtitle/#/PointingToDeclar
 $dokka.location:ai.devrev.sdk.model/PushNotification/title/#/PointingToDeclaration/core/ai.devrev.sdk.model/-push-notification/title.html
 $dokka.location:ai.devrev.sdk.model/PushNotification/type/#/PointingToDeclaration/core/ai.devrev.sdk.model/-push-notification/type.html
 $dokka.location:ai.devrev.sdk.model/PushNotification/url/#/PointingToDeclaration/core/ai.devrev.sdk.model/-push-notification/url.html
+$dokka.location:ai.devrev.sdk.model/SupportWidgetTheme///PointingToDeclaration/core/ai.devrev.sdk.model/-support-widget-theme/index.html
+$dokka.location:ai.devrev.sdk.model/SupportWidgetTheme/SupportWidgetTheme/#kotlin.Boolean?#kotlin.String?#kotlin.String?#kotlin.collections.Map[kotlin.String,kotlin.String]?/PointingToDeclaration/core/ai.devrev.sdk.model/-support-widget-theme/-support-widget-theme.html
+$dokka.location:ai.devrev.sdk.model/SupportWidgetTheme/accentColor/#/PointingToDeclaration/core/ai.devrev.sdk.model/-support-widget-theme/accent-color.html
+$dokka.location:ai.devrev.sdk.model/SupportWidgetTheme/prefersSystemTheme/#/PointingToDeclaration/core/ai.devrev.sdk.model/-support-widget-theme/prefers-system-theme.html
+$dokka.location:ai.devrev.sdk.model/SupportWidgetTheme/primaryTextColor/#/PointingToDeclaration/core/ai.devrev.sdk.model/-support-widget-theme/primary-text-color.html
+$dokka.location:ai.devrev.sdk.model/SupportWidgetTheme/spacing/#/PointingToDeclaration/core/ai.devrev.sdk.model/-support-widget-theme/spacing.html
 $dokka.location:ai.devrev.sdk.model/UserInfo///PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/index.html
 $dokka.location:ai.devrev.sdk.model/UserInfo/UserInfo/#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.collections.Map[kotlin.String,kotlin.Any]?/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/-user-info.html
 $dokka.location:ai.devrev.sdk.model/UserInfo/customFields/#/PointingToDeclaration/core/ai.devrev.sdk.model/-user-info/custom-fields.html
@@ -379,7 +394,12 @@ $dokka.location:ai.devrev.sdk.support/SupportEvent.OnWidgetReopened/name/#/Point
 $dokka.location:ai.devrev.sdk.support/SupportEvent///PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/index.html
 $dokka.location:ai.devrev.sdk.support/SupportEvent/name/#/PointingToDeclaration/core/ai.devrev.sdk.support/-support-event/name.html
 $dokka.location:ai.devrev.sdk.utils////PointingToDeclaration/core/ai.devrev.sdk.utils/index.html
+$dokka.location:ai.devrev.sdk.utils//ACCENT_COLOR/#/PointingToDeclaration/core/ai.devrev.sdk.utils/-a-c-c-e-n-t_-c-o-l-o-r.html
 $dokka.location:ai.devrev.sdk.utils//LOG_TAG/#/PointingToDeclaration/core/ai.devrev.sdk.utils/-l-o-g_-t-a-g.html
+$dokka.location:ai.devrev.sdk.utils//PRIMARY_TEXT_COLOR/#/PointingToDeclaration/core/ai.devrev.sdk.utils/-p-r-i-m-a-r-y_-t-e-x-t_-c-o-l-o-r.html
+$dokka.location:ai.devrev.sdk.utils//SPACING/#/PointingToDeclaration/core/ai.devrev.sdk.utils/-s-p-a-c-i-n-g.html
+$dokka.location:ai.devrev.sdk.utils//SPACING_BOTTOM/#/PointingToDeclaration/core/ai.devrev.sdk.utils/-s-p-a-c-i-n-g_-b-o-t-t-o-m.html
+$dokka.location:ai.devrev.sdk.utils//SPACING_SIDE/#/PointingToDeclaration/core/ai.devrev.sdk.utils/-s-p-a-c-i-n-g_-s-i-d-e.html
 $dokka.location:ai.devrev.sdk////PointingToDeclaration/core/ai.devrev.sdk/index.html
 $dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.Any]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
 $dokka.location:ai.devrev.sdk//addSessionProperties/ai.devrev.sdk.DevRev#java.util.HashMap[kotlin.String,kotlin.String]/PointingToDeclaration/core/ai.devrev.sdk/add-session-properties.html
@@ -415,7 +435,7 @@ $dokka.location:ai.devrev.sdk//trackEvent/ai.devrev.sdk.DevRev#kotlin.String#jav
 $dokka.location:ai.devrev.sdk//trackScreenName/ai.devrev.sdk.DevRev#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/track-screen-name.html
 $dokka.location:ai.devrev.sdk//unmarkSensitiveViews/ai.devrev.sdk.DevRev#kotlin.collections.List[android.view.View]/PointingToDeclaration/core/ai.devrev.sdk/unmark-sensitive-views.html
 $dokka.location:ai.devrev.sdk/DevRev///PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/index.html
-$dokka.location:ai.devrev.sdk/DevRev/configure/#android.content.Context#kotlin.String#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/configure.html
+$dokka.location:ai.devrev.sdk/DevRev/configure/#android.content.Context#kotlin.String#ai.devrev.sdk.model.FeatureConfiguration/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/configure.html
 $dokka.location:ai.devrev.sdk/DevRev/createSupportConversation/#android.content.Context/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/create-support-conversation.html
 $dokka.location:ai.devrev.sdk/DevRev/identifyAnonymousUser/#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/identify-anonymous-user.html
 $dokka.location:ai.devrev.sdk/DevRev/identifyUnverifiedUser/#ai.devrev.sdk.model.Identity/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/identify-unverified-user.html
@@ -430,6 +450,7 @@ $dokka.location:ai.devrev.sdk/DevRev/setInAppLinkHandler/#kotlin.Function1[kotli
 $dokka.location:ai.devrev.sdk/DevRev/setShouldDismissModalsOnOpenLink/#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-should-dismiss-modals-on-open-link.html
 $dokka.location:ai.devrev.sdk/DevRev/setShouldPreferSystemTheme/#kotlin.Boolean/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/set-should-prefer-system-theme.html
 $dokka.location:ai.devrev.sdk/DevRev/unregisterDevice/#android.content.Context#kotlin.String/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/unregister-device.html
+$dokka.location:ai.devrev.sdk/DevRev/updateFeatureConfiguration/#android.content.Context#ai.devrev.sdk.model.FeatureConfiguration/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/update-feature-configuration.html
 $dokka.location:ai.devrev.sdk/DevRev/updateTheme/#ai.devrev.sdk.model.DevRevTheme/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/update-theme.html
 $dokka.location:ai.devrev.sdk/DevRev/updateUser/#ai.devrev.sdk.model.Identity/PointingToDeclaration/core/ai.devrev.sdk/-dev-rev/update-user.html
 ai.devrev.sdk

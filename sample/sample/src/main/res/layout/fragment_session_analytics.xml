@@ -161,7 +161,37 @@
             android:paddingStart="8dp"
             android:textColor="@color/black"
             android:gravity="center_vertical|start" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_test"
+            android:textSize="12sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="16dp" />
+        <Button
+            android:id="@+id/openCameraButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:paddingStart="8dp"
+            android:text="@string/open_camera_screen"
+            android:gravity="center_vertical|start" />
+        <Button
+            android:id="@+id/openGalleryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            android:paddingStart="8dp"
 
+            android:text="@string/open_gallery"
+            android:gravity="center_vertical|start"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -299,5 +329,6 @@
             android:paddingStart="8dp"
             android:text="@string/open_compose_view_list"
             android:gravity="center_vertical|start"/>
+
     </LinearLayout>
 </ScrollView>

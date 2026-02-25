@@ -111,4 +111,15 @@
     <string name="update_user_unsuccessful">User update unsuccessful.</string>
     <string name="user_identified">Is the user identified?</string>
     <string name="verified_user">VERIFIED USER</string>
+    <string name="camera_test">CAMERA_TEST</string>
+    <string name="open_camera_screen">Open Camera Screen</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="camera_screen">Camera Screen</string>
+    <string name="camera_permission_granted">Camera Permission Granted</string>
+    <string name="camera_permission_denied">Camera Permission Denied</string>
+    <string name="camera_permission_required">Camera Permission Required</string>
+    <string name="photo_captured">Photo Captured!</string>
+    <string name="photo_capture_failed">Photo Capture Failed</string>
+    <string name="gallery_screen">Gallery Screen</string>
 </resources>

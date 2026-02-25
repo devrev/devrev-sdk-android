@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:paddingTop="?attr/actionBarSize"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    tools:context=".SupportChatFragment">
+
+    <TextView
+        android:id="@+id/status_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/status"
+        android:textSize="12sp"
+        android:paddingTop="16dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColor="#454141"
+        android:layout_marginTop="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/user_identified"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"/>
+
+        <CheckBox
+            android:id="@+id/is_user_identified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RoundCheckBox" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/support_chat_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/support_chat2"
+        android:textColor="#454141"
+        android:textColorLink="#E91E63"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/support_view_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="@string/show_the_support_chat"
+        android:textColor="@android:color/black"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical|start"/>
+
+    <Button
+        android:id="@+id/support_chat_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#D3D3D3"
+        android:text="@string/create_a_new_conversation"
+        android:textColor="@android:color/black"
+        android:gravity="center_vertical|start" />
+
+</LinearLayout>

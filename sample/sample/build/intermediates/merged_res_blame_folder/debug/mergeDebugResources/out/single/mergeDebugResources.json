@@ -1,0 +1,98 @@
+[
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/drawable_round_checkbox.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/drawable/round_checkbox.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/layout_activity_main.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/activity_main.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/layout_fragment_session_analytics.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_session_analytics.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/drawable_tick_mark.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/drawable/tick_mark.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/layout_fragment_support_chat.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_support_chat.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/layout_fragment_identify.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_identify.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/raw_sample.html.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/raw/sample.html"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/layout_fragment_push_notifications.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/layout/fragment_push_notifications.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/xml_backup_rules.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/drawable_ic_launcher_background.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/xml_data_extraction_rules.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "ai.devrev.sdk.sample.sample-app-debug-86:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "ai.devrev.sdk.sample.sample-app-main-88:/mipmap-xxxhdpi/ic_launcher_round.png"
+    }
+]
