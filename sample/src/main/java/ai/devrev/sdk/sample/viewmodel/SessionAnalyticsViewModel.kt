@@ -1,29 +1,57 @@
 package ai.devrev.sdk.sample.viewmodel
 
 import ai.devrev.sdk.DevRev
+import ai.devrev.sdk.addSessionProperties
+import ai.devrev.sdk.captureError
+import ai.devrev.sdk.endTimer
 import ai.devrev.sdk.isRecording
+import ai.devrev.sdk.model.FeatureConfiguration
+import ai.devrev.sdk.model.SupportWidgetTheme
 import ai.devrev.sdk.pauseRecording
 import ai.devrev.sdk.processAllOnDemandSessions
 import ai.devrev.sdk.resumeAllMonitoring
 import ai.devrev.sdk.resumeRecording
 import ai.devrev.sdk.startRecording
+import ai.devrev.sdk.startTimer
 import ai.devrev.sdk.stopAllMonitoring
 import ai.devrev.sdk.stopRecording
+import ai.devrev.sdk.trackScreenName
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
-class SessionAnalyticsViewModel(): ViewModel() {
+class SessionAnalyticsViewModel() : ViewModel() {
+
+    fun disableFrameCapture(context: Context) {
+        DevRev.updateFeatureConfiguration(
+            context, FeatureConfiguration(
+                enableFrameCapture = false
+            )
+        )
+    }
+
+    fun updateSupportWidgetTheme(context: Context) {
+        DevRev.updateFeatureConfiguration(
+            context = context,
+            featureConfiguration = FeatureConfiguration(
+                supportWidgetTheme = SupportWidgetTheme(
+                    false,                                      // prefersSystemTheme
+                    "#202020",                                  // primaryTextColor
+                    "#34C759",                                  // accentColor
+                    mapOf("bottom" to "20px", "side" to "16px") // spacing
+                )
+            )
+        )
+    }
 
     fun startRecording(context: Context) {
         DevRev.startRecording(context)
-        if(!DevRev.isRecording)
+        if (!DevRev.isRecording)
             throw Exception("Start recording failed")
     }
 
     fun stopRecording() {
         DevRev.stopRecording()
-        if(DevRev.isRecording)
+        if (DevRev.isRecording)
             throw Exception("Stop recording failed")
     }
 
@@ -33,6 +61,10 @@ class SessionAnalyticsViewModel(): ViewModel() {
 
     fun resumeRecording() {
         DevRev.resumeRecording()
+    }
+
+    fun captureError(exception: Throwable, tag: String) {
+        DevRev.captureError(exception, tag)
     }
 
     fun processAllOnDemandSessions() {
@@ -45,5 +77,17 @@ class SessionAnalyticsViewModel(): ViewModel() {
 
     fun resumeAllMonitoring() {
         DevRev.resumeAllMonitoring()
+    }
+
+    fun addSessionProperties(properties: HashMap<String, Any>) {
+        DevRev.addSessionProperties(properties)
+    }
+
+    fun startTimer(name: String, properties: HashMap<String, String>) {
+        DevRev.startTimer(name, properties)
+    }
+
+    fun endTimer(name: String, properties: HashMap<String, String>) {
+        DevRev.endTimer(name, properties)
     }
 }

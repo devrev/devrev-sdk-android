@@ -5,6 +5,7 @@ import ai.devrev.sdk.sample.MainActivity
 import ai.devrev.sdk.sample.R
 import ai.devrev.sdk.sample.utils.SharedPrefUtil
 import android.app.NotificationChannel
+import android.os.Build
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
@@ -61,8 +62,10 @@ class FirebasePushNotificationService : FirebaseMessagingService() {
             val notificationManager = getSystemService(NotificationManager::class.java)
 
             val channelName = getString(R.string.devrev_sdk)
-            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
-            notificationManager.createNotificationChannel(channel)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH)
+                notificationManager.createNotificationChannel(channel)
+            }
 
             val messageObject = JSONObject(messageBody)
 

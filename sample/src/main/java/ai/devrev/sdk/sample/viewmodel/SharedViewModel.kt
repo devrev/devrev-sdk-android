@@ -3,6 +3,8 @@ package ai.devrev.sdk.sample.viewmodel
 import ai.devrev.sdk.DevRev
 import ai.devrev.sdk.isMonitoringEnabled
 import ai.devrev.sdk.isRecording
+import ai.devrev.sdk.setInScreenTransitioning
+import ai.devrev.sdk.trackScreenName
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,10 +21,14 @@ class SharedViewModel : ViewModel() {
     private var _isRecording = MutableLiveData<Boolean>()
     val isRecording: LiveData<Boolean> get() = _isRecording
 
+    private var _isHeavyUIEnabled = MutableLiveData<Boolean>()
+    val isHeavyUIEnabled: LiveData<Boolean> get() = _isHeavyUIEnabled
+
     init {
         _isUserIdentified.value = DevRev.isUserIdentified
         _isRecording.value = DevRev.isRecording
         _isMonitoringEnabled.value = DevRev.isMonitoringEnabled
+        _isHeavyUIEnabled.value = false
     }
 
     fun resetTitle() {
@@ -33,5 +39,23 @@ class SharedViewModel : ViewModel() {
         title.value = newTitle
     }
 
-}
+    fun crash() {
+        throw RuntimeException("Crash")
+    }
 
+    fun triggerANRForTesting() {
+        Thread.sleep(10000)
+    }
+
+    fun setInScreenTransitioning(value: Boolean) {
+        DevRev.setInScreenTransitioning(value)
+    }
+
+    fun trackScreen(screenName: String) {
+        DevRev.trackScreenName(screenName)
+    }
+
+    fun setHeavyUIActive(isActive: Boolean) {
+        _isHeavyUIEnabled.value = isActive
+    }
+}
