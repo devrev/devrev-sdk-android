@@ -2,8 +2,10 @@ package ai.devrev.sdk.sample
 
 import ai.devrev.sdk.sample.viewmodel.PushNotificationsViewModel
 import ai.devrev.sdk.sample.utils.DeviceInfo
+import ai.devrev.sdk.sample.viewmodel.SharedViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -21,6 +23,7 @@ import androidx.fragment.app.viewModels
 class PushNotificationsFragment : Fragment() {
 
     private val viewModel: PushNotificationsViewModel by viewModels()
+    private val sharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +32,12 @@ class PushNotificationsFragment : Fragment() {
         setContent {
             PushNotificationsScreen(viewModel)
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        sharedViewModel.trackScreen("Push Notifications")
     }
 }
 

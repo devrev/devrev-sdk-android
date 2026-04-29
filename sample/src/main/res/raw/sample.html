@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Page with Masking</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        .container { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="password"], input[type="number"] { width: calc(100% - 22px); padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 3px; }
+        button { padding: 10px 15px; background-color: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .masked-info { background-color: #f0f0f0; padding: 5px; border-radius: 3px; font-style: italic; }
+        .unmasked-info { background-color: #e6ffe6; padding: 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>Sample HTML for WebView</h1>
+    <p>This page demonstrates content masking within a WebView.</p>
+        <div class="container">
+            <label for="maskedInput1">Sensitive Information (Masked):</label>
+            <input type="text" id="maskedInput1" class="devrev-mask" placeholder="Enter your secret here" value="This is a secret value"/>
+            <p class="masked-info">This field (devrev-mask) is masked in recordings.</p>
+        </div>
+
+        <div class="container">
+            <label for="passwordInput">Password (Auto-Masked by SDK):</label>
+            <input type="password" id="passwordInput" placeholder="Enter your password" value="mysecretpassword"/>
+            <p class="masked-info">This password field (type="password") is automatically masked by the SDK without requiring the devrev-mask class.</p>
+        </div>
+
+        <div class="container">
+            <label for="unmaskedInput1">Non-Sensitive Information (Unmasked):</label>
+            <input type="text" id="unmaskedInput1" class="devrev-unmask" placeholder="Enter public info" value="This is public information"/>
+            <p class="unmasked-info">This field (devrev-unmask) is visible in recordings.</p>
+        </div>
+
+        <div class="container">
+            <label for="maskedInput2">Another Sensitive Field (Masked):</label>
+            <input type="number" id="maskedInput2" class="devrev-mask" placeholder="Another secret" value="1234567890" min="0"/>
+            <p class="masked-info">This number (devrev-mask) is masked in recordings.</p>
+        </div>
+
+        <p>This paragraph contains a <span class="devrev-mask">masked phrase</span> and an <span class="devrev-unmask">unmasked phrase</span> within the text.</p>
+
+        <div class="devrev-mask">
+            <p>This entire div and its contents are masked:</p>
+            <label for="maskedInputInsideDiv">Sensitive data inside masked div:</label>
+            <input type="text" id="maskedInputInsideDiv" placeholder="Password123" value="SuperSecretPassword"/>
+        </div>
+
+        <br>
+        <button onclick="window.location.href='https://www.google.com'">Open Google</button>
+    </body>
+</html>

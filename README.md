@@ -9,6 +9,11 @@ DevRev SDK, used for integrating DevRev services into your Android app.
       - [Step 2](#step-2)
       - [ProGuard rules](#proguard-rules)
     - [Set up the DevRev SDK](#set-up-the-devrev-sdk)
+    - [Feature configuration](#feature-configuration)
+      - [Update the feature configuration](#update-the-feature-configuration)
+      - [Feature configuration reference](#feature-configuration-reference)
+        - [Configuration caching](#configuration-caching)
+        - [Support widget theme options](#support-widget-theme-options)
     - [Sample app](#sample-app)
   - [Features](#features)
     - [Identification](#identification)
@@ -37,6 +42,8 @@ DevRev SDK, used for integrating DevRev services into your Android app.
       - [Session properties](#session-properties)
       - [Mask sensitive data](#mask-sensitive-data)
         - [Mask using predefined tags](#mask-using-predefined-tags)
+        - [Mask using the API methods](#mask-using-the-api-methods)
+        - [Mask Jetpack Compose views](#mask-jetpack-compose-views)
         - [Mask web view elements](#mask-web-view-elements)
         - [Unmask web view elements](#unmask-web-view-elements)
       - [User interaction tracking](#user-interaction-tracking)
@@ -124,7 +131,7 @@ The SDK becomes ready for use once the following configuration method is execute
     ```
 - Java
     ```java
-    DevRev.INSTANCE.configure(Context context, String appId);
+    DevRev.INSTANCE.configure(Context context, String appId, FeatureConfiguration featureConfiguration);
     ```
 
 Ensure that the custom application is specified in the `AndroidManifest.xml` file:
@@ -146,12 +153,58 @@ Use this property to check whether the DevRev SDK has been configured:
     DevRev.INSTANCE.isConfigured();
     ```
 
-> [!TIP]
-> The SDK supports feature configuration for enhanced control:
-> - `enableFrameCapture`: Enable/disable screenshot capture during session recording (default: `true`)
-> - `autoStartRecording`: Automatically start recording after SDK configuration (default: `true`)
-> - `prefersDialogMode`: Open SDK screens as bottom sheets instead of separate activities (default: `false`)
-> - `supportWidgetTheme`: Controls the appearance of the in-app support widget (default: system theme)
+To provide a feature configuration during setup, call the overload that accepts it:
+
+- Kotlin
+    ```kotlin
+    DevRev.configure(context: Context, appId: String, featureConfiguration: FeatureConfiguration)
+    ```
+- Java
+    ```java
+    DevRev.INSTANCE.configure(Context context, String appId, FeatureConfiguration featureConfiguration);
+    ```
+
+For default behavior, call the simpler overload:
+
+- Kotlin
+    ```kotlin
+    DevRev.configure(context = this, appId = "<APP_ID>")
+    ```
+- Java
+    ```java
+    DevRev.INSTANCE.configure(this, "<APP_ID>", new FeatureConfiguration());
+    ```
+
+To customize behavior such as frame capture, auto-start recording, configuration caching, or theme preferences, pass a `FeatureConfiguration` instance:
+
+- Kotlin
+    ```kotlin
+    DevRev.configure(
+        context = this,
+        appId = "<APP_ID>",
+        featureConfiguration = FeatureConfiguration(
+            enableFrameCapture = false,
+            autoStartRecording = false,
+            prefersDialogMode = false,
+            alwaysUseRemoteConfig = true,
+            supportWidgetTheme = SupportWidgetTheme(prefersSystemTheme = true)
+        )
+    )
+    ```
+- Java
+    ```java
+    DevRev.INSTANCE.configure(
+        this,
+        "<APP_ID>",
+        new FeatureConfiguration(
+            false,   // enableFrameCapture
+            false,   // autoStartRecording
+            false,   // prefersDialogMode
+            true,    // alwaysUseRemoteConfig
+            new SupportWidgetTheme(true, null, null, null)
+        )
+    );
+    ```
 
 1. Call the following method inside your `Application` class to configure the SDK:
 
@@ -176,6 +229,7 @@ Use this property to check whether the DevRev SDK has been configured:
 - Java
     ```java
     import ai.devrev.sdk.DevRev;
+    import ai.devrev.sdk.model.FeatureConfiguration;
 
     public class FooApplication extends Application {
 
@@ -184,144 +238,136 @@ Use this property to check whether the DevRev SDK has been configured:
         super.onCreate();
         DevRev.INSTANCE.configure(
                 this,
-                "<APP_ID>"
+                "<APP_ID>",
+                new FeatureConfiguration()
         );
     }
     }
     ```
 
-### Feature Configuration Examples
+### Feature configuration
 
-#### Custom Configuration
+#### Update the feature configuration
 
-You can customize SDK behavior by creating a custom `FeatureConfiguration`:
-
-- Kotlin
-    ```kotlin
-    import ai.devrev.sdk.DevRev
-    import ai.devrev.sdk.model.FeatureConfiguration
-    import ai.devrev.sdk.model.SupportWidgetTheme
-
-    class FooApplication : Application() {
-        override fun onCreate() {
-            super.onCreate()
-            DevRev.configure(
-                context = this,
-                appId = "<APP_ID>",
-                featureConfiguration = FeatureConfiguration(
-                    enableFrameCapture = false,    // Disable screenshot capture
-                    autoStartRecording = true,     // Auto-start recording (default)
-                    prefersDialogMode = false,      // Use activity mode (default)
-                    supportWidgetTheme = SupportWidgetTheme(prefersSystemTheme = true)      // Use system theme (default)
-                )
-            )
-        }
-    }
-    ```
-
-- Java
-    ```java
-    import ai.devrev.sdk.DevRev;
-    import ai.devrev.sdk.model.FeatureConfiguration;
-    import ai.devrev.sdk.model.SupportWidgetTheme;
-
-    public class FooApplication extends Application {
-        @Override
-        public void onCreate() {
-            super.onCreate();
-            DevRev.INSTANCE.configure(
-                this,
-                "<APP_ID>",
-                new FeatureConfiguration(
-                    false,   // enableFrameCapture - Disable screenshot capture
-                    true,    // autoStartRecording - Auto-start recording (default)
-                    false,   // prefersDialogMode - Use activity mode (default)
-                    new SupportWidgetTheme(true, null, null, null)  // Use system theme (default)
-                )
-            );
-        }
-    }
-    ```
-
-#### Runtime Configuration Updates
-
-You can update `enableFrameCapture` at runtime:
+You can adjust the feature configuration without reconfiguring the SDK:
 
 - Kotlin
     ```kotlin
-    // Update frame capture setting at runtime
     DevRev.updateFeatureConfiguration(
         context = this,
         featureConfiguration = FeatureConfiguration(
-            enableFrameCapture = false
+            enableFrameCapture = true,
+            autoStartRecording = true,
+            prefersDialogMode = false,
+            alwaysUseRemoteConfig = true,
+            supportWidgetTheme = SupportWidgetTheme(prefersSystemTheme = true)
         )
     )
     ```
-
 - Java
     ```java
-    // Update frame capture setting at runtime
     DevRev.INSTANCE.updateFeatureConfiguration(
         this,
         new FeatureConfiguration(
-            false,  // enableFrameCapture - Disable screenshot capture
-            true,   // autoStartRecording - Ignored (can't be updated at runtime)
-            false   // prefersDialogMode - Ignored (can't be updated at runtime)
+            true,    // enableFrameCapture
+            true,    // autoStartRecording
+            false,   // prefersDialogMode
+            true,    // alwaysUseRemoteConfig
+            new SupportWidgetTheme(true, null, null, null)
         )
     );
     ```
 
-> [!NOTE]
-> The `autoStartRecording` and `prefersDialogMode` flags can only be set during initial configuration and cannot be changed at runtime. To control recording manually, use `DevRev.startRecording()` and `DevRev.stopRecording()` methods.
+#### Feature configuration reference
 
-#### Update the support widget theme
-
-You can update the support widget theme at runtime:
+`FeatureConfiguration` controls how the SDK behaves both during initial setup and when calling `DevRev.updateFeatureConfiguration`.
 
 - Kotlin
     ```kotlin
-    DevRev.updateFeatureConfiguration(
-        context = this,
-        featureConfiguration = FeatureConfiguration(
-            supportWidgetTheme = SupportWidgetTheme(
-                false,                              // prefersSystemTheme
-                "#202020",                          // primaryTextColor
-                "#34C759",                          // accentColor
-                mapOf("bottom" to "20px", "side" to "16px")  // spacing
-            )
-        )
+    val configuration = FeatureConfiguration.default
+    ```
+- Java
+    ```java
+    FeatureConfiguration configuration = new FeatureConfiguration();
+    ```
+
+| Property                            | Type                    | Default | Description                                                                                                                                                                                                              |
+|-------------------------------------|-------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `enableFrameCapture`                | `Boolean`               | `true`  | Enables the screen capture pipeline used by session replay.                                                                                                                                                              |
+| `autoStartRecording`                | `Boolean`               | `true`  | Automatically starts recording after the SDK finishes remote configuration (or when using cached config).                                                                                                                |
+| `prefersDialogMode`                 | `Boolean`               | `false` | Opens SDK screens as a bottom sheet instead of a separate activity.                                                                                                                                                      |
+| `alwaysUseRemoteConfig`             | `Boolean`               | `true`  | When `true`, the SDK always fetches remote configuration at startup and when the app enters foreground. When `false`, the SDK uses cached configuration when available and skips the remote fetch, improving cold start. |
+| `supportWidgetTheme`                | `SupportWidgetTheme?`   | `null`  | Controls the appearance of the in-app support widget, including dynamic theme behavior.                                                                                                                                  |
+| `enableSupportChatStreaming`        | `Boolean`               | `false` | When `true`, enables real-time AI agent response streaming in PLuG conversations (WebSocket streaming, optimistic UI, animated text).                                                                                    |
+| `supportWidgetArticleSearchFilters` | `ArticleSearchFilters?` | `null`  | Optional filters for PLuG article search (widget and CMDK). Applied automatically when the support widget is ready.                                                                                                      |
+
+Use the constructor to override any combination of options:
+
+- Kotlin
+    ```kotlin
+    val configuration = FeatureConfiguration(
+        enableFrameCapture = false,
+        autoStartRecording = false,
+        prefersDialogMode = false,
+        alwaysUseRemoteConfig = false,
+        supportWidgetTheme = SupportWidgetTheme(prefersSystemTheme = true),
+        enableSupportChatStreaming = true,
+        supportWidgetArticleSearchFilters = myArticleSearchFilters
     )
     ```
 - Java
     ```java
-    SupportWidgetTheme theme = new SupportWidgetTheme(false, "#202020", "#34C759",
-        new HashMap<String, String>() {{
-            put("bottom", "20px");
-            put("side", "16px");
-        }});
-    DevRev.INSTANCE.updateFeatureConfiguration(
-        this,
-        new FeatureConfiguration(false, true, false, theme)
+    FeatureConfiguration configuration = new FeatureConfiguration(
+        false,   // enableFrameCapture
+        false,   // autoStartRecording
+        false,   // prefersDialogMode
+        false,   // alwaysUseRemoteConfig
+        new SupportWidgetTheme(true, null, null, null),
+        true,    // enableSupportChatStreaming
+        myArticleSearchFilters
+  
     );
     ```
 
 > [!NOTE]
-> All properties in `SupportWidgetTheme` are optional.
+> The `autoStartRecording`, `prefersDialogMode`, and `alwaysUseRemoteConfig` flags can only be set during initial configuration and cannot be changed at runtime. To control recording manually, use `DevRev.startRecording()` and `DevRev.stopRecording()` methods.
+
+##### Configuration caching
+
+When `alwaysUseRemoteConfig` is `false`, the SDK uses the last successfully fetched configuration stored on the device. If a cached configuration exists, the SDK skips the remote config request at startup and applies the cached settings (e.g. session replay, observability). This reduces cold-start latency and allows the app to work offline with the last known config. The first launch (or after clearing app data) still performs a remote fetch when network is available. Set `alwaysUseRemoteConfig` to `true` (the default) to retain the previous behavior of always fetching remote configuration at startup and when the app enters foreground.
+
+##### Support widget theme options
+
+`SupportWidgetTheme` lets you fine-tune the support UI. Provide explicit values to customize:
+
+- Kotlin
+    ```kotlin
+    val customTheme = SupportWidgetTheme(
+        prefersSystemTheme = false,
+        primaryTextColor = "#1F2933",
+        accentColor = "#F97316",
+        spacing = mapOf("bottom" to "20px", "side" to "16px")
+    )
+    ```
+- Java
+    ```java
+    SupportWidgetTheme customTheme = new SupportWidgetTheme(
+        false,       // prefersSystemTheme
+        "#1F2933",   // primaryTextColor
+        "#F97316",   // accentColor
+        new HashMap<String, String>() {{
+            put("bottom", "20px");
+            put("side", "16px");
+        }}
+    );
+    ```
 
 | Property             | Type                   | Default | Description                                                                        |
 | -------------------- | ---------------------- | ------- | ---------------------------------------------------------------------------------- |
-| `prefersSystemTheme` | `Boolean?`             | `null`  | When `true`, follows the device appearance; when `false`, uses your custom colors. |
+| `prefersSystemTheme` | `Boolean?`             | `null`  | Follows the device appearance when `true`; otherwise uses your custom colors.      |
 | `primaryTextColor`   | `String?`              | `null`  | Hex or RGB value for primary text in the support widget.                           |
 | `accentColor`        | `String?`              | `null`  | Hex or RGB value applied to buttons and highlights.                                |
 | `spacing`            | `Map<String, String>?` | `null`  | CSS-like spacing overrides; `"bottom"` and `"side"` keys are recognized.           |
-
-1. In the `onCreate` method of your `Application`, configure the DevRev SDK with the required parameters using the credentials obtained earlier.
-2. Ensure that the custom application is specified in the `AndroidManifest.xml`, as shown below:
-    ```xml
-    <application
-        android:name=".FooApplication">
-    </application>
-    ```
 
 ### Sample app
 
@@ -1084,32 +1130,35 @@ For example:
 ```kotlin
 import com.userexperior.bridge.model.MaskLocationProvider
 import com.userexperior.bridge.model.SnapshotMask
+import com.userexperior.bridge.model.SnapshotMaskCallback
 import ai.devrev.sdk.setMaskLocationProvider
 import ai.devrev.sdk.DevRev
 import android.graphics.Rect
 
 class MyMaskingProvider : MaskLocationProvider {
     init {
-      // Register the custom masking provider
-      DevRev.setMaskLocationProvider(this)
+        // Register the custom masking provider
+        DevRev.setMaskLocationProvider(this)
     }
 
-    override fun provideSnapshotMask(): SnapshotMask {
-      // Create a MutableSet to hold the masked regions
-      val locations: MutableSet<Rect> = mutableSetOf()
+    override fun provideSnapshotMask(callback: SnapshotMaskCallback) {
+        // Create a MutableSet to hold the masked regions
+        val locations: MutableSet<Rect> = mutableSetOf()
 
-      // Define the regions to be masked
-      val rect1 = Rect(0, 0, 100, 50)
-      val rect2 = Rect(50, 50, 150, 100)
+        // Define the regions to be masked
+        val rect1 = Rect(0, 0, 100, 50)
+        val rect2 = Rect(50, 50, 150, 100)
 
-      // Add the regions to the Set
-      locations.add(rect1)
-      locations.add(rect2)
+        // Add the regions to the Set
+        locations.add(rect1)
+        locations.add(rect2)
 
-      return SnapshotMask(
-        locations,
-        false
-      )
+        callback.onSnapshotMask(
+            SnapshotMask(
+                locations,
+                false
+            )
+        )
     }
 }
 ```
@@ -1117,6 +1166,7 @@ class MyMaskingProvider : MaskLocationProvider {
 ```java
 import com.userexperior.bridge.model.MaskLocationProvider;
 import com.userexperior.bridge.model.SnapshotMask;
+import com.userexperior.bridge.model.SnapshotMaskCallback;
 import ai.devrev.sdk.DevRevObservabilityExtKt;
 import ai.devrev.sdk.DevRev;
 import android.graphics.Rect;
@@ -1125,27 +1175,31 @@ import java.util.Set;
 
 public class MyMaskingProvider implements MaskLocationProvider {
     public MyMaskingProvider() {
-      // Register the custom masking provider
-      DevRevObservabilityExtKt.setMaskLocationProvider(DevRev.INSTANCE, this);
+        // Register the custom masking provider
+        DevRevObservabilityExtKt.setMaskLocationProvider(DevRev.INSTANCE, this);
     }
 
     @Override
-    public SnapshotMask provideSnapshotMask() {
-        // Create a Set to hold the masked regions
-        Set<Rect> locations = new HashSet<>();
+    public void provideSnapshotMask(SnapshotMaskCallback callback) {
+        if (callback != null) {
+            // Create a Set to hold the masked regions
+            Set<Rect> locations = new HashSet<>();
 
-        // Define the regions to be masked
-        Rect rect1 = new Rect(0, 0, 100, 100);
-        Rect rect2 = new Rect(50, 50, 150, 150);
+            // Define the regions to be masked
+            Rect rect1 = new Rect(0, 0, 100, 100);
+            Rect rect2 = new Rect(50, 50, 150, 150);
 
-        // Add the regions to the Set
-        locations.add(rect1);
-        locations.add(rect2);
+            // Add the regions to the Set
+            locations.add(rect1);
+            locations.add(rect2);
 
-        return new SnapshotMask(
-            locations,
-            false
-        );
+            callback.onSnapshotMask(
+                    new SnapshotMask(
+                            locations,
+                            false
+                    )
+            );
+        }
     }
 }
 ```

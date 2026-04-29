@@ -5,6 +5,46 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.5
+
+### Fixed
+- Fixed ANRs and crashes caused by Keystore Binder IPC during app termination in session recording.
+- Optimized masking performance for better dynamic webviews in Cordova.
+- Added a fix for incorrect session engagement time.
+
+## 2.3.4
+
+### Changed
+- Optimized External Masking (Flutter, Jetpack Compose).
+
+### Fixed
+- Fixed incorrect engagement time for sessions that were pending upload.
+
+## 2.3.3
+
+### Added
+- Added a config flag to enable real-time AI agent response streaming in support chat.
+- Added support for `setArticleSearchFilters`.
+
+### Changed
+- Updated support widget using `updateFeatureConfiguration` function.
+
+### Fixed
+- Fixed a crash related to `MotionEvent`.
+- Prevented a potential runtime crash due to corrupted `SharedPreferences`.
+
+## 2.3.2
+
+### Added
+- Added `@jvmoverloads` to `configure()` for Java backward compatibility.
+- Added builder pattern to FeatureConfiguration.
+
+### Changed
+- Updated README with `FeatureConfiguration` documentation.
+
+### Fixed
+- Fixed VerifyError crash by disabling R8 optimization.
+
 ## 2.3.1
 
 ### Fixed

@@ -3,13 +3,14 @@ package ai.devrev.sdk.sample
 import ai.devrev.sdk.sample.viewmodel.SessionAnalyticsViewModel
 import ai.devrev.sdk.sample.viewmodel.SharedViewModel
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 
 class SessionAnalyticsFragment : Fragment() {
@@ -27,15 +28,86 @@ class SessionAnalyticsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel.trackScreen("Session Analytics")
         val isRecordingCheckbox: CheckBox = view.findViewById(R.id.is_session_recorded)
         val isMonitoringEnabledCheckBox: CheckBox = view.findViewById(R.id.is_monitoring_enabled)
-        val startRecordingButton: Button  = view.findViewById(R.id.start_recording_button)
-        val stopRecordingButton: Button  = view.findViewById(R.id.stop_recording_button)
-        val pauseRecordingButton: Button  = view.findViewById(R.id.pause_recording_button)
-        val resumeRecordingButton: Button  = view.findViewById(R.id.resume_recording_button)
-        val processAllDemandsSessions: Button  = view.findViewById(R.id.process_all_on_demand_session_button)
-        val stopAllMonitoring: Button  = view.findViewById(R.id.stop_all_monitoring_button)
-        val resumeAllMonitoring: Button  = view.findViewById(R.id.resume_all_monitoring_button)
+        val disableFrameCaptureButton: Button = view.findViewById(R.id.disable_frame_capture_button)
+        val updateSupportWidgetThemeButton: Button = view.findViewById(R.id.update_support_widget_theme_button)
+        val startRecordingButton: Button = view.findViewById(R.id.start_recording_button)
+        val stopRecordingButton: Button = view.findViewById(R.id.stop_recording_button)
+        val pauseRecordingButton: Button = view.findViewById(R.id.pause_recording_button)
+        val resumeRecordingButton: Button = view.findViewById(R.id.resume_recording_button)
+        val processAllDemandsSessions: Button =
+            view.findViewById(R.id.process_all_on_demand_session_button)
+        val stopAllMonitoring: Button = view.findViewById(R.id.stop_all_monitoring_button)
+        val resumeAllMonitoring: Button = view.findViewById(R.id.resume_all_monitoring_button)
+        val startTimerWithPropertiesButton: Button =
+            view.findViewById(R.id.start_timer_with_properties)
+        val endTimerWithPropertiesButton: Button = view.findViewById(R.id.end_timer_with_properties)
+        val unmaskedField: EditText = view.findViewById(R.id.manual_unmasked_item)
+        val captureErrorButton: Button = view.findViewById(R.id.capture_error)
+
+        unmaskedField.tag = "devrev-unmask"
+
+        disableFrameCaptureButton.setOnClickListener {
+            try {
+                viewModel.disableFrameCapture(requireContext())
+                alertDialogBox(
+                    getString(R.string.configuration_updated),
+                    getString(R.string.frame_capture_disable_message)
+                )
+            } catch (e: Exception) {
+                alertDialogBox(
+                    getString(R.string.frame_capture_disable_failed),
+                    getString(R.string.frame_capture_disable_error)
+                )
+            }
+        }
+
+        updateSupportWidgetThemeButton.setOnClickListener {
+            try {
+                viewModel.updateSupportWidgetTheme(requireContext())
+                alertDialogBox(
+                    getString(R.string.configuration_updated),
+                    getString(R.string.update_support_widget_theme_message)
+                )
+            } catch (e: Exception) {
+                alertDialogBox(
+                    getString(R.string.update_support_widget_theme_failed),
+                    getString(R.string.update_support_widget_theme_error)
+                )
+            }
+        }
+
+        val openWebViewButton: Button = view.findViewById(R.id.open_webview_button)
+        openWebViewButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, WebViewFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+
+        val openComposeViewListButton: Button =
+            view.findViewById(R.id.open_compose_view_list_button)
+        openComposeViewListButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, ComposeViewListFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+
+        val openRecyclerViewListButton: Button =
+            view.findViewById(R.id.open_recyclerview_list_button)
+        openRecyclerViewListButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, RecyclerViewListFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+
+        val properties = HashMap<String, Any>()
+        properties["state"] = "active"
+        viewModel.addSessionProperties(properties)
 
         sharedViewModel.isMonitoringEnabled.observe(viewLifecycleOwner) { isMonitoringEnabled ->
             isMonitoringEnabledCheckBox.isChecked = isMonitoringEnabled
@@ -50,7 +122,10 @@ class SessionAnalyticsFragment : Fragment() {
                 viewModel.startRecording(requireContext())
                 alertDialogBox(getString(R.string.recording_started), getString(R.string.started))
             } catch (e: Exception) {
-                alertDialogBox(getString(R.string.recording_start_failed), getString(R.string.start_error))
+                alertDialogBox(
+                    getString(R.string.recording_start_failed),
+                    getString(R.string.start_error)
+                )
             }
         }
 
@@ -59,7 +134,10 @@ class SessionAnalyticsFragment : Fragment() {
                 viewModel.stopRecording()
                 alertDialogBox(getString(R.string.recording_stopped), getString(R.string.stopped))
             } catch (e: Exception) {
-                alertDialogBox(getString(R.string.recording_stop_failed), getString(R.string.stop_error))
+                alertDialogBox(
+                    getString(R.string.recording_stop_failed),
+                    getString(R.string.stop_error)
+                )
             }
         }
 
@@ -68,7 +146,10 @@ class SessionAnalyticsFragment : Fragment() {
                 viewModel.pauseRecording()
                 alertDialogBox(getString(R.string.recording_paused), getString(R.string.paused))
             } catch (e: Exception) {
-                alertDialogBox(getString(R.string.recording_pause_failed), getString(R.string.pause_error))
+                alertDialogBox(
+                    getString(R.string.recording_pause_failed),
+                    getString(R.string.pause_error)
+                )
             }
         }
 
@@ -77,35 +158,140 @@ class SessionAnalyticsFragment : Fragment() {
                 viewModel.resumeRecording()
                 alertDialogBox(getString(R.string.recording_resumed), getString(R.string.resumed))
             } catch (e: Exception) {
-                alertDialogBox(getString(R.string.recording_resume_failed), getString(R.string.resume_error))
+                alertDialogBox(
+                    getString(R.string.recording_resume_failed),
+                    getString(R.string.resume_error)
+                )
             }
         }
 
         processAllDemandsSessions.setOnClickListener {
             try {
                 viewModel.processAllOnDemandSessions()
-                alertDialogBox(getString(R.string.on_demand_session), getString(R.string.on_demand) )
+                alertDialogBox(getString(R.string.on_demand_session), getString(R.string.on_demand))
             } catch (e: Exception) {
-                alertDialogBox(getString(R.string.on_demand_session_failed), getString(R.string.process_error) )
+                alertDialogBox(
+                    getString(R.string.on_demand_session_failed),
+                    getString(R.string.process_error)
+                )
             }
         }
 
         stopAllMonitoring.setOnClickListener {
             try {
                 viewModel.stopAllMonitoring()
-                alertDialogBox(getString(R.string.monitoring_stopped), getString(R.string.monitoring_stopped_success))
+                alertDialogBox(
+                    getString(R.string.monitoring_stopped),
+                    getString(R.string.monitoring_stopped_success)
+                )
             } catch (e: Exception) {
-                alertDialogBox(getString(R.string.monitoring_stop_failed), getString(R.string.monitoring_stop_error))
+                alertDialogBox(
+                    getString(R.string.monitoring_stop_failed),
+                    getString(R.string.monitoring_stop_error)
+                )
             }
         }
 
         resumeAllMonitoring.setOnClickListener {
             try {
                 viewModel.resumeAllMonitoring()
-                alertDialogBox(getString(R.string.monitoring_resumed), getString(R.string.monitoring_resume_success) )
+                alertDialogBox(
+                    getString(R.string.monitoring_resumed),
+                    getString(R.string.monitoring_resume_success)
+                )
             } catch (e: Exception) {
-                alertDialogBox(getString(R.string.monitoring_resume_failed), getString(R.string.monitoring_resume_error) )
+                alertDialogBox(
+                    getString(R.string.monitoring_resume_failed),
+                    getString(R.string.monitoring_resume_error)
+                )
             }
+        }
+
+        captureErrorButton.setOnClickListener {
+            try {
+                throw Throwable(getString(R.string.capture_error_message))
+            } catch (e: Throwable) {
+                viewModel.captureError(e, getString(R.string.capture_error_tag))
+            }
+            alertDialogBox(
+                getString(R.string.error_captured),
+                getString(R.string.error_captured_message)
+            )
+        }
+
+        startTimerWithPropertiesButton.setOnClickListener {
+            try {
+                val userProperties = HashMap<String, String>()
+                userProperties["key1"] = "value1"
+                userProperties["key2"] = "value2"
+                viewModel.startTimer("session", userProperties)
+                alertDialogBox(
+                    getString(R.string.start_timer_success),
+                    getString(R.string.timer_started)
+                )
+            } catch (e: Exception) {
+                alertDialogBox(
+                    getString(R.string.start_timer_error),
+                    getString(R.string.timer_not_started)
+                )
+            }
+        }
+
+        endTimerWithPropertiesButton.setOnClickListener {
+            try {
+                val userProperties = HashMap<String, String>()
+                userProperties["key3"] = "value3"
+                userProperties["key4"] = "value4"
+                viewModel.endTimer("session", userProperties)
+                alertDialogBox(
+                    getString(R.string.end_timer_success),
+                    getString(R.string.timer_ended)
+                )
+            } catch (e: Exception) {
+                alertDialogBox(
+                    getString(R.string.end_timer_error),
+                    getString(R.string.timer_not_ended)
+                )
+            }
+        }
+
+        val openCameraButton: Button = view.findViewById(R.id.open_camera_button)
+        openCameraButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, CameraFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+
+        val openGalleryButton: Button = view.findViewById(R.id.open_gallery_button)
+        openGalleryButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, GalleryFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+        val openQrScannerButton: Button = view.findViewById(R.id.open_qr_scanner_button)
+        openQrScannerButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, QrScannerFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+
+        val openHeavyUIButton: Button = view.findViewById(R.id.open_heavy_ui_button)
+        openHeavyUIButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, HeavyUIFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
+        }
+
+        val openRealTimeUpdatesButton: Button = view.findViewById(R.id.open_real_time_updates_button)
+        openRealTimeUpdatesButton.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, RealTimeUpdatesFragment())
+                .addToBackStack(this::class.java.name)
+                .commit()
         }
     }
 

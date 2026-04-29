@@ -18,6 +18,10 @@ class IdentificationViewModel(): ViewModel() {
         DevRev.identifyVerifiedUser(userId = userId, sessionToken = sessionToken)
     }
 
+    fun updateUser(identity: Identity) {
+        DevRev.updateUser(identity = identity)
+    }
+
     fun logout(context: Context) {
         val deviceId = DeviceInfo.getDeviceId(context)
         DevRev.logout(context, deviceId)

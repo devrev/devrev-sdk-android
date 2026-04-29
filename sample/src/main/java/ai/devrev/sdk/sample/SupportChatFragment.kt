@@ -27,6 +27,8 @@ class SupportChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        sharedViewModel.trackScreen("Support Chat")
+
         val supportChatButton: Button = view.findViewById(R.id.support_chat_button)
         val supportViewButton: Button = view.findViewById(R.id.support_view_button)
         val isUserIdentifiedCheckbox: CheckBox = view.findViewById(R.id.is_user_identified)
