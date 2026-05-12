@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.6
+
+### Fixed
+- Fixed an issue where Ktor classes were getting stripped due to ProGuard rules.
+- Fixed a crash related to blank user identifier in identification calls.
+- Fixed a crash in support chat when the SDK was not fully initialized.
+- Fixed a SIGABRT crash on Android 16+ caused by stale MotionEvent references.
+- Fixed an issue with redundant backslash replacement in event capture serialization.
+
 ## 2.3.5
 
 ### Fixed
@@ -48,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.3.1
 
 ### Fixed
-- Fixed an issue with masking on web views. 
+- Fixed an issue with masking on web views.
 
 ## 2.3.0
 
@@ -67,7 +76,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.2.14
 
 ### Fixed
-- Fixed an issue with session recordings on QR scan screens. 
+- Fixed an issue with session recordings on QR scan screens.
 
 ## 2.2.13
 
@@ -83,12 +92,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved session capturing stability and reliability.
 
 ### Changed
-- Removed redundant dependencies for reduced SDK size and enhanced security. 
+- Removed redundant dependencies for reduced SDK size and enhanced security.
 
 ## 2.2.11
 
 ### Fixed
-- Fixed an issue with bitmap capture for Flutter's `SurfaceView`. 
+- Fixed an issue with bitmap capture for Flutter's `SurfaceView`.
 
 ## 2.2.10
 
@@ -120,7 +129,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.2.8
 
 ### Deprecated
-- Deprecated the `identifyAnonymousUser()` method. 
+- Deprecated the `identifyAnonymousUser()` method.
 
 ### Fixed
 - Resolved a potential OutOfMemory crash.
