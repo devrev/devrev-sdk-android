@@ -636,11 +636,30 @@ You can initiate a new support conversation directly from your app. This method 
 
 - Kotlin
     ```kotlin
-    DevRev.createSupportConversation(context: Context)
+    DevRev.createSupportConversation(context: Context, prefilledMessage: String? = null)
     ```
 - Java
     ```java
-    DevRev.INSTANCE.createSupportConversation(context);
+    DevRev.INSTANCE.createSupportConversation(context, prefilledMessage);
+    ```
+
+You can optionally pass a pre-filled message that will appear in the composer when the conversation screen opens:
+
+- Kotlin
+    ```kotlin
+    // Without pre-filled message
+    DevRev.createSupportConversation(context)
+
+    // With pre-filled message
+    DevRev.createSupportConversation(context, "I need help with...")
+    ```
+- Java
+    ```java
+    // Without pre-filled message
+    DevRev.INSTANCE.createSupportConversation(context, null);
+
+    // With pre-filled message
+    DevRev.INSTANCE.createSupportConversation(context, "I need help with...");
     ```
 
 #### Support button
