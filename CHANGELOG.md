@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.12
+
+### Added
+- Added an SDK version filter for session replay, allowing replay to be enabled or disabled for specific SDK versions from the dashboard. Crash and ANR capture continue to work while replay is suppressed; note that the session-started listener callback does not fire in that state.
+
+### Security
+- Hardened the PLuG support widget against being launched by other apps.
+
+### Fixed
+- Fixed a main-thread deadlock when resolving external masks with Flutter.
+- Fixed a crash in the screenshot capturer caused by a recycled bitmap on cancel.
+- Fixed a stale identity issue across organizations on cold start.
+- Fixed an ANR caused by a slow crash handler.
+- Fixed an issue with mask coordinate clipping.
+
 ## 2.3.11
 
 ### Fixed
