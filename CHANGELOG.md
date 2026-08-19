@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.13
+
+### Changed
+- For apps that opt into `alwaysUseRemoteConfig(false)`, a version filter change now applies to a running session on the next background config refresh, ending the session and discarding its captured data. By default, filter changes still take effect only when the next session starts, and no in-progress session or its data is affected.
+- The SDK version filter now suppresses all capture for an excluded version — session replay, crash, and ANR — where previously it suppressed only session replay. No session is started for an excluded version, so `DevRev.isRecording` now reports `false` for it, where it previously reported `true`.
+- Invalid or incomplete filter rules are now applied as configured instead of being ignored, so a malformed allowlist or blocklist can stop recording where it previously recorded every version.
+- The SDK version filter now matches version values with one or two components (such as `2` or `2.3`), not only full `x.y.z` values.
+
 ## 2.3.12
 
 ### Added
