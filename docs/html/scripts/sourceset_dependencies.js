@@ -1,1 +1,0 @@
-sourceset_dependencies='{":core/debug":[],":core/main":[],":core/release":[]}'

@@ -358,16 +358,52 @@ When `alwaysUseRemoteConfig` is `false`, the SDK uses the last successfully fetc
         new HashMap<String, String>() {{
             put("bottom", "20px");
             put("side", "16px");
-        }}
+        }},
+        null         // conversationPageOptions
     );
     ```
 
-| Property             | Type                   | Default | Description                                                                        |
-| -------------------- | ---------------------- | ------- | ---------------------------------------------------------------------------------- |
-| `prefersSystemTheme` | `Boolean?`             | `null`  | Follows the device appearance when `true`; otherwise uses your custom colors.      |
-| `primaryTextColor`   | `String?`              | `null`  | Hex or RGB value for primary text in the support widget.                           |
-| `accentColor`        | `String?`              | `null`  | Hex or RGB value applied to buttons and highlights.                                |
-| `spacing`            | `Map<String, String>?` | `null`  | CSS-like spacing overrides; `"bottom"` and `"side"` keys are recognized.           |
+| Property                  | Type                       | Default | Description                                                                        |
+| ------------------------- | -------------------------- | ------- | ---------------------------------------------------------------------------------- |
+| `prefersSystemTheme`      | `Boolean?`                 | `null`  | Follows the device appearance when `true`; otherwise uses your custom colors.      |
+| `primaryTextColor`        | `String?`                  | `null`  | Hex or RGB value for primary text in the support widget.                           |
+| `accentColor`             | `String?`                  | `null`  | Hex or RGB value applied to buttons and highlights.                                |
+| `spacing`                 | `Map<String, String>?`     | `null`  | CSS-like spacing overrides; `"bottom"` and `"side"` keys are recognized.           |
+| `conversationPageOptions` | `ConversationPageOptions?` | `null`  | Customizes the conversation page header and subheader text. See section below.     |
+
+##### Conversation page options
+
+`ConversationPageOptions` lets you customize the header branding shown at the top of the PLuG conversation screen:
+
+- Kotlin
+    ```kotlin
+    val theme = SupportWidgetTheme(
+        prefersSystemTheme = true,
+        conversationPageOptions = ConversationPageOptions(
+            headerText = "Acme Support",
+            subheaderText = " "   // single space blanks the subheader
+        )
+    )
+    ```
+- Java
+    ```java
+    ConversationPageOptions options = new ConversationPageOptions(
+        "Acme Support",   // headerText
+        " "               // subheaderText — single space blanks the subheader
+    );
+    SupportWidgetTheme theme = new SupportWidgetTheme(
+        true,    // prefersSystemTheme
+        null,    // primaryTextColor
+        null,    // accentColor
+        null,    // spacing
+        options
+    );
+    ```
+
+| Property        | Type      | Default | Description                                                                               |
+| --------------- | --------- | ------- | ----------------------------------------------------------------------------------------- |
+| `headerText`    | `String?` | `null`  | Custom text for the conversation header. Uses the server default when `null`.             |
+| `subheaderText` | `String?` | `null`  | Custom text for the subheader. Pass `" "` (single space) to render a blank subheader.    |
 
 ### Sample app
 
@@ -634,32 +670,17 @@ Once the user identification is complete, you can start using the chat (conversa
 
 You can initiate a new support conversation directly from your app. This method displays the support chat screen and simultaneously creates a new conversation.
 
-- Kotlin
-    ```kotlin
-    DevRev.createSupportConversation(context: Context, prefilledMessage: String? = null)
-    ```
-- Java
-    ```java
-    DevRev.INSTANCE.createSupportConversation(context, prefilledMessage);
-    ```
-
-You can optionally pass a pre-filled message that will appear in the composer when the conversation screen opens:
+Optionally pass a **prefilled message** so the new-conversation composer opens with prompt text. Pass `null` or omit the second argument for an empty composer.
 
 - Kotlin
     ```kotlin
-    // Without pre-filled message
     DevRev.createSupportConversation(context)
-
-    // With pre-filled message
-    DevRev.createSupportConversation(context, "I need help with...")
+    DevRev.createSupportConversation(context, "I need help with billing for order #12345")
     ```
 - Java
     ```java
-    // Without pre-filled message
-    DevRev.INSTANCE.createSupportConversation(context, null);
-
-    // With pre-filled message
-    DevRev.INSTANCE.createSupportConversation(context, "I need help with...");
+    DevRev.INSTANCE.createSupportConversation(context);
+    DevRev.INSTANCE.createSupportConversation(context, "I need help with billing for order #12345");
     ```
 
 #### Support button
