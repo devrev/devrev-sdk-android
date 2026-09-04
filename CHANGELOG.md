@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.3.15
+
+### Added
+- Added support for UI-based rate limiting.
+
+### Fixed
+- Fixed missing or incorrect screen names in session replay events for legacy and Jetpack Compose navigation.
+- Fixed a race condition when starting session recording that could cause unstable recording startup.
+
 ## 2.3.14
 
 ### Fixed
@@ -23,42 +32,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.3.12
 
 ### Added
-- Added an SDK version filter for session replay, allowing replay to be enabled or disabled for specific SDK versions from the dashboard. Crash and ANR capture continue to work while replay is suppressed; note that the session-started listener callback does not fire in that state.
+- Added an SDK version filter for session replay, so replay can be enabled or disabled for specific SDK versions from the dashboard. Crash and ANR capture keep working, but the session-started listener callback does not fire while replay is suppressed.
+
+### Changed
+- On cold start, the SDK now validates the cached session token with the backend before restoring the session, which adds one network request per launch. If the backend is unreachable, it falls back to the cached session and revalidates on the next launch.
+
+### Security
+- The PLuG support widget activity is no longer exported, so other apps on the device cannot launch it.
 
 ### Fixed
-- Hardened the PLuG support widget against being launched by other apps.
 - Fixed a main-thread deadlock when resolving external masks with Flutter.
 - Fixed a crash in the screenshot capturer caused by a recycled bitmap on cancel.
-- Fixed a stale identity issue across organizations on cold start.
-- Fixed an ANR caused by a slow crash handler.
+- Fixed a stale identity issue across orgs on cold start.
+- Fixed an ANR caused by a slow downstream crash handler.
 - Fixed an issue with mask coordinate clipping.
 
 ## 2.3.11
 
 ### Fixed
-- Fixed an issue related to WebView capturing during session recording.
+- Reverted the WebView masking-delay change from 2.3.10 that caused a regression.
 
 ## 2.3.10
 
 ### Fixed
-- Fixed an issue related to dispatch window callback mutations.
+- Fixed an AppCompat ContentFrameLayout crash during session recording.
+- Fixed a screenshot-related ANR when capturing WebView dialogs.
+- Fixed a masking delay during WebView page navigation.
 
 ## 2.3.9
 
 ### Fixed
-- Fixed an issue related to rapid navigations.
+- Fixed an issues related to rapid navigations. 
 - Fixed an ANR related to animated dialog captures.
 - Fixed an issue related to keyboard scrolls on webviews.
 - Fixed an issue related to dispatch window callback mutations.
 
 ## 2.3.8
 
-### Added
+## Added
 - Added support for pre-filled messages while create support chat conversations.
 
 ### Fixed
-- Fixed masking issues on rapid scrolls.
-- Fixed an issue with missing crash types.
+- Fixed masking issues on rapid scrolls. 
+- Fixed an issue with missing crash types. 
 
 ## 2.3.7
 
@@ -119,7 +135,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.3.1
 
 ### Fixed
-- Fixed an issue with masking on web views.
+- Fixed an issue with masking on web views. 
 
 ## 2.3.0
 
@@ -138,7 +154,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.2.14
 
 ### Fixed
-- Fixed an issue with session recordings on QR scan screens.
+- Fixed an issue with session recordings on QR scan screens. 
 
 ## 2.2.13
 
@@ -154,12 +170,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved session capturing stability and reliability.
 
 ### Changed
-- Removed redundant dependencies for reduced SDK size and enhanced security.
+- Removed redundant dependencies for reduced SDK size and enhanced security. 
 
 ## 2.2.11
 
 ### Fixed
-- Fixed an issue with bitmap capture for Flutter's `SurfaceView`.
+- Fixed an issue with bitmap capture for Flutter's `SurfaceView`. 
 
 ## 2.2.10
 
@@ -191,7 +207,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 2.2.8
 
 ### Deprecated
-- Deprecated the `identifyAnonymousUser()` method.
+- Deprecated the `identifyAnonymousUser()` method. 
 
 ### Fixed
 - Resolved a potential OutOfMemory crash.
