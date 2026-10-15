@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.4.1
+
+### Added
+- Added support for session recording on Android 17
+
+### Fixed
+- Fixed an issue where session recording restarted automatically when the app was relaunched after recording had been stopped or paused.
+- Fixed an issue with crash and ANR report uploads.
+
 ## 2.4.0
 
 ### Fixed
