@@ -801,6 +801,9 @@ For example:
     );
     ```
 
+> [!NOTE]
+> Event names must match the regular expression `^[a-zA-Z0-9_-]+$` — use only letters, digits, underscores, and hyphens. Names containing other characters are rejected. Keep event names and properties small: large payloads bloat the device's local memory and can lead to missed recordings.
+
 ### Session analytics
 
 The DevRev SDK provides observability features to help you understand how your users are interacting with your app.
