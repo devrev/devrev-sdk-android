@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2.4.3
+
+### Added
+- Introduced a new abort recording API to discard the current session recording without uploading it.
+
+### Fixed
+- Fixed ANRs on Android 10 and 11 caused by gesture detection during session recording.
+- Fixed an issue with screenshot capture that could cause instability in session replays.
+- Improved handling of low-memory conditions when saving screenshots during session recording.
+
 ## 2.4.2
 
 ### Added

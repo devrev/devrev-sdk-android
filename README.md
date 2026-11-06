@@ -860,6 +860,7 @@ Here are the available methods to help you control the session recording feature
     |----------------------------------------|------------------------------------------------------------------------|
     |`DevRev.startRecording()`   | Starts the session recording.                             |
     |`DevRev.stopRecording()`    | Ends the session recording and uploads it to the portal. |
+    |`DevRev.abortRecording(autoStartOnNextLaunch = false)`   | Ends the session recording and discards it without uploading. With `autoStartOnNextLaunch = true`, the next hot launch starts recording again. |
     |`DevRev.pauseRecording()`   | Pauses the ongoing session recording.                     |
     |`DevRev.resumeRecording()`  | Resumes a paused session recording.                       |
     |`DevRev.processAllOnDemandSessions()`  | Stops the ongoing user recording and sends all on-demand sessions along with the current recording. |
@@ -869,6 +870,7 @@ Here are the available methods to help you control the session recording feature
     |-----------------------------------------------------------------------------|------------------------------------------------------------------------|
     | `DevRevObservabilityExtKt.startRecording(DevRev.INSTANCE, context)`         | Starts the session recording.                                          |
     | `DevRevObservabilityExtKt.stopRecording(DevRev.INSTANCE)`                   | Ends the session recording and uploads it to the portal.               |
+    | `DevRevObservabilityExtKt.abortRecording(DevRev.INSTANCE, autoStartOnNextLaunch)` | Ends the session recording and discards it without uploading. With `autoStartOnNextLaunch = true`, the next hot launch starts recording again. |
     | `DevRevObservabilityExtKt.pauseRecording(DevRev.INSTANCE)`                  | Pauses the ongoing session recording.                                  |
     | `DevRevObservabilityExtKt.resumeRecording(DevRev.INSTANCE)`                 | Resumes a paused session recording.                                    |
     | `DevRevObservabilityExtKt.processAllOnDemandSessions(DevRev.INSTANCE)`      | Stops the ongoing user recording and sends all on-demand sessions along with the current recording.     |
